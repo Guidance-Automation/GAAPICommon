@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Core", "src\GAAPICommon.Core\GAAPICommon.Core.csproj", "{0425EE60-7F11-416B-9DB5-714BFB29CA27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Architecture", "GAAPICommon.Architecture\GAAPICommon.Architecture.csproj", "{D28E633B-D25E-40F0-8303-3F052DF4FEB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Architecture", "src\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj", "{D28E633B-D25E-40F0-8303-3F052DF4FEB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Core.Test", "GAAPICommon.Core.Test\GAAPICommon.Core.Test.csproj", "{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Core.Test", "tests\GAAPICommon.Core.Test\GAAPICommon.Core.Test.csproj", "{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
