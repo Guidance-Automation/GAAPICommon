@@ -1,4 +1,5 @@
-﻿using GAAPICommon.Core.Dtos;
+﻿using GAAPICommon.Architecture;
+using GAAPICommon.Core.Dtos;
 using NUnit.Framework;
 using System;
 
@@ -15,6 +16,8 @@ namespace GAAPICommon.Core.Test
 
 			ServiceCallResultDto dto = ServiceCallResultFactory.FromCaughtException(exceptionId, ex);
 
+			Assert.IsFalse(dto.IsSuccessful());
+
 			Assert.AreEqual(exceptionId, dto.ServiceCode);
 			StringAssert.AreEqualIgnoringCase(ex.Message, dto.ExceptionMessage);
 			StringAssert.AreEqualIgnoringCase(ex.Source, dto.ExceptionSource);
@@ -25,6 +28,8 @@ namespace GAAPICommon.Core.Test
 		public void FromNoError()
 		{
 			ServiceCallResultDto dto = ServiceCallResultFactory.FromNoError();
+
+			Assert.IsTrue(dto.IsSuccessful());
 
 			Assert.AreEqual(0, dto.ServiceCode);
 			Assert.IsNull(dto.ExceptionMessage);
