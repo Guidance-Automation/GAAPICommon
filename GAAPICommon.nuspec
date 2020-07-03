@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-  		<file src="src\GAAPICommon.Architecture\bin\Release\netstandard2.0\GAAPICommon.Architecture.deps" target="lib\netstandard2.0" />
+  		<file src="src\GAAPICommon.Architecture\bin\Release\netstandard2.0\GAAPICommon.Architecture.deps.json" target="lib\netstandard2.0" />
 		<file src="src\GAAPICommon.Architecture\bin\Release\netstandard2.0\GAAPICommon.Architecture.dll" target="lib\netstandard2.0" />
 		<file src="src\GAAPICommon.Architecture\bin\Release\netstandard2.0\GAAPICommon.Architecture.pdb" target="lib\netstandard2.0" />
 		<file src="src\GAAPICommon.Core\bin\Release\netstandard2.0\GAAPICommon.Core.deps.json" target="lib\netstandard2.0" />
