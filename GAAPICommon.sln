@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Core", "src\GAAPICommon.Core\GAAPICommon.Core.csproj", "{0425EE60-7F11-416B-9DB5-714BFB29CA27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Core", "src\GAAPICommon.Core\GAAPICommon.Core.csproj", "{0425EE60-7F11-416B-9DB5-714BFB29CA27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Architecture", "GAAPICommon.Architecture\GAAPICommon.Architecture.csproj", "{D28E633B-D25E-40F0-8303-3F052DF4FEB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Core.Test", "GAAPICommon.Core.Test\GAAPICommon.Core.Test.csproj", "{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
