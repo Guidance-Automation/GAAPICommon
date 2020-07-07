@@ -11,6 +11,11 @@ namespace GAAPICommon.Core
             return new ServiceCallResultDto((int)ServiceCode.NoError, null);
         }
 
+        public static ServiceCallResultDto FromClientException(Exception ex)
+		{
+            return new ServiceCallResultDto((int)ServiceCode.ClientException, ex);
+		}
+
         public static ServiceCallResultDto FromUnknownException(Exception ex)
         {
             return new ServiceCallResultDto((int)ServiceCode.UnknownException, ex);

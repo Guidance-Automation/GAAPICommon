@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj" />
     <ProjectReference Include="..\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj" />
   </ItemGroup>
 
