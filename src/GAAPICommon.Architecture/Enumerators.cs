@@ -15,6 +15,9 @@ namespace GAAPICommon.Architecture
         UnknownException = 2,
 
         [EnumMember]
-        ServiceNotConfigured = 3
+        ServiceNotConfigured = 3,
+
+        [EnumMember]
+        ClientException = 4
     };
 }
