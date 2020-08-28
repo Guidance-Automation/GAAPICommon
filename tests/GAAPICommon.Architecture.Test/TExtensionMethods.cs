@@ -11,7 +11,7 @@ namespace GAAPICommon.Architecture.Test
         [TestCase(PositionControlStatus.WaypointDiscontinuity, true)]
         public void PCSFaultState(PositionControlStatus pcs, bool isFault)
         {
-            Assert.AreEqual(isFault, pcs.IsFault()); 
+            Assert.AreEqual(isFault, pcs.IsFault());
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Runtime.Serialization;
 
 namespace GAAPICommon.Core.Dtos
 {
-	[DataContract]
-	public class ServiceCallResultDto : IServiceCallResult
-	{
+    [DataContract]
+    public class ServiceCallResultDto : IServiceCallResult
+    {
         public ServiceCallResultDto(int serviceCode, Exception caughtException = null)
         {
             if (serviceCode == 0 && caughtException != null)

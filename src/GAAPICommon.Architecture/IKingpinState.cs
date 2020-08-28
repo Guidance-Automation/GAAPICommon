@@ -1,47 +1,46 @@
 ﻿using System;
 using System.Net;
-using System.Runtime.Serialization;
 
 namespace GAAPICommon.Architecture
 {
     public interface IKingpinState : IKingpinStatusReporter
     {
-		string Alias { get; }
+        string Alias { get; }
 
-		bool IsVirtual { get; }
+        bool IsVirtual { get; }
 
-		byte Tick { get; }
+        byte Tick { get; }
 
-		float X { get; }
+        float X { get; }
 
-		float Y { get; }
+        float Y { get; }
 
-		float Heading { get; }
+        float Heading { get; }
 
-		MovementType CurrentMovementType { get; }
+        MovementType CurrentMovementType { get; }
 
-		IPAddress IPAddress { get; }
+        IPAddress IPAddress { get; }
 
-		byte[] StateCastExtendedData { get; }
+        byte[] StateCastExtendedData { get; }
 
-		double Speed { get; }
+        double Speed { get; }
 
-		int WaypointLastId { get; }
+        int WaypointLastId { get; }
 
-		int WaypointNextId { get; }
+        int WaypointNextId { get; }
 
-		AgvMode AgvMode { get; }
+        AgvMode AgvMode { get; }
 
-		double BatteryChargePercentage { get; }
+        double BatteryChargePercentage { get; }
 
-		ExtendedDataFaultStatus ExtendedDataFaultStatus { get; }
+        ExtendedDataFaultStatus ExtendedDataFaultStatus { get; }
 
-		FrozenState FrozenState { get; }
+        FrozenState FrozenState { get; }
 
-		bool IsCharging { get; }
+        bool IsCharging { get; }
 
-		int LastCompletedInstructionId { get; }
+        int LastCompletedInstructionId { get; }
 
-		TimeSpan Stationary { get; }
-	}
+        TimeSpan Stationary { get; }
+    }
 }
