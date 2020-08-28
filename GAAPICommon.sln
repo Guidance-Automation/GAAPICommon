@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Core", "src\GAAPICommon.Core\GAAPICommon.Core.csproj", "{0425EE60-7F11-416B-9DB5-714BFB29CA27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Architecture", "src\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj", "{D28E633B-D25E-40F0-8303-3F052DF4FEB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Architecture", "src\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj", "{D28E633B-D25E-40F0-8303-3F052DF4FEB6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Core.Test", "tests\GAAPICommon.Core.Test\GAAPICommon.Core.Test.csproj", "{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAAPICommon.Architecture.Test", "tests\GAAPICommon.Architecture.Test\GAAPICommon.Architecture.Test.csproj", "{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

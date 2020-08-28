@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GAAPICommon.Core.Test")]
+[assembly: AssemblyTitle("GAAPICommon.Architecture.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GAAPICommon.Core.Test")]
+[assembly: AssemblyProduct("GAAPICommon.Architecture.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d7f78f11-8aaf-4571-8d9a-cb5f0ba03407")]
+[assembly: Guid("677a77c3-b5fd-4a7d-b5bc-63cf6d590736")]
 
 // Version information for an assembly consists of the following four values:
 //

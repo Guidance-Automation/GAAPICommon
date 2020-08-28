@@ -4,17 +4,17 @@ using System;
 
 namespace GAAPICommon.Core
 {
-	public static class ServiceCallResultFactory
-	{
+    public static class ServiceCallResultFactory
+    {
         public static ServiceCallResultDto FromNoError()
         {
             return new ServiceCallResultDto((int)ServiceCode.NoError, null);
         }
 
         public static ServiceCallResultDto FromClientException(Exception ex)
-		{
+        {
             return new ServiceCallResultDto((int)ServiceCode.ClientException, ex);
-		}
+        }
 
         public static ServiceCallResultDto FromUnknownException(Exception ex)
         {
