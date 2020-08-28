@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GAAPICommon</id>
-    <version>1.2.2</version>
+    <version>$version$</version>
     <authors>Martin Davies</authors>
     <owners>Guidance Automation Ltd</owners>
 	<license type="expression">MIT</license>
