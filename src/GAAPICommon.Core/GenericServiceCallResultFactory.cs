@@ -42,13 +42,22 @@ namespace GAAPICommon.Core
         public static ServiceCallResultDto<T> FromError<U>(U value) where U : Enum
         {
             int serviceCode = Convert.ToInt32(value);
-            return ServiceCallResultFactory<T>.FromError(serviceCode);
+            return FromError(serviceCode);
         }
-       
+
+        public static ServiceCallResultDto<T> FromCaughtException<U>(U value, Exception ex) where U : Enum
+        {
+            int serviceCode = Convert.ToInt32(value);
+            return FromCaughtException(serviceCode, ex);
+        }
+
         public static ServiceCallResultDto<T> FromCaughtException(int serviceCode, Exception ex)
         {
             if (serviceCode < 10) 
                 throw new ArgumentOutOfRangeException("Service code must be >= 10");
+
+            if (ex == null)
+                throw new ArgumentNullException("ex");
 
             return new ServiceCallResultDto<T>(serviceCode, default, ex);
         }
