@@ -8,6 +8,27 @@ namespace GAAPICommon.Core.Test
     [TestFixture]
     public class TServiceCallResultFactory
     {
+        [TestCase(VideoGraves.Wonderswan)]
+        public void FromGenericEnum(VideoGraves videoGraves)
+        {
+            ServiceCallResultDto result = ServiceCallResultFactory.FromError(videoGraves);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual((int)videoGraves, result.ServiceCode);
+        }
+
+        [TestCase(VideoGraves.Wonderswan)]
+        public void FromGenericEnumWithValue(VideoGraves videoGraves)
+        {
+            ServiceCallResultFactory<string>.FromError(videoGraves);
+            ServiceCallResultDto<string> result = ServiceCallResultFactory<string>.FromError(videoGraves);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual((int)videoGraves, result.ServiceCode);
+            Assert.AreEqual(default(string), result.Value);
+        }
+
+
         [Test]
         public void FromCaughtException()
         {
