@@ -39,18 +39,6 @@ namespace GAAPICommon.Core
             return new ServiceCallResultDto<T>(serviceCode, default, null);
         }
 
-        public static ServiceCallResultDto<T> FromError<U>(U value) where U : Enum
-        {
-            int serviceCode = Convert.ToInt32(value);
-            return FromError(serviceCode);
-        }
-
-        public static ServiceCallResultDto<T> FromCaughtException<U>(U value, Exception ex) where U : Enum
-        {
-            int serviceCode = Convert.ToInt32(value);
-            return FromCaughtException(serviceCode, ex);
-        }
-
         public static ServiceCallResultDto<T> FromCaughtException(int serviceCode, Exception ex)
         {
             if (serviceCode < 10) 
