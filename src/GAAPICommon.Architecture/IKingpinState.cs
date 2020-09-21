@@ -42,5 +42,7 @@ namespace GAAPICommon.Architecture
         int LastCompletedInstructionId { get; }
 
         TimeSpan Stationary { get; }
+
+        byte[] CurrentWaypointExtendedData { get; }
     }
 }
