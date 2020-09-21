@@ -63,6 +63,9 @@ namespace GAAPICommon.Core.Dtos
         public byte[] StateCastExtendedData { get; set; } = new byte[0];
 
         [DataMember]
+        public byte[] CurrentWaypointExtendedData { get; set; } = new byte[0];
+
+        [DataMember]
         public TimeSpan Stationary { get; set; } = TimeSpan.MinValue;
 
         [DataMember]

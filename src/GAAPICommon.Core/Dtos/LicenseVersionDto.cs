@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
+﻿using System.Runtime.Serialization;
 
 namespace GAAPICommon.Core.Dtos
 {
-	[DataContract]
-	public class LicenseVersionDto
-	{
-		[DataMember]
-		public int MajorVersion { get; set; }
+    [DataContract]
+    public class LicenseVersionDto
+    {
+        [DataMember]
+        public int MajorVersion { get; set; }
 
-		[DataMember]
-		public int MinorVersion { get; set; }
-	}
+        [DataMember]
+        public int MinorVersion { get; set; }
+    }
 }

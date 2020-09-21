@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace GAAPICommon.Core.Dtos
 {
     [DataContract]
-    public class FleetStateDto 
+    public class FleetStateDto
     {
         public FleetStateDto(byte tick, IKingpinState[] kingpinStates)
         {
