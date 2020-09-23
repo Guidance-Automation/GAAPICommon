@@ -54,6 +54,16 @@ namespace GAAPICommon.Architecture
     }
 
     [DataContract]
+    public enum VehicleControllerState
+    {
+        [EnumMember]
+        Enabled = 0,
+
+        [EnumMember]
+        Disabled = 1
+    }
+
+    [DataContract]
     public enum DynamicLimiterStatus : ushort
     {
         [EnumMember]
