@@ -44,6 +44,16 @@ namespace GAAPICommon.Architecture
     }
 
     [DataContract]
+    public enum KingpinSupportState
+    {
+        [EnumMember]
+        Unsupported = 0,
+
+        [EnumMember]
+        Supported = 1
+    }
+
+    [DataContract]
     public enum DynamicLimiterStatus : ushort
     {
         [EnumMember]
