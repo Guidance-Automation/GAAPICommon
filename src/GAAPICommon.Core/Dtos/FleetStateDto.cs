@@ -18,5 +18,8 @@ namespace GAAPICommon.Core.Dtos
 
         [DataMember]
         public byte Tick { get; set; }
+
+        [DataMember]
+        public FrozenState FrozenState { get; set; }
     }
 }
