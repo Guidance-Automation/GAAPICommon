@@ -5,6 +5,21 @@ namespace GAAPICommon.Core.Dtos
 {
     public static class ExtensionMethods
     {
+        public static byte[] ToBytes(this KeyedSpeedDemandDto keyedSpeedDemand)
+        {
+            if (keyedSpeedDemand == null)
+                throw new ArgumentNullException("keyedSpeedDemand");
+
+
+            byte[] bytes = new byte[27];
+
+            bytes[0] = keyedSpeedDemand.Tick;
+            keyedSpeedDemand.Guid.ToByteArray().CopyTo(bytes, 1);
+            keyedSpeedDemand.SpeedDemand.ToBytes().CopyTo(bytes, 17);
+
+            return bytes;
+        }
+
         public static byte[] ToBytes(this SpeedDemandDto speedDemand)
         {
             if (speedDemand == null)
