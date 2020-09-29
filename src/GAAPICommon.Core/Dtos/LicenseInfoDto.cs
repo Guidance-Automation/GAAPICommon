@@ -40,6 +40,9 @@ namespace GAAPICommon.Core.Dtos
         public int LicensedVersion { get; set; }
 
         [DataMember]
+        public string LicensedProduct { get; set; }
+
+        [DataMember]
         public bool MaintenanceStatus { get; set; }
 
         [DataMember]
