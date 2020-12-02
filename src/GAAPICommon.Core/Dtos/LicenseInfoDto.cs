@@ -49,6 +49,9 @@ namespace GAAPICommon.Core.Dtos
         public DateTime ExpiryDate { get; set; }
 
         [DataMember]
+        public DateTime PurchasedFleetExpiryDate { get; set; }
+
+        [DataMember]
         public DateTime RentalExpiryDate { get; set; }
 
         [DataMember]
