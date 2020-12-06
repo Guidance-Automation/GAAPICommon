@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using GAAPICommon.Architecture;
 
 namespace GAAPICommon.Core.Dtos
 {
@@ -18,7 +19,7 @@ namespace GAAPICommon.Core.Dtos
             keyedSpeedDemand.SpeedDemand.ToBytes().CopyTo(bytes, 17);
 
             return bytes;
-        }
+        } 
 
         public static byte[] ToBytes(this SpeedDemandDto speedDemand)
         {

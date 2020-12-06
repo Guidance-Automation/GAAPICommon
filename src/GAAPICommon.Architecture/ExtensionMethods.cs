@@ -12,6 +12,17 @@ namespace GAAPICommon.Architecture
             return result.ServiceCode == (int)ServiceCode.NoError;
         }
 
+        public static bool IsInFault(this IKingpinState kingpinState)
+        {
+            if (kingpinState == null)
+                return false;
+
+            return kingpinState.PositionControlStatus.IsFault()
+                || kingpinState.NavigationStatus.IsFault()
+                || kingpinState.DynamicLimiterStatus.IsFault()
+                || kingpinState.ExtendedDataFaultStatus.IsFault();
+        }
+
         public static bool IsFault(this ExtendedDataFaultStatus exFaultStatus) => ExDataFaultStates.Contains(exFaultStatus);
 
         public static bool IsFault(this PositionControlStatus positionControlStatus) => PCSFaultStates.Contains(positionControlStatus);
