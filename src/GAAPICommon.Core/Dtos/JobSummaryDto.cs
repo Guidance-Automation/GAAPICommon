@@ -1,0 +1,37 @@
+﻿using GAAPICommon.Architecture;
+using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text;
+
+namespace GAAPICommon.Core.Dtos
+{
+    [DataContract]
+    public class JobSummaryDto
+    {
+        public JobSummaryDto()
+        {
+        }
+
+        [DataMember]
+        public int AssignedAgentId { get; set; }
+
+        [DataMember]
+        public string Description { get; set; }
+
+        [DataMember]
+        public int JobId { get; set; }
+
+        [DataMember]
+        public JobStatus JobStatus { get; set; }
+
+        [DataMember]
+        public IEnumerable<string> Notes { get; set; }
+
+        [DataMember]
+        public int RootOrderedListTaskId { get; set; }
+
+        [DataMember]
+        public IEnumerable<TaskSummaryDto> TaskSummaries { get; set; }
+    }
+}
