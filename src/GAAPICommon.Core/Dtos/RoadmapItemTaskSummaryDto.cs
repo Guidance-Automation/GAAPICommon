@@ -3,9 +3,9 @@
 namespace GAAPICommon.Core.Dtos
 {
     [DataContract]
-    public class NodeTaskSummaryDto
+    public class RoadmapItemTaskSummaryDto
     {
         [DataMember]
-        public int NodeId { get; set; }
+        public int RoadmapItemId { get; set; }
     }
 }

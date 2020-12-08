@@ -10,7 +10,7 @@ namespace GAAPICommon.Core.Dtos
     public class TaskSummaryDto
     {
         [DataMember]
-        public NodeTaskSummaryDto NodeTaskSummaryData { get; set; }
+        public RoadmapItemTaskSummaryDto RoadmapItemTaskSummary { get; set; }
 
         [DataMember]
         public int? ParentTaskId { get; set; }
