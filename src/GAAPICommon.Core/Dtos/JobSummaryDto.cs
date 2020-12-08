@@ -1,8 +1,6 @@
 ﻿using GAAPICommon.Architecture;
-using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace GAAPICommon.Core.Dtos
 {
