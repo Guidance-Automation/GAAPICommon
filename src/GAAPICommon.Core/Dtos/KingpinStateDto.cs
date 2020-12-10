@@ -1,4 +1,5 @@
 ﻿using GAAPICommon.Architecture;
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Runtime.Serialization;
@@ -48,6 +49,7 @@ namespace GAAPICommon.Core.Dtos
         public float Heading { get; set; } = float.NaN;
 
         [DataMember]
+        [JsonConverter(typeof(IPAddressJsonConverter))]
         public IPAddress IPAddress { get; set; } = null;
 
         [DataMember]

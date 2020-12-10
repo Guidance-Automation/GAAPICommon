@@ -1,4 +1,5 @@
 ﻿using GAAPICommon.Architecture;
+using Newtonsoft.Json;
 using System.Net;
 using System.Runtime.Serialization;
 
@@ -17,6 +18,7 @@ namespace GAAPICommon.Core.Dtos
         public int Id { get; set; }
 
         [DataMember]
+        [JsonConverter(typeof(IPAddressJsonConverter))]
         public IPAddress IPAddress { get; set; }
     }
 }
