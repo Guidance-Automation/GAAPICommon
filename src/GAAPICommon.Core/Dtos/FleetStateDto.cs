@@ -7,6 +7,10 @@ namespace GAAPICommon.Core.Dtos
     [DataContract]
     public class FleetStateDto
     {
+        public FleetStateDto()
+        {
+        }
+
         public FleetStateDto(byte tick, IKingpinState[] kingpinStates, FrozenState frozenState)
         {
             Tick = tick;
