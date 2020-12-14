@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GAAPICommon.Architecture.SignalR_Client_Interfaces
+namespace GAAPICommon.Architecture
 {
 	public interface ILicenseNotificationClient
 	{
