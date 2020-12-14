@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GAAPICommon.Architecture.SignalR_Client_Interfaces
 {
-	public interface INotificationClient
+	public interface ILicenseNotificationClient
 	{
 		/// <summary>
 		/// Will fire any time the license becomes invalid
