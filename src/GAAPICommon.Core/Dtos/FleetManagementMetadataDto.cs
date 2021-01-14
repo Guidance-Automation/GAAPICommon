@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GAAPICommon.Core.Dtos
+﻿namespace GAAPICommon.Core.Dtos
 {
     public class FleetManagementMetadataDto
     {
