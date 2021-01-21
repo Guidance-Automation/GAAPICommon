@@ -2,12 +2,12 @@
 {
     public class SchedulerStateDto
     {
-        public bool IsInAttractMode { get; set; }
+        public bool IsInAttractMode { get; set; } = false;
 
-        public bool IsSpotManagementEnabled { get; set; }
+        public bool IsSpotManagementEnabled { get; set; } = false;
 
-        public bool IsUpdateLoopPluginsEnabled { get; set; }
+        public bool IsUpdateLoopPluginsEnabled { get; set; } = false;
 
-        public MapMetadataDto MapMetadata { get; set; }
+        public MapMetadataDto MapMetadata { get; set; } = null;
     }
 }
