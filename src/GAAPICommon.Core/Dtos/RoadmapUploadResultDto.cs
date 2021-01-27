@@ -1,4 +1,6 @@
-﻿namespace GAAPICommon.Core.Dtos
+﻿using GAAPICommon.Architecture;
+
+namespace GAAPICommon.Core.Dtos
 {
     public class RoadmapUploadResultDto
     {
@@ -6,6 +8,8 @@
 
         public string LocalName { get; set; } = null;
 
-        public bool Success { get { return Id >= 0; } }
+        public RoadmapUploadResultFaultCode FaultCode { get; set; }
+
+        public bool Success =>  FaultCode == RoadmapUploadResultFaultCode.Success; 
     }
 }

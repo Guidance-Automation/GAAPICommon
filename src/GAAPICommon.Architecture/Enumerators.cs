@@ -337,6 +337,15 @@ namespace GAAPICommon.Architecture
     };
 
     [DataContract]
+    public enum RoadmapUploadResultFaultCode
+    {
+        Success,
+        Unknown,
+        DuplicateLocalName
+    }
+
+
+    [DataContract]
     public enum TaskType
     {
         [EnumMember]
