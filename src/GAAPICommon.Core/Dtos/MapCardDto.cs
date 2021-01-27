@@ -8,9 +8,7 @@ namespace GAAPICommon.Core.Dtos
 
         public string LocalName { get; set; } = null;
 
-        public string Alias { get; set; } = null;
-
-        public string Description { get; set; } = null;
+        public MapMetadataDto MapMetadata { get; set; } = null;
 
         public DateTime LastAccess { get; set; } = DateTime.MinValue;
 
