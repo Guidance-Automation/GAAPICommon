@@ -10,6 +10,13 @@ namespace GAAPICommon.Core.Dtos
 
         public RoadmapUploadResultFaultCode FaultCode { get; set; }
 
+        /// <summary>
+        /// This can be one of two things:
+        ///     If the local name is identical, then this can be a map with the same local name but different content.
+        ///     Or the map can be identical equal (identical content) to a different named map on the server.
+        /// </summary>
+        public MapCardDto ConflictingMapCard { get; set; } = null;
+
         public bool Success =>  FaultCode == RoadmapUploadResultFaultCode.Success; 
     }
 }

@@ -341,7 +341,8 @@ namespace GAAPICommon.Architecture
     {
         Success,
         Unknown,
-        DuplicateLocalName
+        DuplicateLocalName,
+        DuplicateMap
     }
 
 
