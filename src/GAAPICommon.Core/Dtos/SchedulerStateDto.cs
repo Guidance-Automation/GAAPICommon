@@ -9,5 +9,7 @@
         public bool IsUpdateLoopPluginsEnabled { get; set; } = false;
 
         public MapMetadataDto MapMetadata { get; set; } = null;
+
+        public SpotManagerStateDto SpotManagerState { get; set; } = null;
     }
 }

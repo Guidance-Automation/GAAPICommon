@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GAAPICommon.Architecture
+﻿namespace GAAPICommon.Architecture
 {
     public interface IParkingSpotState : ISpotState
     {
+        IParkBookingState ParkBooking { get; }
     }
 }

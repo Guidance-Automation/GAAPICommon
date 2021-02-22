@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace GAAPICommon.Core.Dtos
 {
     [DataContract]
-    public abstract class AbstractBookingStateDto
+    public abstract class AbstractBookingStateDto : IBookingState
     {
         [DataMember]
         public int AgentId { get; set; }
@@ -18,11 +18,6 @@ namespace GAAPICommon.Core.Dtos
         [DataMember]
         public int TaskId { get; set; }
 
-        public string ToBookingSummary()
-        {
-            return $"AgentId:{AgentId} BookingState:{BookingState} JobId:{JobId} TaskId:{TaskId}";
-        }
-
-        public override string ToString() => ToBookingSummary();
+        public override string ToString() => this.ToBookingStateString();
     }
 }
