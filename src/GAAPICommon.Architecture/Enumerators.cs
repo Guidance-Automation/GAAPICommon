@@ -346,6 +346,22 @@ namespace GAAPICommon.Architecture
     }
 
     [DataContract]
+    public enum BookingState
+    {
+        [EnumMember]
+        AwaitingArrival,
+
+        [EnumMember]
+        CheckedIn,
+
+        [EnumMember]
+        AwaitingCheckout,
+
+        [EnumMember]
+        CheckedOut
+    }
+
+    [DataContract]
     public enum ChargeType
     {
         [EnumMember]

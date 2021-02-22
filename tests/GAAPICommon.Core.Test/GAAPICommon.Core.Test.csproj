@@ -58,6 +58,7 @@
     <Compile Include="TServiceCallResultDto.cs" />
     <Compile Include="TServiceCallResultFactory.cs" />
     <Compile Include="TSpeedDemmandDto.cs" />
+    <Compile Include="TSpotManagerStateDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj">
