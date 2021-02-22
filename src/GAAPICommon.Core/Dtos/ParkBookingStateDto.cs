@@ -3,7 +3,7 @@
 namespace GAAPICommon.Core.Dtos
 {
     [DataContract]
-    public class ParkBookingDto : AbstractBookingStateDto
+    public class ParkBookingStateDto : AbstractBookingStateDto
     {
         public override string ToString() => ToBookingSummary();
     }
