@@ -7,16 +7,10 @@ namespace GAAPICommon.Core.Dtos
     public class ChargingSpotStateDto : AbstractSpotStateDto, IChargingSpotState
     {
         [DataMember]
-        public ChargeBookingStateDto ChargeBooking { get; set; } = null;
+        public ChargeBookingStateDto ChargeBookingDto { get; set; } = null;
 
+        public IChargeBookingState ChargeBooking => ChargeBookingDto;
 
-        public string ToChargingSpotStateString()
-        {
-            return ChargeBooking == null
-                ? ToSummaryString()
-                : $"{ToSummaryString()} {ChargeBooking.ToChargeBookingSummary()}";
-        }
-
-        public override string ToString() => ToChargingSpotStateString();
+        public override string ToString() => this.ToChargingSpotStateString();
     }
 }

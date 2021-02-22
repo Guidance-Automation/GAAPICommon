@@ -1,9 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using GAAPICommon.Architecture;
+using System.Runtime.Serialization;
 
 namespace GAAPICommon.Core.Dtos
 {
     [DataContract]
-    public abstract class AbstractSpotStateDto
+    public abstract class AbstractSpotStateDto : ISpotState
     {
         [DataMember]
         public int NodeId { get; set; }
@@ -11,12 +12,6 @@ namespace GAAPICommon.Core.Dtos
         [DataMember]
         public bool IsBooked { get; set; }
 
-
-        public string ToSummaryString()
-        {
-            return $"NodeId:{NodeId} IsBooked:{IsBooked}";
-        }
-
-        public override string ToString() => ToSummaryString();
+        public override string ToString() => this.ToSpotStateString();
     }
 }

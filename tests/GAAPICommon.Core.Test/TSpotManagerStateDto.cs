@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GAAPICommon.Architecture;
+﻿using GAAPICommon.Architecture;
 using GAAPICommon.Core.Dtos;
 using NUnit.Framework;
 
@@ -24,11 +19,11 @@ namespace GAAPICommon.Core.Test
         {
             SpotManagerStateDto dto = new SpotManagerStateDto();
 
-            dto.ChargingSpotStates = new ChargingSpotStateDto[]
+            dto.ChargingSpotStateDtos = new ChargingSpotStateDto[]
             {
                 new ChargingSpotStateDto()
                 {
-                    ChargeBooking = null,
+                    ChargeBookingDto = null,
                     IsBooked = false,
                     NodeId = 1
                 }
@@ -43,11 +38,11 @@ namespace GAAPICommon.Core.Test
         {
             SpotManagerStateDto dto = new SpotManagerStateDto();
 
-            dto.ChargingSpotStates = new ChargingSpotStateDto[]
+            dto.ChargingSpotStateDtos = new ChargingSpotStateDto[]
             {
                 new ChargingSpotStateDto()
                 {
-                    ChargeBooking = new ChargeBookingStateDto()
+                    ChargeBookingDto = new ChargeBookingStateDto()
                     {
                         BookingState = BookingState.AwaitingArrival,
                         AgentId = 1,

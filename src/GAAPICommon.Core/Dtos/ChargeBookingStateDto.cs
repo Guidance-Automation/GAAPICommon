@@ -4,16 +4,11 @@ using System.Runtime.Serialization;
 namespace GAAPICommon.Core.Dtos
 {
     [DataContract]
-    public class ChargeBookingStateDto : AbstractBookingStateDto
+    public class ChargeBookingStateDto : AbstractBookingStateDto, IChargeBookingState
     {
         [DataMember]
         public ChargeType ChargeType { get; set; }
 
-        public string ToChargeBookingSummary()
-        {
-            return $"{ToBookingSummary()} ChargeType:{ChargeType}";
-        }
-
-        public override string ToString() => ToChargeBookingSummary();
+        public override string ToString() => this.ToChargeBookingStateString();
     }
 }

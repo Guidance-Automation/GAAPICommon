@@ -6,5 +6,6 @@ namespace GAAPICommon.Architecture
 {
     public interface IChargingSpotState : ISpotState
     {
+        IChargeBookingState ChargeBooking { get; }
     }
 }
