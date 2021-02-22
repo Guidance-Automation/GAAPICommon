@@ -345,6 +345,19 @@ namespace GAAPICommon.Architecture
         DuplicateMap
     }
 
+    [DataContract]
+    public enum ChargeType
+    {
+        [EnumMember]
+        Immediate = 0,
+
+        [EnumMember]
+        Opportunistic = 1,
+
+        [EnumMember]
+        Trickle = 2
+    }
+
 
     [DataContract]
     public enum TaskType
