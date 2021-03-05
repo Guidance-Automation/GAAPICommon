@@ -180,6 +180,28 @@ namespace GAAPICommon.Architecture
     }
 
     [DataContract]
+    public enum JobPriority
+    {
+        [EnumMember]
+        Low = 50, // Do this only if nothing else to do (oppo charge, park, spot manager only)
+
+        [EnumMember]
+        Normal = 60, // The standard priority for clients to use in the comms
+
+        [EnumMember]
+        High = 70, // A higher priority for clients to use in the comms
+
+        [EnumMember]
+        Urgent = 80, // The highest priority clients can set, e.g. truck leaving in twenty mins, go pack this.
+
+        [EnumMember]
+        Immediate = 90, // I need to charge right now because I'm going flat (spot manager only)		
+
+        [EnumMember]
+        Critical = 100 // Incase of fire - move vehicles even if they will go flat do bad things 
+    };
+
+    [DataContract]
     public enum NavigationStatus : ushort
     {
         [EnumMember]
