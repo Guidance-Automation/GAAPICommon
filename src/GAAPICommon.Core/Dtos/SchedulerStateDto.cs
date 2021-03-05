@@ -1,13 +1,15 @@
-﻿namespace GAAPICommon.Core.Dtos
+﻿using System;
+
+namespace GAAPICommon.Core.Dtos
 {
     public class SchedulerStateDto
     {
-        public bool IsInAttractMode { get; set; } = false;
+        public Guid InstanceId { get; set; }
 
-        public bool IsSpotManagementEnabled { get; set; } = false;
+        public byte Cycle { get; set; }
 
-        public bool IsUpdateLoopPluginsEnabled { get; set; } = false;
+        public TimeSpan UpTime { get; set; }
 
-        public MapMetadataDto MapMetadata { get; set; } = null;
+        public SpotManagerStateDto SpotManagerState { get; set; }
     }
 }
