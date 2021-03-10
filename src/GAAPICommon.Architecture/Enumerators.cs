@@ -223,6 +223,9 @@ namespace GAAPICommon.Architecture
         NoResponse = 5,
 
         [EnumMember]
+        NoScannerData = 6,
+
+        [EnumMember]
         Unknown = 65535
     }
 
