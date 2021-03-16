@@ -112,7 +112,8 @@ namespace GAAPICommon.Architecture
         {
             NavigationStatus.AssociationFailure,
             NavigationStatus.HighUncertainty,
-            NavigationStatus.Lost
+            NavigationStatus.Lost,
+            NavigationStatus.NoScannerData
         };
 
         public static HashSet<PositionControlStatus> PCSFaultStates { get; } = new HashSet<PositionControlStatus>()
