@@ -10,6 +10,7 @@ namespace GAAPICommon.Core.Dtos
     {
         [DataMember]
         public IEnumerable<ChargingSpotStateDto> ChargingSpotStateDtos { get; set; } = Enumerable.Empty<ChargingSpotStateDto>();
+
         [DataMember]
         public IEnumerable<ParkingSpotStateDto> ParkingSpotStateDtos { get; set;  } = Enumerable.Empty<ParkingSpotStateDto>();
 
