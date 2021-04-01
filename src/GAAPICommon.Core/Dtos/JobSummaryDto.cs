@@ -21,6 +21,9 @@ namespace GAAPICommon.Core.Dtos
         public int JobId { get; set; }
 
         [DataMember]
+        public int JobPriority { get; set; }
+
+        [DataMember]
         public JobStatus JobStatus { get; set; }
 
         [DataMember]
