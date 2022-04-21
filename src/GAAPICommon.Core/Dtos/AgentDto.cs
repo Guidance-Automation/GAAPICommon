@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 
 namespace GAAPICommon.Core.Dtos
 {
+	[DataContract]
 	public enum AgentMarkovState
 	{
 		[EnumMember]
