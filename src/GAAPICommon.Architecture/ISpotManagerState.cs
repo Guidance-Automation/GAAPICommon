@@ -8,6 +8,8 @@ namespace GAAPICommon.Architecture
 
         IEnumerable<IParkingSpotState> ParkingSpotStates { get; }
 
+        bool IsChanged { get; }
+
         byte Tick { get; }
     }
 }
