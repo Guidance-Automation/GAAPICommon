@@ -2,8 +2,6 @@
 	
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<AssemblyVersion>99.99.9999</AssemblyVersion>
-		<Version>99.99.9999</Version>
 		<LangVersion>Latest</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
