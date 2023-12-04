@@ -1,40 +1,41 @@
 ﻿using GAAPICommon.Architecture;
 using GAAPICommon.Core.Dtos;
 using NUnit.Framework;
-using System;
 
-namespace GAAPICommon.Core.Test
+namespace GAAPICommon.Core.Test;
+
+[TestFixture]
+public class TServiceCallResultFactory
 {
-    [TestFixture]
-    public class TServiceCallResultFactory
+    [Test]
+    public void FromCaughtException()
     {
-        [Test]
-        public void FromCaughtException()
+        int exceptionId = 66;
+        Exception ex = new("Ohes noes");
+
+        ServiceCallResultDto dto = ServiceCallResultFactory.FromCaughtException(exceptionId, ex);
+
+        Assert.Multiple(() =>
         {
-            int exceptionId = 66;
-            Exception ex = new Exception("Ohes noes");
+            Assert.That(!dto.IsSuccessful());
+            Assert.That(exceptionId, Is.EqualTo(dto.ServiceCode));
+            Assert.That(string.Equals(ex.Message, dto.ExceptionMessage, StringComparison.OrdinalIgnoreCase));
+            Assert.That(string.Equals(ex.Source, dto.ExceptionSource, StringComparison.OrdinalIgnoreCase));
+            Assert.That(string.Equals(ex.StackTrace, dto.ExceptionStackTrace, StringComparison.OrdinalIgnoreCase));
+        });
+    }
 
-            ServiceCallResultDto dto = ServiceCallResultFactory.FromCaughtException(exceptionId, ex);
-
-            Assert.IsFalse(dto.IsSuccessful());
-
-            Assert.AreEqual(exceptionId, dto.ServiceCode);
-            StringAssert.AreEqualIgnoringCase(ex.Message, dto.ExceptionMessage);
-            StringAssert.AreEqualIgnoringCase(ex.Source, dto.ExceptionSource);
-            StringAssert.AreEqualIgnoringCase(ex.StackTrace, dto.ExceptionStackTrace);
-        }
-
-        [Test]
-        public void FromNoError()
+    [Test]
+    public void FromNoError()
+    {
+        ServiceCallResultDto dto = ServiceCallResultFactory.FromNoError();
+        Assert.Multiple(() =>
         {
-            ServiceCallResultDto dto = ServiceCallResultFactory.FromNoError();
-
-            Assert.IsTrue(dto.IsSuccessful());
-
-            Assert.AreEqual(0, dto.ServiceCode);
-            Assert.IsNull(dto.ExceptionMessage);
-            Assert.IsNull(dto.ExceptionSource);
-            Assert.IsNull(dto.ExceptionStackTrace);
-        }
+            Assert.That(dto.IsSuccessful());
+            Assert.That(dto.ServiceCode, Is.EqualTo(0));
+            Assert.That(dto.ExceptionMessage, Is.EqualTo(null));
+            Assert.That(dto.ExceptionSource, Is.EqualTo(null));
+            Assert.That(dto.ExceptionStackTrace, Is.EqualTo(null));
+        });
     }
 }

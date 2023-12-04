@@ -1,7 +1,6 @@
-﻿namespace GAAPICommon.Architecture
+﻿namespace GAAPICommon.Architecture;
+
+public interface IServiceCallResult<T> : IServiceCallResult
 {
-    public interface IServiceCallResult<T> : IServiceCallResult
-    {
-        T Value { get; }
-    }
+    public T? Value { get; }
 }

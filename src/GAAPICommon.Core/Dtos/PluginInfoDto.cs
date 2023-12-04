@@ -1,11 +1,19 @@
-﻿namespace GAAPICommon.Core.Dtos
+﻿namespace GAAPICommon.Core.Dtos;
+
+public class PluginInfoDto
 {
-    public class PluginInfoDto
-    {
-        public string AbsFilePath { get; set; } // Abs file path, e.g. "C:\temp\foo.dll"
+    /// <summary>
+    /// Abs file path, e.g. "C:\temp\foo.dll"
+    /// </summary>
+    public string? AbsFilePath { get; set; }
 
-        public string AssemblyName { get; set; } // Plugin assembly name, e.g. "AwesomePlugin"
+    /// <summary>
+    /// Plugin assembly name, e.g. "AwesomePlugin"
+    /// </summary>
+    public string? AssemblyName { get; set; }
 
-        public SemVerDto Version { get; set; } // Plugin version
-    }
+    /// <summary>
+    /// Plugin version
+    /// </summary>
+    public SemVerDto? Version { get; set; }
 }

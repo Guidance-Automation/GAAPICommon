@@ -1,7 +1,6 @@
-﻿namespace GAAPICommon.Architecture
+﻿namespace GAAPICommon.Architecture;
+
+public interface IChargeBookingState : IBookingState
 {
-    public interface IChargeBookingState : IBookingState
-    {
-        ChargeType ChargeType { get; }
-    }
+    public ChargeType ChargeType { get; }
 }

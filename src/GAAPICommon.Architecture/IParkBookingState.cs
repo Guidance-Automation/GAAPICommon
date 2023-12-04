@@ -1,6 +1,6 @@
-﻿namespace GAAPICommon.Architecture
+﻿namespace GAAPICommon.Architecture;
+
+public interface IParkBookingState : IBookingState
 {
-    public interface IParkBookingState : IBookingState
-    {
-    }
+
 }

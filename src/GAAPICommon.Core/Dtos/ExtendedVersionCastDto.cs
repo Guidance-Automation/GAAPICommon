@@ -1,20 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+﻿using System.Net;
+using System.Text.Json.Serialization;
 
-namespace GAAPICommon.Core.Dtos
+namespace GAAPICommon.Core.Dtos;
+
+public class ExtendedVersionCastDto
 {
-    public class ExtendedVersionCastDto
-    {
-        public byte[] DynamicData { get; set; } = null;
+    public byte[]? DynamicData { get; set; }
 
-        [JsonConverter(typeof(IPAddressJsonConverter))]
-        public IPAddress IPAddress { get; set; } = null;
+    [JsonConverter(typeof(IPAddressJsonConverter))]
+    public IPAddress? IPAddress { get; set; } 
 
-        public ushort Port { get; set; } = 0;
+    public ushort Port { get; set; } = 0;
 
-        public SemVerDto SemVer { get; set; } = null;
-    }
+    public SemVerDto? SemVer { get; set; }
 }

@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
+﻿namespace GAAPICommon.Architecture;
 
-namespace GAAPICommon.Architecture
+public interface ISpotManagerState
 {
-    public interface ISpotManagerState
-    {
-        IEnumerable<IChargingSpotState> ChargingSpotStates { get; }
+    public IEnumerable<IChargingSpotState> ChargingSpotStates { get; }
 
-        IEnumerable<IParkingSpotState> ParkingSpotStates { get; }
+    public IEnumerable<IParkingSpotState> ParkingSpotStates { get; }
 
-        bool IsChanged { get; }
+    public bool IsChanged { get; }
 
-        byte Tick { get; }
-    }
+    public byte Tick { get; }
 }

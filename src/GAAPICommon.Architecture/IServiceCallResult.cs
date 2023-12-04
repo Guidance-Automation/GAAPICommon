@@ -1,13 +1,12 @@
-﻿namespace GAAPICommon.Architecture
+﻿namespace GAAPICommon.Architecture;
+
+public interface IServiceCallResult
 {
-    public interface IServiceCallResult
-    {
-        string ExceptionMessage { get; }
+    public string? ExceptionMessage { get; }
 
-        string ExceptionSource { get; }
+    public string? ExceptionSource { get; }
 
-        string ExceptionStackTrace { get; }
+    public string? ExceptionStackTrace { get; }
 
-        int ServiceCode { get; }
-    }
+    public int ServiceCode { get; }
 }

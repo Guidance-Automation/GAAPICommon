@@ -1,23 +1,19 @@
 ﻿using GAAPICommon.Architecture;
-using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
-namespace GAAPICommon.Core.Dtos
-{    
-    public class NodeDto
-    {
-        [DataMember]
-        public int Id { get; set; } = -1;
+namespace GAAPICommon.Core.Dtos;
 
-        [DataMember]
-        public string Alias { get; set; } = string.Empty;
+public class NodeDto
+{
+    [DataMember]
+    public int Id { get; set; } = -1;
 
-        [DataMember]
-        public PoseDto Pose { get; set; } = null;
+    [DataMember]
+    public string Alias { get; set; } = string.Empty;
 
-        [DataMember]
-        public IEnumerable<ServiceType> Services { get; set; }
-    }
+    [DataMember]
+    public PoseDto? Pose { get; set; }
+
+    [DataMember]
+    public IEnumerable<ServiceType>? Services { get; set; }
 }

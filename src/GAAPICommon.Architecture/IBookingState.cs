@@ -1,13 +1,12 @@
-﻿namespace GAAPICommon.Architecture
+﻿namespace GAAPICommon.Architecture;
+
+public interface IBookingState
 {
-    public interface IBookingState
-    {
-        int AgentId { get; }
+    int AgentId { get; }
 
-        BookingState BookingState { get; }
+    BookingState BookingState { get; }
 
-        int JobId { get; }
+    int JobId { get; }
 
-        int TaskId { get; }
-    }
+    int TaskId { get; }
 }

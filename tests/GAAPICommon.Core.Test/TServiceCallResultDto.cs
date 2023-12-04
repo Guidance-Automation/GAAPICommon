@@ -1,33 +1,34 @@
 ﻿using GAAPICommon.Architecture;
 using GAAPICommon.Core.Dtos;
 using NUnit.Framework;
-using System;
 
-namespace GAAPICommon.Core.Test
+namespace GAAPICommon.Core.Test;
+
+[TestFixture]
+public class TServiceCallResultDto
 {
-    [TestFixture]
-    public class TServiceCallResultDto
+    [Test]
+    public void ArgumentOutOfRangeException()
     {
-        [Test]
-        public void ArgumentOutOfRangeException()
+        Assert.Throws<ArgumentOutOfRangeException>(() =>
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                Exception ex = new Exception("Ohes noes!");
+            Exception ex = new("Ohes noes!");
 
-                ServiceCallResultDto dto = new ServiceCallResultDto(0, ex);
-            });
-        }
+            ServiceCallResultDto dto = new(0, ex);
+        });
+    }
 
-        [Test]
-        public void FromClientException()
+    [Test]
+    public void FromClientException()
+    {
+        Exception ex = new("Ohes noes");
+
+        ServiceCallResultDto dto = ServiceCallResultFactory.FromClientException(ex);
+
+        Assert.Multiple(() =>
         {
-            Exception ex = new Exception("Ohes noes");
-
-            ServiceCallResultDto dto = ServiceCallResultFactory.FromClientException(ex);
-
-            Assert.AreEqual((int)ServiceCode.ClientException, dto.ServiceCode);
-            StringAssert.AreEqualIgnoringCase(ex.Message, dto.ExceptionMessage);
-        }
+            Assert.That(dto.ServiceCode, Is.EqualTo((int)ServiceCode.ClientException));
+            Assert.That(string.Equals(ex.Message, dto.ExceptionMessage, StringComparison.OrdinalIgnoreCase));
+        });
     }
 }

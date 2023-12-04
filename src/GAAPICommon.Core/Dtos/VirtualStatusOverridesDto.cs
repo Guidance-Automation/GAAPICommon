@@ -1,13 +1,12 @@
 ﻿using GAAPICommon.Architecture;
 
-namespace GAAPICommon.Core.Dtos
+namespace GAAPICommon.Core.Dtos;
+
+public class VirtualStatusOverridesDto
 {
-    public class VirtualStatusOverridesDto
-    {
-        public NavigationStatus? NavigationStatusOverride { get; set; } = null;
+    public NavigationStatus? NavigationStatusOverride { get; set; } = null;
 
-        public DynamicLimiterStatus? DynamicLimiterStatusOverride { get; set; } = null;
+    public DynamicLimiterStatus? DynamicLimiterStatusOverride { get; set; } = null;
 
-        public PositionControlStatus? PositionControlStatusOverride { get; set; } = null;
-    }
+    public PositionControlStatus? PositionControlStatusOverride { get; set; } = null;
 }
