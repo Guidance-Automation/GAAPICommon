@@ -1,7 +1,7 @@
 ﻿using GAAPICommon.Architecture;
+using Newtonsoft.Json;
 using System.Net;
 using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
 
 namespace GAAPICommon.Core.Dtos;
 
