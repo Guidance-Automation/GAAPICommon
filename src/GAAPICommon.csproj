@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<PackageVersion>2.0.0-alpha.1</PackageVersion>
+		<Platforms>x64</Platforms>
+		<Authors>Martin Davies, Ollie Sharratt</Authors>
+		<Copyright>Guidance Automation 2024</Copyright>
+		<Description>API Components for Guidance Automation assemblies.</Description>
+		<RepositoryUrl>https://github.com/GuidanceAutomation/GAAPICommon</RepositoryUrl>
+		<PackageId>GAAPICommon</PackageId>
+		<Company>Guidance Automation LTD</Company>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="protobuf-net" Version="3.2.30" />
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+	
+</Project>

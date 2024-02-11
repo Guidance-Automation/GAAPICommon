@@ -1,41 +1,42 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30128.74
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Core", "src\GAAPICommon.Core\GAAPICommon.Core.csproj", "{0425EE60-7F11-416B-9DB5-714BFB29CA27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon", "src\GAAPICommon.csproj", "{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Architecture", "src\GAAPICommon.Architecture\GAAPICommon.Architecture.csproj", "{D28E633B-D25E-40F0-8303-3F052DF4FEB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Test", "tests\GAAPICommon.Test.csproj", "{EF48A7FD-436F-4DFC-9540-2FC494B68C55}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Core.Test", "tests\GAAPICommon.Core.Test\GAAPICommon.Core.Test.csproj", "{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5972C9DF-6AF0-4BBF-A6D1-F9ACFE707A95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Architecture.Test", "tests\GAAPICommon.Architecture.Test\GAAPICommon.Architecture.Test.csproj", "{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7314145A-0490-41AF-BE73-DB54D5147720}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		GAAPICommon.nuspec = GAAPICommon.nuspec
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0425EE60-7F11-416B-9DB5-714BFB29CA27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D28E633B-D25E-40F0-8303-3F052DF4FEB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7F78F11-8AAF-4571-8D9A-CB5F0BA03407}.Release|Any CPU.Build.0 = Release|Any CPU
-		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{677A77C3-B5FD-4A7D-B5BC-63CF6D590736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Debug|x64.ActiveCfg = Debug|x64
+		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Debug|x64.Build.0 = Debug|x64
+		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Release|x64.ActiveCfg = Release|x64
+		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Release|x64.Build.0 = Release|x64
+		{EF48A7FD-436F-4DFC-9540-2FC494B68C55}.Debug|x64.ActiveCfg = Debug|x64
+		{EF48A7FD-436F-4DFC-9540-2FC494B68C55}.Debug|x64.Build.0 = Debug|x64
+		{EF48A7FD-436F-4DFC-9540-2FC494B68C55}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF48A7FD-436F-4DFC-9540-2FC494B68C55} = {5972C9DF-6AF0-4BBF-A6D1-F9ACFE707A95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B8026C7-5FEA-4FB9-A22C-64FD38A66986}
