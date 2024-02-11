@@ -1,6 +1,11 @@
-﻿namespace GAAPICommon.Architecture;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-public interface IChargingSpotState : ISpotState
+namespace GAAPICommon.Architecture
 {
-    public IChargeBookingState? ChargeBooking { get; }
+    public interface IChargingSpotState : ISpotState
+    {
+        IChargeBookingState ChargeBooking { get; }
+    }
 }

@@ -1,13 +1,11 @@
 ﻿using GAAPICommon.Architecture;
 using System.Runtime.Serialization;
 
-namespace GAAPICommon.Core.Dtos;
-
-[DataContract]
-public class ParkBookingStateDto : AbstractBookingStateDto, IParkBookingState
+namespace GAAPICommon.Core.Dtos
 {
-    public override string ToString()
+    [DataContract]
+    public class ParkBookingStateDto : AbstractBookingStateDto, IParkBookingState
     {
-        return this.ToBookingStateString();
+        public override string ToString() => this.ToBookingStateString();
     }
 }

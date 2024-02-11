@@ -1,10 +1,13 @@
-﻿namespace GAAPICommon.Core.Dtos;
+﻿using System;
 
-public class MapMetadataDto
+namespace GAAPICommon.Core.Dtos
 {
-    public string? Alias { get; set; }
+    public class MapMetadataDto
+    {
+        public string Alias { get; set; } = null;
 
-    public string? Description { get; set; }
+        public string Description { get; set; } = null;
 
-    public Guid Guid { get; set; } = Guid.Empty;
+        public Guid Guid { get; set; } = Guid.Empty;
+    }
 }

@@ -1,37 +1,29 @@
-﻿using System.Net;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Net;
 
-namespace GAAPICommon.Core;
-
-public class IPAddressJsonConverter : JsonConverter<IPAddress>
+namespace GAAPICommon.Core
 {
-    public override bool CanConvert(Type typeToConvert)
+    public class IPAddressJsonConverter : JsonConverter<IPAddress>
     {
-        return typeToConvert.IsAssignableFrom(typeof(IPAddress));
-    }
-
-    public override IPAddress? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        string? token = reader.GetString();
-
-        if (reader.TokenType != JsonTokenType.String || string.IsNullOrEmpty(token))
+        public override IPAddress ReadJson(JsonReader reader, Type objectType, IPAddress existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            return null;
+            if (objectType == typeof(IPAddress))
+                return IPAddress.Parse(JToken.Load(reader).ToString());           
+
+            throw new NotImplementedException();
         }
 
-        return IPAddress.Parse(token);
-    }
-
-    public override void Write(Utf8JsonWriter writer, IPAddress value, JsonSerializerOptions options)
-    {
-        string ipAddressString = string.Empty;
-
-        if (value != null)
+        public override void WriteJson(JsonWriter writer, IPAddress value, JsonSerializer serializer)
         {
-            ipAddressString = value.ToString();
-        }
+            if (value.GetType() == typeof(IPAddress))
+            {
+                JToken.FromObject(value.ToString()).WriteTo(writer);
+                return;
+            }
 
-        writer.WriteStringValue(ipAddressString);
+            throw new NotImplementedException();
+        }
     }
 }

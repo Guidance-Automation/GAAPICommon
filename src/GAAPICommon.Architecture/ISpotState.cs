@@ -1,8 +1,9 @@
-﻿namespace GAAPICommon.Architecture;
-
-public interface ISpotState
+﻿namespace GAAPICommon.Architecture
 {
-    public int NodeId { get; }
+    public interface ISpotState
+    {
+        int NodeId { get; }
 
-    public bool IsBooked { get; }
+        bool IsBooked { get; }
+    }
 }

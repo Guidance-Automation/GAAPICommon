@@ -1,6 +1,7 @@
-﻿namespace GAAPICommon.Core.Dtos;
-
-public class AMRFleetConfigurationDto
+﻿namespace GAAPICommon.Core.Dtos
 {
-    public int AMRLimit { get; set; } = -1;
+    public class AMRFleetConfigurationDto
+    {
+        public int AMRLimit { get; set; } = -1;
+    }
 }

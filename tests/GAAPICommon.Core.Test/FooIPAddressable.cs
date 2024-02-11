@@ -1,14 +1,15 @@
-﻿using System.Net;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.Net;
 
-namespace GAAPICommon.Core.Test;
-
-internal class FooIPAddressable
+namespace GAAPICommon.Core.Test
 {
-    public string Alias { get; set; } = "Alias";
+    internal class FooIPAddressable
+    {
+        public string Alias { get; set; } = "Alias";
 
-    public int Id { get; set; } = -1;
+        public int Id { get; set; } = -1;
 
-    [JsonConverter(typeof(IPAddressJsonConverter))]
-    public IPAddress? IPAddress { get; set; }
+        [JsonConverter(typeof(IPAddressJsonConverter))]
+        public IPAddress IPAddress { get; set; }
+    }
 }

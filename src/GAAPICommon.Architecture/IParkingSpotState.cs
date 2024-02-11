@@ -1,6 +1,7 @@
-﻿namespace GAAPICommon.Architecture;
-
-public interface IParkingSpotState : ISpotState
+﻿namespace GAAPICommon.Architecture
 {
-    public IParkBookingState? ParkBooking { get; }
+    public interface IParkingSpotState : ISpotState
+    {
+        IParkBookingState ParkBooking { get; }
+    }
 }

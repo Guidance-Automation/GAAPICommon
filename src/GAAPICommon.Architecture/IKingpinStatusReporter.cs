@@ -1,10 +1,11 @@
-﻿namespace GAAPICommon.Architecture;
-
-public interface IKingpinStatusReporter
+﻿namespace GAAPICommon.Architecture
 {
-    public PositionControlStatus PositionControlStatus { get; }
+    public interface IKingpinStatusReporter
+    {
+        PositionControlStatus PositionControlStatus { get; }
 
-    public NavigationStatus NavigationStatus { get; }
+        NavigationStatus NavigationStatus { get; }
 
-    public DynamicLimiterStatus DynamicLimiterStatus { get; }
+        DynamicLimiterStatus DynamicLimiterStatus { get; }
+    }
 }

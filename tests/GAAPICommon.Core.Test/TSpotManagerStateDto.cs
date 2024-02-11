@@ -2,62 +2,62 @@
 using GAAPICommon.Core.Dtos;
 using NUnit.Framework;
 
-namespace GAAPICommon.Core.Test;
-
-[TestFixture]
-public class TSpotManagerStateDto
+namespace GAAPICommon.Core.Test
 {
-    [Test]
-    public void Init()
+    [TestFixture]
+    public class TSpotManagerStateDto
     {
-        SpotManagerStateDto dto = new();
-        Assert.That(!string.IsNullOrEmpty(dto.ToSummaryString()));
-    }
-
-    [Test]
-    public void NullChargeBooking()
-    {
-        SpotManagerStateDto dto = new()
+        [Test]
+        public void Init()
         {
-            ChargingSpotStateDtos = new ChargingSpotStateDto[]
+            SpotManagerStateDto dto = new SpotManagerStateDto();
+            Assert.IsFalse(string.IsNullOrEmpty(dto.ToSummaryString()));
+        }
+
+        [Test]
+        public void NullChargeBooking()
+        {
+            SpotManagerStateDto dto = new SpotManagerStateDto();
+
+            dto.ChargingSpotStateDtos = new ChargingSpotStateDto[]
             {
-                new()
+                new ChargingSpotStateDto()
                 {
                     ChargeBookingDto = null,
                     IsBooked = false,
                     NodeId = 1
                 }
-            }
-        };
+            };
 
-        string summaryString = dto.ToSummaryString();
-        Assert.That(!string.IsNullOrEmpty(summaryString));
-    }
+            string summaryString = dto.ToSummaryString();
+            Assert.IsFalse(string.IsNullOrEmpty(summaryString));
+        }
 
-    [Test]
-    public void ChargeBooking()
-    {
-        SpotManagerStateDto dto = new()
+        [Test]
+        public void ChargeBooking()
         {
-            ChargingSpotStateDtos = new ChargingSpotStateDto[]
+            SpotManagerStateDto dto = new SpotManagerStateDto();
+
+            dto.ChargingSpotStateDtos = new ChargingSpotStateDto[]
             {
-                new()
+                new ChargingSpotStateDto()
                 {
                     ChargeBookingDto = new ChargeBookingStateDto()
                     {
                         BookingState = BookingState.AwaitingArrival,
                         AgentId = 1,
-                        ChargeType = ChargeType.Immediate,
+                        ChargeType = ChargeType.Immediate, 
                         JobId = 2,
                         TaskId =3
                     },
                     IsBooked = false,
                     NodeId = 1
                 }
-            }
-        };
+            };
 
-        string summaryString = dto.ToSummaryString();
-        Assert.That(!string.IsNullOrEmpty(summaryString));
+            string summaryString = dto.ToSummaryString();
+            Assert.IsFalse(string.IsNullOrEmpty(summaryString));
+        }
+
     }
 }

@@ -1,79 +1,82 @@
-﻿using System.Net;
-using System.Text.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net;
 using NUnit.Framework;
+using NUnit;
 
-namespace GAAPICommon.Core.Test;
-
-[TestFixture]
-public class TIPAddressJsonConverter
+namespace GAAPICommon.Core.Test
 {
-    [Test]
-    public void IEnumerableIPAddress()
+    [TestFixture]
+    public class TIPAddressJsonConverter
     {
-        IEnumerable<IPAddress> expected = new IPAddress[]
+        [Test]
+        public void IEnumerableIPAddress()
         {
-            IPAddress.Loopback,
-            IPAddress.Parse("192.168.0.1"),
-            IPAddress.Parse("192.168.0.69")
-        };
+            IEnumerable<IPAddress> expected = new IPAddress[]
+            {
+                IPAddress.Loopback,
+                IPAddress.Parse("192.168.0.1"),
+                IPAddress.Parse("192.168.0.69")
+            };
 
-        JsonSerializerOptions settings = new();
-        settings.Converters.Add(new IPAddressJsonConverter());
-        settings.WriteIndented = true;
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters.Add(new IPAddressJsonConverter());
+            settings.Formatting = Formatting.Indented;
 
-        
-        string json = JsonSerializer.Serialize(expected, settings);
-        Assert.That(json, Is.Not.EqualTo(null));
+            string json = JsonConvert.SerializeObject(expected, settings);
+            Assert.IsNotNull(json);
 
-        IEnumerable<IPAddress>? actual = JsonSerializer.Deserialize<IEnumerable<IPAddress>>(json, settings);
-        Assert.That(actual, Is.EquivalentTo(expected));
-    }
+            IEnumerable<IPAddress> actual = JsonConvert.DeserializeObject<IEnumerable<IPAddress>>(json, settings);
+            Assert.AreEqual(expected, actual);
+        }
 
-    [TestCase("127.0.0.1")]
-    [TestCase("192.168.0.1")]
-    public void IPAddressJson(string ipV4string)
-    {
-        IPAddress expected = IPAddress.Parse(ipV4string);
-
-        JsonSerializerOptions settings = new();
-        settings.Converters.Add(new IPAddressJsonConverter());
-        settings.WriteIndented = true;
-
-        string json = JsonSerializer.Serialize(expected, settings);
-
-        Assert.That(json, Is.Not.EqualTo(null));
-
-        IPAddress? actual = JsonSerializer.Deserialize<IPAddress>(json, settings);
-        Assert.That(expected, Is.EqualTo(actual));
-    }
-
-    [TestCase("127.0.0.1")]
-    [TestCase("192.168.0.1")]
-    public void FooIPAddressableJson(string ipV4string)
-    {
-        FooIPAddressable foo = new()
+        [TestCase("127.0.0.1")]
+        [TestCase("192.168.0.1")]
+        public void IPAddressJson(string ipV4string)
         {
-            Alias = ipV4string,
-            Id = 69,
-            IPAddress = IPAddress.Parse(ipV4string)
-        };
+            IPAddress expected = IPAddress.Parse(ipV4string);
+ 
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters.Add(new IPAddressJsonConverter());
+            settings.Formatting = Formatting.Indented;
 
-        JsonSerializerOptions settings = new();
-        settings.Converters.Add(new IPAddressJsonConverter());
-        settings.WriteIndented = true;
+            string json = JsonConvert.SerializeObject(expected, settings);
 
-        string json = JsonSerializer.Serialize(foo, settings);
+            Assert.IsNotNull(json);
 
-        Assert.That(json, Is.Not.EqualTo(null));
+            IPAddress actual = JsonConvert.DeserializeObject<IPAddress>(json, settings);
+            Assert.AreEqual(expected, actual);
+        }
 
-        FooIPAddressable? deSerialized = JsonSerializer.Deserialize<FooIPAddressable>(json, settings);
-
-        Assert.Multiple(() =>
+        [TestCase("127.0.0.1")]
+        [TestCase("192.168.0.1")]
+        public void FooIPAddressableJson(string ipV4string)
         {
-            Assert.That(deSerialized, Is.Not.EqualTo(null));
-            Assert.That(foo.Alias, Is.EqualTo(deSerialized?.Alias));
-            Assert.That(foo.Id, Is.EqualTo(deSerialized?.Id));
-        });
-        Assert.That(deSerialized.IPAddress, Is.EqualTo(foo.IPAddress));
+            FooIPAddressable foo = new FooIPAddressable()
+            {
+                Alias = ipV4string,
+                Id = 69,
+                IPAddress = IPAddress.Parse(ipV4string)
+            };
+
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.Converters.Add(new IPAddressJsonConverter());
+            settings.Formatting = Formatting.Indented;
+
+            string json = JsonConvert.SerializeObject(foo, settings);
+
+            Assert.IsNotNull(json);
+
+            FooIPAddressable deSerialized = JsonConvert.DeserializeObject<FooIPAddressable>(json, settings);
+
+            Assert.AreEqual(foo.Alias, deSerialized.Alias);
+            Assert.AreEqual(foo.Id, deSerialized.Id);
+            Assert.AreEqual(deSerialized.IPAddress, foo.IPAddress);
+
+        }
     }
 }

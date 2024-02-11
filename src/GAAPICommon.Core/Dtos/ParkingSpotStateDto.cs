@@ -1,24 +1,16 @@
 ﻿using GAAPICommon.Architecture;
 using System.Runtime.Serialization;
 
-namespace GAAPICommon.Core.Dtos;
-
-[DataContract]
-public class ParkingSpotStateDto : AbstractSpotStateDto, IParkingSpotState
+namespace GAAPICommon.Core.Dtos
 {
-    [DataMember]
-    public ParkBookingStateDto? ParkBookingDto { get; set; }
-
-    public IParkBookingState? ParkBooking
+    [DataContract]
+    public class ParkingSpotStateDto : AbstractSpotStateDto, IParkingSpotState
     {
-        get
-        {
-            return ParkBookingDto;
-        }
-    }
+        [DataMember]
+        public ParkBookingStateDto ParkBookingDto { get; set; } = null;
 
-    public override string ToString()
-    {
-        return this.ToParkingSpotStateString();
+        public IParkBookingState ParkBooking => ParkBookingDto;
+
+        public override string ToString() => this.ToParkingSpotStateString();
     }
 }

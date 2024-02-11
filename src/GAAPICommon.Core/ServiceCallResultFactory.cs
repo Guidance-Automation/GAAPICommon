@@ -33,14 +33,20 @@ namespace GAAPICommon.Core
 
         public static ServiceCallResultDto FromError(int serviceCode)
         {
-            ArgumentOutOfRangeException.ThrowIfLessThan(serviceCode, 10);
+            if (serviceCode < 10)
+                throw new ArgumentOutOfRangeException("Service code must be >= 10");
+
             return new ServiceCallResultDto(serviceCode, null);
         }
 
         public static ServiceCallResultDto FromCaughtException(int serviceCode, Exception ex)
         {
-            ArgumentOutOfRangeException.ThrowIfLessThan(serviceCode, 10);
-            ArgumentNullException.ThrowIfNull(ex);
+            if (serviceCode < 10)
+                throw new ArgumentOutOfRangeException("Service code must be >= 10");
+
+            if (ex == null)
+                throw new ArgumentNullException("ex");
+
             return new ServiceCallResultDto(serviceCode, ex);
         }
     }

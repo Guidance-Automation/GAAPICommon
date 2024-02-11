@@ -1,49 +1,58 @@
-﻿using System.Text;
+﻿using System;
+using System.Linq;
+using System.Text;
+using GAAPICommon.Architecture;
 
-namespace GAAPICommon.Core.Dtos;
-
-public static class ExtensionMethods
+namespace GAAPICommon.Core.Dtos
 {
-    public static byte[] ToBytes(this KeyedSpeedDemandDto keyedSpeedDemand)
+    public static class ExtensionMethods
     {
-        ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
+        public static byte[] ToBytes(this KeyedSpeedDemandDto keyedSpeedDemand)
+        {
+            if (keyedSpeedDemand == null)
+                throw new ArgumentNullException("keyedSpeedDemand");
 
-        byte[] bytes = new byte[27];
 
-        bytes[0] = keyedSpeedDemand.Tick;
-        keyedSpeedDemand.Guid.ToByteArray().CopyTo(bytes, 1);
-        keyedSpeedDemand.SpeedDemand?.ToBytes().CopyTo(bytes, 17);
+            byte[] bytes = new byte[27];
 
-        return bytes;
-    }
+            bytes[0] = keyedSpeedDemand.Tick;
+            keyedSpeedDemand.Guid.ToByteArray().CopyTo(bytes, 1);
+            keyedSpeedDemand.SpeedDemand.ToBytes().CopyTo(bytes, 17);
 
-    public static byte[] ToBytes(this SpeedDemandDto speedDemand)
-    {
-        ArgumentNullException.ThrowIfNull(speedDemand);
+            return bytes;
+        }
 
-        byte[] bytes = new byte[10];
+        public static byte[] ToBytes(this SpeedDemandDto speedDemand)
+        {
+            if (speedDemand == null)
+                throw new ArgumentNullException("speedDemmand");
 
-        speedDemand.IPAddress?.GetAddressBytes().CopyTo(bytes, 0);
 
-        BitConverter.GetBytes(speedDemand.Forward).CopyTo(bytes, 4);
-        BitConverter.GetBytes(speedDemand.Angular).CopyTo(bytes, 6);
-        BitConverter.GetBytes(speedDemand.Lateral).CopyTo(bytes, 8);
+            byte[] bytes = new byte[10];
 
-        return bytes;
-    }
+            speedDemand.IPAddress.GetAddressBytes().CopyTo(bytes, 0);
 
-    public static string ToSummary(this ServiceCodeDefinitionDto dto)
-    {
-        ArgumentNullException.ThrowIfNull(dto);
+            BitConverter.GetBytes(speedDemand.Forward).CopyTo(bytes, 4);
+            BitConverter.GetBytes(speedDemand.Angular).CopyTo(bytes, 6);
+            BitConverter.GetBytes(speedDemand.Lateral).CopyTo(bytes, 8);
 
-        StringBuilder builder = new();
+            return bytes;
+        }
 
-        builder.AppendLine("Service Code Definition:");
-        builder.AppendLine($"\tService code: {dto.ServiceCode}");
-        builder.AppendLine($"\tMessage: {dto.Message}");
-        builder.AppendLine($"\tDescription: {dto.Description}");
-        builder.Append($"\tSolution: {dto.Solution}");
+        public static string ToSummary(this ServiceCodeDefinitionDto dto)
+        {
+            if (dto == null)
+                throw new ArgumentNullException("dto");
 
-        return builder.ToString();
+            StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine("Service Code Definition:");
+            builder.AppendLine($"\tService code: {dto.ServiceCode}");
+            builder.AppendLine($"\tMessage: {dto.Message}");
+            builder.AppendLine($"\tDescription: {dto.Description}");
+            builder.Append($"\tSolution: {dto.Solution}");
+
+            return builder.ToString();
+        }
     }
 }

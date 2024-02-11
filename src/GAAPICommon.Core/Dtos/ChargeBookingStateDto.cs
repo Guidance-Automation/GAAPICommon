@@ -1,16 +1,14 @@
 ﻿using GAAPICommon.Architecture;
 using System.Runtime.Serialization;
 
-namespace GAAPICommon.Core.Dtos;
-
-[DataContract]
-public class ChargeBookingStateDto : AbstractBookingStateDto, IChargeBookingState
+namespace GAAPICommon.Core.Dtos
 {
-    [DataMember]
-    public ChargeType ChargeType { get; set; }
-
-    public override string ToString()
+    [DataContract]
+    public class ChargeBookingStateDto : AbstractBookingStateDto, IChargeBookingState
     {
-        return this.ToChargeBookingStateString();
+        [DataMember]
+        public ChargeType ChargeType { get; set; }
+
+        public override string ToString() => this.ToChargeBookingStateString();
     }
 }

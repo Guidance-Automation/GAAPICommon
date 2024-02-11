@@ -1,46 +1,48 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
-namespace GAAPICommon.Architecture;
-
-public interface IKingpinState : IKingpinStatusReporter
+namespace GAAPICommon.Architecture
 {
-    public string Alias { get; }
+    public interface IKingpinState : IKingpinStatusReporter
+    {
+        string Alias { get; }
 
-    public bool IsVirtual { get; }
+        bool IsVirtual { get; }
 
-    public byte Tick { get; }
+        byte Tick { get; }
 
-    public float X { get; }
+        float X { get; }
 
-    public float Y { get; }
+        float Y { get; }
 
-    public float Heading { get; }
+        float Heading { get; }
 
-    public MovementType CurrentMovementType { get; }
+        MovementType CurrentMovementType { get; }
 
-    public IPAddress? IPAddress { get; }
+        IPAddress IPAddress { get; }
 
-    public byte[] StateCastExtendedData { get; }
+        byte[] StateCastExtendedData { get; }
 
-    public double Speed { get; }
+        double Speed { get; }
 
-    public int WaypointLastId { get; }
+        int WaypointLastId { get; }
 
-    public int WaypointNextId { get; }
+        int WaypointNextId { get; }
 
-    public AgvMode AgvMode { get; }
+        AgvMode AgvMode { get; }
 
-    public double BatteryChargePercentage { get; }
+        double BatteryChargePercentage { get; }
 
-    public ExtendedDataFaultStatus ExtendedDataFaultStatus { get; }
+        ExtendedDataFaultStatus ExtendedDataFaultStatus { get; }
 
-    public FrozenState FrozenState { get; }
+        FrozenState FrozenState { get; }
 
-    public bool IsCharging { get; }
+        bool IsCharging { get; }
 
-    public int LastCompletedInstructionId { get; }
+        int LastCompletedInstructionId { get; }
 
-    public TimeSpan Stationary { get; }
+        TimeSpan Stationary { get; }
 
-    public byte[] CurrentWaypointExtendedData { get; }
+        byte[] CurrentWaypointExtendedData { get; }
+    }
 }

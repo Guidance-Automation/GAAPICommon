@@ -1,8 +1,9 @@
-﻿namespace GAAPICommon.Core.Dtos;
-
-public class FleetManagementMetadataDto
+﻿namespace GAAPICommon.Core.Dtos
 {
-    public string? ProductName { get; set; }
+    public class FleetManagementMetadataDto
+    {
+        public string ProductName { get; set; }
 
-    public SemVerDto? SemVer { get; set; }
+        public SemVerDto SemVer { get; set; }
+    }
 }
