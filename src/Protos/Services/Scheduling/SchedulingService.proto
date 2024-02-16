@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto"; 
+import "Protos/Enums/ChargeType.proto";
+import "Protos/Enums/BookingState.proto";
+
+package gaapicommon.services.scheduling;
+option csharp_namespace = "GAAPICommon.Services.Scheduling";
+
+// SchedulingService 
+
+service SchedulingService {
+	rpc Subscribe(SchedulingSubscribeRequest) returns (stream SchedulerState);
+}
+
+// Message Parameters
+
+message SchedulingSubscribeRequest { }
+
+// Data Objects
+
+message ChargeBookingState {
+	int32 AgentId = 1;
+	gaapicommon.enums.ChargeType ChargeType = 2;
+	gaapicommon.enums.BookingState BookingState = 3;
+	int32 JobId = 4;
+	int32 TaskId = 5;
+}
+
+message ParkBookingState { 
+	int32 AgentId = 1;
+	gaapicommon.enums.BookingState BookingState = 2;
+	int32 JobId = 3;
+	int32 TaskId = 4;
+}
+
+message ChargingSpotState {
+	ChargeBookingState ChargeBookingState = 1;
+	int32 NodeId = 2;
+	bool IsBooked = 3;
+}
+
+message ParkingSpotState {
+	ParkBookingState ParkBookingState = 1;
+	int32 NodeId = 2;
+	bool IsBooked = 3;
+}
+
+message SpotManagerState {
+	repeated ChargingSpotState ChargingSpotStates = 1;
+	repeated ParkingSpotState ParkingSpotStates = 2;
+	bool IsChanged = 3;
+	int32 Tick = 4;
+}
+
+message SchedulerState {
+	string InstanceId = 1;
+	int32 Cycle = 2;
+	google.protobuf.Duration UpTime = 3;
+	SpotManagerState SpotManagerState = 4;
+}

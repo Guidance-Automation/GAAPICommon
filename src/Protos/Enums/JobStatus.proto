@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum JobStatus {
+    AssemblyJob = 0;
+    AssigningJob = 1;
+    WaitingJob = 2;
+    InProgressJob = 3;
+    CompletedJob = 4;
+    AbortingJob = 5;
+    AbortedJob = 6;
+    EditingJob = 7;
+    FailingJob = 8;
+    FailedJob = 9;
+    PartiallyCompletedJob = 10;
+}

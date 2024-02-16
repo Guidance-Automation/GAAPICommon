@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	
+
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.1</PackageVersion>
+		<PackageVersion>2.0.0-alpha.2</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Martin Davies, Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -13,11 +13,63 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<PackageReference Include="protobuf-net" Version="3.2.30" />
-		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+		<None Remove="Protos\Common\BoolResult.proto" />
+		<None Remove="Protos\Common\Int32Result.proto" />
+		<None Remove="Protos\Enums\AgentLifetimeState.proto" />
+		<None Remove="Protos\Enums\JobStatus.proto" />
+		<None Remove="Protos\Enums\TaskStatus.proto" />
 	</ItemGroup>
-	
+
+	<ItemGroup>
+
+		<PackageReference Include="Google.Protobuf" Version="3.25.3" />
+		<PackageReference Include="Grpc.Core" Version="2.46.6" />
+		<PackageReference Include="Grpc.Tools" Version="2.61.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+
+		<Protobuf Include="Protos\Common\Service.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Common\Int32Result.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Common\BoolResult.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Common\GenericResult.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Enums\AgentLifetimeState.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\AgentMarkovState.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\BookingState.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\ChargeType.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\JobStatus.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\OccupyingMandateState.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\TaskStatus.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\TaskType.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\ServiceType.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Enums\JobPriority.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Services\Agents\AgentService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Jobs\JobBuilderService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Jobs\JobsStateService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Jobs\JobStateService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Jobs\TaskStateService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Licence\LicenceService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Maps\MapService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Scheduling\SchedulingService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\Servicing\ServicingService.proto" GrpcServices="Both" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Protos\Services\Agents\" />
+		<Folder Include="Protos\Services\Maps\" />
+		<Folder Include="Protos\Services\Licence\" />
+		<Folder Include="Protos\Services\Servicing\" />
+		<Folder Include="Protos\Services\Scheduling\" />
+	</ItemGroup>
+
 </Project>

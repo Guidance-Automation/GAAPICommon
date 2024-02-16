@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum ChargeType {
+    Immediate = 0;
+    Opportunistic = 1;
+    Trickle = 2;
+}

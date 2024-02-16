@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum AgentLifetimeState {
+    Decommissioned = 0;
+    Disconnected = 1;
+    OutOfService = 2;
+    InService = 3;
+}

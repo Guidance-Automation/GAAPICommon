@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "Protos/Enums/TaskStatus.proto";
+
+package gaapicommon.services.jobs;
+option csharp_namespace = "GAAPICommon.Services.Jobs";
+
+// TaskStateService 
+
+service TaskStateService {
+	rpc Subscribe(TaskStateSubscribeRequest) returns (stream TaskProgress);
+}
+
+// Message Parameters
+
+message TaskStateSubscribeRequest { }
+
+// Data Objects
+
+message TaskProgress {
+	int32 AssignedAgentId = 1;
+	int32 TaskId = 2;
+	gaapicommon.enums.TaskStatus TaskStatus = 3;
+}

@@ -1,0 +1,58 @@
+﻿syntax = "proto3";
+
+import "Protos/Common/GenericResult.proto";
+
+package gaapicommon.services.jobs;
+option csharp_namespace = "GAAPICommon.Services.Jobs";
+
+// JobsStateService 
+
+service JobsStateService {
+    rpc AbortAllJobs (AbortAllJobsRequest) returns (gaapicommon.GenericResult);
+    rpc AbortAllJobsForAgent (AbortAllJobsForAgentRequest) returns (gaapicommon.GenericResult);
+    rpc AbortJob (AbortJobRequest) returns (gaapicommon.GenericResult);
+    rpc AbortTask (AbortTaskRequest) returns (gaapicommon.GenericResult);
+    rpc GetActiveJobIdsForAgent (GetActiveJobIdsForAgentRequest) returns (GetActiveJobIdsForAgentResult);
+    rpc Subscribe(JobsStateSubscribeRequest) returns (stream JobState);
+}
+
+// Message Parameters
+
+message AbortAllJobsRequest {}
+
+message AbortAllJobsForAgentRequest {
+    int32 AgentId = 1;
+}
+
+message AbortJobRequest {
+    int32 AgentId = 1;
+    string Note = 2;
+}
+
+message AbortTaskRequest {
+    int32 TaskId = 1;
+}
+
+message GetActiveJobIdsForAgentRequest {
+    int32 AgentId = 1;
+}
+
+message JobsStateSubscribeRequest { }
+
+// Message Returns
+
+message GetActiveJobIdsForAgentResult {
+    string ExceptionMessage = 1;
+    string ExceptionSource = 2;
+    string ExceptionStackTrace = 3;
+    repeated int32 Value = 4;
+    int32 ServiceCode = 5;
+}
+
+// Data Objects
+
+message JobState {
+    int32 AssigningCount = 1;
+    int32 InProgressCount = 2;
+    int32 WaitingCount =3;
+}

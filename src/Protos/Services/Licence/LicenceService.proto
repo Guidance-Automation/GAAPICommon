@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package gaapicommon.services.licence;
+option csharp_namespace = "GAAPICommon.Services.Licence";
+
+// LicenceService 
+
+service TaskStateService {
+	rpc SubscribeInvalidNotifications (LicenceInvalidRequest) returns (stream LicenceInvalid);
+	rpc SubscribeChangedNotifications (LicenceChangedRequest) returns (stream LicenceChanged);
+	rpc SubscribeExpiringNotifications (LicenceExpiryRequest) returns (stream LicenceExpiryWarning);
+}
+
+// Message Parameters
+
+message LicenceInvalidRequest { }
+message LicenceChangedRequest { }
+message LicenceExpiryRequest { }
+
+// Data Objects
+
+message LicenceInvalid {
+	string FailureReason = 1;
+}
+
+message LicenceChanged {
+	string ChangedElement = 1;
+}
+
+message LicenceExpiryWarning {
+	int32 DaysRemaining = 1;
+	string ExpiryType = 2;
+}

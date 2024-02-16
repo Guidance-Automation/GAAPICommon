@@ -4,10 +4,6 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon", "src\GAAPICommon.csproj", "{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GAAPICommon.Test", "tests\GAAPICommon.Test.csproj", "{EF48A7FD-436F-4DFC-9540-2FC494B68C55}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5972C9DF-6AF0-4BBF-A6D1-F9ACFE707A95}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7314145A-0490-41AF-BE73-DB54D5147720}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -28,15 +24,9 @@ Global
 		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Debug|x64.Build.0 = Debug|x64
 		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Release|x64.ActiveCfg = Release|x64
 		{CEDDA31E-3B80-4C71-8797-1A85ABB5F6B5}.Release|x64.Build.0 = Release|x64
-		{EF48A7FD-436F-4DFC-9540-2FC494B68C55}.Debug|x64.ActiveCfg = Debug|x64
-		{EF48A7FD-436F-4DFC-9540-2FC494B68C55}.Debug|x64.Build.0 = Debug|x64
-		{EF48A7FD-436F-4DFC-9540-2FC494B68C55}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{EF48A7FD-436F-4DFC-9540-2FC494B68C55} = {5972C9DF-6AF0-4BBF-A6D1-F9ACFE707A95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B8026C7-5FEA-4FB9-A22C-64FD38A66986}

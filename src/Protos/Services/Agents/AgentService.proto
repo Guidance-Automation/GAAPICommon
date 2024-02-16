@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "Protos/Common/GenericResult.proto";
+import "Protos/Enums/AgentLifetimeState.proto";
+import "Protos/Enums/AgentMarkovState.proto";
+
+package gaapicommon.services.agents;
+option csharp_namespace = "GAAPICommon.Services.Agents";
+
+// JobBuilderService 
+
+service AgentService {
+	rpc GetAllAgentData (GetAllAgentDataRequest) returns (GetAllAgentDataResult);
+	rpc GetAllAgentsInLifetimeState (GetAllAgentsInLifetimeStateRequest) returns (GetAllAgentsInLifetimeStateResult);
+	rpc SetAgentLifetimeState (SetAgentLifetimeStateRequest) returns (GenericResult);
+}
+
+// Message Parameters
+
+message GetAllAgentDataRequest { }
+
+message GetAllAgentsInLifetimeStateRequest {
+	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 1;
+}
+
+message SetAgentLifetimeStateRequest {
+	int32 AgentId = 1;
+	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 2;
+}
+
+// Message Returns
+
+message GetAllAgentDataResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated Agent Value = 4;
+	int32 ServiceCode = 5;
+}
+
+message GetAllAgentsInLifetimeStateResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated Agent Value = 4;
+	int32 ServiceCode = 5;
+}
+
+// Data Objects
+
+message Agent {
+	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 1;
+	string Alias = 2;
+	int32 Id = 3;
+	string IPAddress = 4;
+	gaapicommon.enums.AgentMarkovState AgentMarkovState = 5;
+	int32 CurrentJobId = 6;
+	int32 CurrentNodeId = 7;
+}

@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto"; 
+import "Protos/Common/GenericResult.proto";
+import "Protos/Enums/OccupyingMandateState.proto";
+import "Protos/Enums/ServiceType.proto";
+
+package gaapicommon.services.maps;
+option csharp_namespace = "GAAPICommon.Services.Maps";
+
+// MapService 
+
+service MapService {
+	rpc ClearOccupyingMandate (ClearOccupyingMandateRequest) returns (gaapicommon.GenericResult);
+	rpc GetOccupyingMandateProgressData (GetOccupyingMandateRequest) returns (GetOccupyingMandateProgressDataResult);
+	rpc SetOccupyingMandate (SetOccupyingMandateRequest) returns (gaapicommon.GenericResult);
+	rpc GetAllMoveData (GetAllMoveDataRequest) returns (GetAllMoveDataResult);
+	rpc GetAllNodeData (GetAllNodeDataRequest) returns (GetAllNodeDataResult);
+	rpc GetAllParameterData (GetAllParameterDataRequest) returns (GetAllParameterDataResult);
+	rpc GetTrajectory (GetTrajectoryRequest) returns (GetTrajectoryResult);
+	rpc Subscribe(MapSubscribeRequest) returns (stream OccupyingMandateProgress);
+}
+
+// Message Parameters
+
+message ClearOccupyingMandateRequest { }
+message GetOccupyingMandateRequest { }
+
+message SetOccupyingMandateRequest {
+	repeated int32 MapItemIds = 1;
+	google.protobuf.Duration Timeout = 2;
+}
+
+message GetAllMoveDataRequest { }
+message GetAllNodeDataRequest { }
+message GetAllParameterDataRequest { }
+
+message GetTrajectoryRequest {
+	int32 MoveId = 1;
+}
+
+message MapSubscribeRequest { }
+
+// Message Returns
+
+message GetOccupyingMandateProgressDataResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	OccupyingMandateProgress Value = 4;
+	int32 ServiceCode = 5;
+}
+
+message GetAllMoveDataResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated Move Value = 4;
+	int32 ServiceCode = 5;
+}
+
+message GetAllNodeDataResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated Node Value = 4;
+	int32 ServiceCode = 5;
+}
+
+message GetAllParameterDataResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated Parameter Value = 4;
+	int32 ServiceCode = 5;
+}
+
+message GetTrajectoryResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated Waypoint Value = 4;
+	int32 ServiceCode = 5;
+}
+
+// Data Objects
+
+message OccupyingMandateMapItem {
+	int32 MapItemId = 1;
+	bool IsOccupied = 2;
+}
+
+message OccupyingMandateProgress {
+	repeated OccupyingMandateMapItem OccupyingMandateMapItem = 1;
+	gaapicommon.enums.OccupyingMandateState OccupyingMandateState = 2;
+	google.protobuf.Duration TimeoutRemaining = 3;
+}
+
+message Move {
+	string Alias = 1;
+	int32 DestinationId = 2;
+	int32 Id = 3;
+	int32 SourceId = 4;
+}
+
+message Pose {
+	double X = 1;
+	double Y = 2;
+	double Heading = 3;
+}
+
+message Node {
+	int32 Id = 1;
+	string Alias = 2;
+	Pose Pose = 3;
+	repeated gaapicommon.enums.ServiceType Services = 4;
+}
+
+message Parameter {
+	int32 AGVType = 1;
+	string Alias = 2;
+	string DataType = 3;
+	int32 ParameterId = 4;
+}
+
+message Waypoint {
+	double HeadingRad = 1;
+	int32 Id = 2;
+	double X = 3;
+	double Y = 4;
+}

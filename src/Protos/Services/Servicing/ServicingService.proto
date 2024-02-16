@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+import "Protos/Common/GenericResult.proto";
+
+package gaapicommon.services.servicing;
+option csharp_namespace = "GAAPICommon.Services.Servicing";
+
+// ServicingService 
+
+service ServicingService {
+	rpc GetOutstandingServiceRequests (GetOutstandingServiceRequestsRequest) returns (GetOutstandingServiceRequestsResult);
+	rpc SetServiceComplete (SetServiceCompleteRequest) returns (GenericResult);
+	rpc Subscribe(ServicingSubscribeRequest) returns (stream ServiceState);
+}
+
+// Message Parameters
+
+message GetOutstandingServiceRequestsRequest { }
+message ServicingSubscribeRequest { }
+
+message SetServiceCompleteRequest {
+	int32 TaskId = 1;
+}
+
+// Message returns
+
+message GetOutstandingServiceRequestsResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated ServiceState Value = 4;
+	int32 ServiceCode = 5;
+}
+
+// Data Objects
+
+message ServiceState {
+	int32 BeneficiaryId = 1;
+	int32 ExecutorId = 2;
+	int32 TaskId = 3;
+}

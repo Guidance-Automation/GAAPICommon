@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum TaskType {
+    UnorderedList = 0;
+    OrderedList = 1;
+    AtomicMoveList = 2;
+    ServiceAtNode = 3;
+    AwaitAtNode = 4;
+    SleepAtNode = 5;
+    ChargeAtNode = 6;
+    GoToNode = 7;
+    AtomicMove = 8;
+}

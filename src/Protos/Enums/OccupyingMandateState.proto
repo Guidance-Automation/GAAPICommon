@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum OccupyingMandateState {
+    None = 0;
+    InProgress = 1;
+    Occupied = 2;
+    TimedOut = 3;
+    AwaitingPreProcess = 4;
+    FailedPreProcessing = 5;
+}
