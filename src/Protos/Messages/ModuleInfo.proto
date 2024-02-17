@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ModuleInfo {
+	string DisplayName = 1;
+}

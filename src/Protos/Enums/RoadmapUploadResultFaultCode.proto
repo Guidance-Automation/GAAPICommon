@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum RoadmapUploadResultFaultCode {
+    Success = 0;
+    Unknown = 1;
+    DuplicateLocalName = 2;
+    DuplicateMap = 3;
+}

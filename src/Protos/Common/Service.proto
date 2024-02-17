@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "Protos/Messages/SemVer.proto";
+
 package gaapicommon;
 option csharp_namespace = "GAAPICommon";
 
@@ -28,17 +30,10 @@ message GetSummaryResult {
 	string Summary = 1;
 }
 
-message SemVer {
-	int32 Major = 1;
-	int32 Minor = 2;
-	int32 Path = 3;
-	string ReleaseFlag = 4;
-}
-
 message ServiceCallResultSemVer{
   string ExceptionMessage = 1;
   string ExceptionSource = 2;
   string ExceptionStackTrace = 3;
-  SemVer Value = 4;
+  gaapicommon.messages.SemVer Value = 4;
   int32 ServiceCode = 5;
 }

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message VirtualBatteryProfileModel {
+	double HighDischargeRate = 1;
+	double LowDischargeRate = 2;
+	double ChargeRate = 3;
+}

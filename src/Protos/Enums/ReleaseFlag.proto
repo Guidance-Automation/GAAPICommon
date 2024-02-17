@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum ReleaseFlag {
+    Alpha = 0; // Internal test 
+    Beta = 1; // External test
+    ReleaseCandidate = 2; // For the testing team
+    Release = 3; // Official release
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "Protos/Messages/SemVer.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message FleetManagementMetadata {
+	string ProductName = 1;
+	SemVer SemVer = 2;
+}

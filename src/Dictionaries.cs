@@ -1,4 +1,6 @@
-﻿namespace GAAPICommon;
+﻿using GAAPICommon.Enums;
+
+namespace GAAPICommon;
 
 public static class Dictionaries
 {

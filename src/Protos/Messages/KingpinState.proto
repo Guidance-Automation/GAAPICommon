@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto"; 
+import "Protos/Enums/AgvMode.proto";
+import "Protos/Enums/DynamicLimiterStatus.proto";
+import "Protos/Enums/ExtendedDataFaultStatus.proto";
+import "Protos/Enums/FrozenState.proto";
+import "Protos/Enums/MovementType.proto";
+import "Protos/Enums/NavigationStatus.proto";
+import "Protos/Enums/PositionControlStatus.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message KingpinState {
+	string Alias = 1;
+	bool IsVirtual = 2;
+	gaapicommon.enums.MovementType MovementType = 3;
+	int32 Tick = 4;
+	gaapicommon.enums.AgvMode AgvMode = 5;
+	double BatteryChargePercentage = 6;
+	gaapicommon.enums.PositionControlStatus PositionControlStatus = 7;
+	gaapicommon.enums.NavigationStatus NavigationStatus = 8;
+	gaapicommon.enums.DynamicLimiterStatus DynamicLimiterStatus = 9;
+	gaapicommon.enums.ExtendedDataFaultStatus ExtendedDataFaultStatus = 10;
+	gaapicommon.enums.FrozenState FrozenState = 11;
+	float Heading = 12;
+	string IPAddress = 13;
+	int64 IPAddressLong = 14;
+	bool IsCharging = 15;
+	int32 LastCompletedInstructionId = 16;
+	double Speed = 17;
+	repeated int32 StateCastExtendedData = 18;
+	repeated int32 CurrentWaypointExtendedData = 19;
+	google.protobuf.Duration Stationary = 20;
+	int32 WaypointLastId = 21;
+	int32 WaypointNextId = 22;
+	float X = 23;
+	float Y = 24;
+}

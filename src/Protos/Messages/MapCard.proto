@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "Protos/Messages/MapMetadata.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message MapCard {
+	int32 Id = 1;
+	string LocalName = 2;
+	MapMetadata MapMetadata = 3;
+	google.protobuf.Timestamp LastAccess = 4;
+	bool IsSelected = 5;
+}

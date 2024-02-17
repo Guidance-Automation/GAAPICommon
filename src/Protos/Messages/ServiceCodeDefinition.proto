@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ServiceCodeDefinition {
+	int32 ServiceCode = 1;
+	string Message = 2;
+	string Description = 3;
+	string Solution = 4;
+}

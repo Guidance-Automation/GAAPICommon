@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum NavigationStatus {
+    OKNavigation = 0;
+    Lost = 1;
+    AssociationFailure = 2;
+    HighUncertainty = 3;
+    PoorAssociaton = 4;
+    NoResponse = 5;
+    NoScannerData = 6;
+    UnknownNavigation = 65535;
+}

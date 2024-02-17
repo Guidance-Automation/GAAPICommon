@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Protos/Messages/SemVer.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message PluginInfo {
+	string AbsFilePath = 1;
+	string AssemblyName = 2;
+	SemVer Version = 3;
+}

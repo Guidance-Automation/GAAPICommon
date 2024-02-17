@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message RoadmapItemTaskSummary {
+	int32 RoadmapItemId = 1;
+}

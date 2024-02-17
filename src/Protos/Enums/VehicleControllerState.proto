@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum VehicleControllerState {
+    Enabled = 0;
+    Disabled = 1;
+}

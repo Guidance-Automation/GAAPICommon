@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message LicenceInfo {
+	string CustomerName = 1;
+	int32 CustomerId = 2;
+	string Manufacturer = 3;
+	int32 Uid = 4;
+	google.protobuf.Timestamp CreateDate = 5;
+	google.protobuf.Timestamp LastUpdate = 6;
+	string LicenceKey = 7;
+	string Vendor = 8;
+	int32 FleetLimit = 9;
+	int32 RentalFleetLimit = 10;
+	int32 LicencedVersion = 11;
+	string LicencedProduct = 12;
+	bool MaintenanceStatus = 13;
+	google.protobuf.Timestamp ExpiryDate = 14;
+	google.protobuf.Timestamp PurchasedFleetExpiryDate = 15;
+	google.protobuf.Timestamp RentalExpiryDate = 16;
+	google.protobuf.Timestamp FleetMaintenanceExpiry = 17;
+	google.protobuf.Timestamp RentalFleetMaintenanceExpiry = 18;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum FrozenState {
+    Frozen = 0;
+    Unfrozen = 1;
+}

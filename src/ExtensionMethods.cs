@@ -1,10 +1,14 @@
-﻿using System.Text;
+﻿using GAAPICommon.Enums;
+using GAAPICommon.Messages;
+using GAAPICommon.Services.Scheduling;
+using System.Net;
+using System.Text;
 
 namespace GAAPICommon;
 
 public static class ExtensionMethods
 {
-    public static bool IsInFault(this IKingpinState kingpinState)
+    public static bool IsInFault(this KingpinState kingpinState)
     {
         if (kingpinState == null)
             return false;
@@ -15,78 +19,20 @@ public static class ExtensionMethods
             || kingpinState.ExtendedDataFaultStatus.IsFault();
     }
 
-    public static string ToBookingStateString(this IBookingState bookingState)
+    /*public static string ToBookingStateString(this BookingState bookingState)
     {
         if (bookingState == null)
             return string.Empty;
 
         return $"AgentId:{bookingState.AgentId} BookingState:{bookingState.BookingState} JobId:{bookingState.JobId} TaskId:{bookingState.TaskId}";
-    }
+    }*/
 
-    public static string ToChargeBookingStateString(this IChargeBookingState chargeBookingState)
+    public static string ToChargeBookingStateString(this ChargeBookingState chargeBookingState)
     {
         if (chargeBookingState == null)
             return string.Empty;
 
-        return $"{chargeBookingState.ToBookingStateString()} ChargeType:{chargeBookingState.ChargeType}";
-    }
-
-    public static string ToSpotStateString(this ISpotState spotState)
-    {
-        if (spotState == null)
-            return string.Empty;
-
-        return $"NodeId:{spotState.NodeId} IsBooked:{spotState.IsBooked}";
-    }
-
-    public static string ToChargingSpotStateString(this IChargingSpotState chargingSpotState)
-    {
-        if (chargingSpotState == null)
-            return string.Empty;
-
-        return chargingSpotState.ChargeBooking == null
-            ? chargingSpotState.ToSpotStateString()
-            : $"{chargingSpotState.ToSpotStateString()} {chargingSpotState.ChargeBooking.ToChargeBookingStateString()}";
-    }
-
-    public static string ToParkingSpotStateString(this IParkingSpotState parkingSpotState)
-    {
-        if (parkingSpotState == null)
-            return string.Empty;
-
-        return parkingSpotState.ParkBooking == null
-            ? parkingSpotState.ToSpotStateString()
-            : $"{parkingSpotState.ToSpotStateString()} {parkingSpotState.ParkBooking.ToBookingStateString()}";
-    }
-
-
-    public static string ToSummaryString(this ISpotManagerState spotManagerState)
-    {
-        ArgumentNullException.ThrowIfNull(spotManagerState);
-
-        StringBuilder builder = new();
-
-        builder.AppendLine($"Tick:{spotManagerState.Tick}");
-
-        if (spotManagerState.ChargingSpotStates != null && spotManagerState.ChargingSpotStates.Any())
-        {
-            builder.AppendLine($"\tCharging Spots");
-            foreach (IChargingSpotState chargerState in spotManagerState.ChargingSpotStates)
-            {
-                builder.AppendLine($"\t\t{chargerState.ToChargingSpotStateString()}");
-            }
-        }
-
-        if (spotManagerState.ParkingSpotStates != null && spotManagerState.ParkingSpotStates.Any())
-        {
-            builder.AppendLine($"\tParking Spots");
-            foreach (IParkingSpotState parkingState in spotManagerState.ParkingSpotStates)
-            {
-                builder.AppendLine($"\t\t{parkingState.ToParkingSpotStateString()}");
-            }
-        }
-
-        return builder.ToString();
+        return $"{chargeBookingState.BookingState} {chargeBookingState.ChargeType} {chargeBookingState.AgentId} ChargeType:{chargeBookingState.ChargeType}";
     }
 
     public static bool IsFault(this ExtendedDataFaultStatus exFaultStatus) => ExDataFaultStates.Contains(exFaultStatus);
@@ -120,4 +66,49 @@ public static class ExtensionMethods
     [
         DynamicLimiterStatus.MotorFault
     ];
+
+    public static byte[] ToBytes(this KeyedSpeedDemand keyedSpeedDemand)
+    {
+        ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
+
+        byte[] bytes = new byte[27];
+
+        bytes[0] = (byte)keyedSpeedDemand.Tick;
+        Guid guid = Guid.Parse(keyedSpeedDemand.Guid);
+        guid.ToByteArray().CopyTo(bytes, 1);
+        keyedSpeedDemand.SpeedDemand.ToBytes().CopyTo(bytes, 17);
+
+        return bytes;
+    }
+
+    public static byte[] ToBytes(this SpeedDemand speedDemand)
+    {
+        ArgumentNullException.ThrowIfNull(speedDemand);
+
+        byte[] bytes = new byte[10];
+
+        IPAddress iPAddress = IPAddress.Parse(speedDemand.IPAddress);
+        iPAddress.GetAddressBytes().CopyTo(bytes, 0);
+
+        BitConverter.GetBytes(speedDemand.Forward).CopyTo(bytes, 4);
+        BitConverter.GetBytes(speedDemand.Angular).CopyTo(bytes, 6);
+        BitConverter.GetBytes(speedDemand.Lateral).CopyTo(bytes, 8);
+
+        return bytes;
+    }
+
+    public static string ToSummary(this ServiceCodeDefinition dto)
+    {
+        ArgumentNullException.ThrowIfNull(dto);
+
+        StringBuilder builder = new();
+
+        builder.AppendLine("Service Code Definition:");
+        builder.AppendLine($"\tService code: {dto.ServiceCode}");
+        builder.AppendLine($"\tMessage: {dto.Message}");
+        builder.AppendLine($"\tDescription: {dto.Description}");
+        builder.Append($"\tSolution: {dto.Solution}");
+
+        return builder.ToString();
+    }
 }
