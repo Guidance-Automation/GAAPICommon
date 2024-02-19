@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "Protos/Enums/JobStatus.proto";
+import "Protos/Enums/JobPriority.proto";
+import "Protos/Messages/TaskSummaryDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message JobSummaryDto {
+	int32 AssignedAgentId = 1;
+	string Description = 2;
+	int32 JobId = 3;
+	gaapicommon.enums.JobPriority JobPriority = 4;
+	gaapicommon.enums.JobStatus JobStatus = 5;
+	repeated string Notes = 6;
+	int32 RootOrderedListTaskId = 7;
+	repeated TaskSummaryDto TaskSummaries = 8;
+}

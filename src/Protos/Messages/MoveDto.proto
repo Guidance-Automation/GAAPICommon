@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message MoveDto {
+	string Alias = 1;
+	int32 DestinationId = 2;
+	int32 Id = 3;
+	int32 SourceId = 4;
+}

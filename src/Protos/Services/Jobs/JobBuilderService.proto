@@ -6,6 +6,7 @@ import "Protos/Common/BoolResult.proto";
 import "Protos/Common/Int32Result.proto";
 import "Protos/Enums/JobPriority.proto";
 import "Protos/Enums/ServiceType.proto";
+import "Protos/Messages/JobDto.proto";
 
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
@@ -115,13 +116,6 @@ message CreateJobResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	Job Value = 4;
+	gaapicommon.messages.JobDto Value = 4;
 	int32 ServiceCode = 5;
-}
-
-// Data Objects
-
-message Job {
-	int32 JobId = 1;
-	int32 RootOrderedListTaskId = 2;
 }

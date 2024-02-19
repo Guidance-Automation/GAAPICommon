@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.5</PackageVersion>
+		<PackageVersion>2.0.0-alpha.6</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Martin Davies, Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -23,7 +23,28 @@
 		<None Remove="Protos\Enums\AgentLifetimeState.proto" />
 		<None Remove="Protos\Enums\JobStatus.proto" />
 		<None Remove="Protos\Enums\TaskStatus.proto" />
-		<None Remove="Protos\Messages\ModuleInfo.proto" />
+		<None Remove="Protos\Messages\ChargeBookingStateDto.proto" />
+		<None Remove="Protos\Messages\ChargingSpotStateDto.proto" />
+		<None Remove="Protos\Messages\JobProgressDto.proto" />
+		<None Remove="Protos\Messages\JobSummaryDto.proto" />
+		<None Remove="Protos\Messages\LicenceChangedDto.proto" />
+		<None Remove="Protos\Messages\LicenceExpiryWarningDto.proto" />
+		<None Remove="Protos\Messages\LicenceInvalidDto.proto" />
+		<None Remove="Protos\Messages\ModuleInfoDto.proto" />
+		<None Remove="Protos\Messages\MoveDto.proto" />
+		<None Remove="Protos\Messages\NodeDto.proto" />
+		<None Remove="Protos\Messages\OccupyingMandateMapItemDto.proto" />
+		<None Remove="Protos\Messages\OccupyingMandateProgressDto.proto" />
+		<None Remove="Protos\Messages\ParameterDto.proto" />
+		<None Remove="Protos\Messages\ParkBookingStateDto.proto" />
+		<None Remove="Protos\Messages\ParkingSpotStateDto.proto" />
+		<None Remove="Protos\Messages\PoseDto.proto" />
+		<None Remove="Protos\Messages\SchedulerStateDto.proto" />
+		<None Remove="Protos\Messages\ServiceStateDto.proto" />
+		<None Remove="Protos\Messages\SpotManagerStateDto.proto" />
+		<None Remove="Protos\Messages\TaskProgressDto.proto" />
+		<None Remove="Protos\Messages\TaskSummaryDto.proto" />
+		<None Remove="Protos\Messages\WaypointDto.proto" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -64,31 +85,63 @@
 		<Protobuf Include="Protos\Enums\TaskStatus.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Enums\TaskType.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Enums\VehicleControllerState.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ServiceStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\SchedulerStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\SpotManagerStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ParkingSpotStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ChargingSpotStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ParkBookingStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ChargeBookingStateDto.proto" GrpcServices="Both" />
 
-		<Protobuf Include="Protos\Messages\AMRFleetConfiguration.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\ComponentManagerStatus.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\ExtendedVersionCast.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\FleetManagementMetadata.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\FleetState.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\KeyedSpeedDemand.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\LicenceInfo.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\LicenceVersion.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\MapCard.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\MapMetadata.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\ModuleInfo.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\KingpinState.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\PluginInfo.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\PluginSummary.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\RoadmapItemTaskSummary.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\RoadmapUploadResult.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\SchedulerConfig.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\SemVer.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\ServiceCodeDefinition.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\SpeedDemand.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\SpotManagerConfig.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\TrackPiece.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\VirtualBatteryProfileModel.proto" GrpcServices="Both" />
-		<Protobuf Include="Protos\Messages\VirtualStatusOverrides.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\AgentDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\LicenceExpiryWarningDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\LicenceChangedDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\LicenceInvalidDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\WaypointDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\ParameterDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\NodeDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\PoseDto.proto" GrpcServices="Both" />
+
+		<Protobuf Include="Protos\Messages\MoveDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\AMRFleetConfigurationDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ComponentManagerStatusDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ExtendedVersionCastDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\FleetManagementMetadataDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\FleetStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\OccupyingMandateProgressDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\OccupyingMandateMapItemDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\TaskProgressDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\TaskSummaryDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\JobSummaryDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\JobProgressDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\JobDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\JobStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\KeyedSpeedDemandDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\LicenceInfoDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\LicenceVersionDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\MapCardDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\MapMetadataDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ModuleInfoDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\KingpinStateDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\PluginInfoDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\PluginSummaryDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\RoadmapItemTaskSummaryDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\RoadmapUploadResultDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\SchedulerConfigDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\SemVerDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\ServiceCodeDefinitionDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\SpeedDemandDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\SpotManagerConfigDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\TrackPieceDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\VirtualBatteryProfileModelDto.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Messages\VirtualStatusOverridesDto.proto" GrpcServices="Both" />
 
 		<Protobuf Include="Protos\Services\Agents\AgentService.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Services\Jobs\JobBuilderService.proto" GrpcServices="Both" />

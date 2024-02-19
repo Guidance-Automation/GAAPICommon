@@ -1,14 +1,18 @@
 syntax = "proto3";
 
+import "Protos/Messages/LicenceInvalidDto.proto";
+import "Protos/Messages/LicenceChangedDto.proto";
+import "Protos/Messages/LicenceExpiryWarningDto.proto";
+
 package gaapicommon.services.licence;
 option csharp_namespace = "GAAPICommon.Services.Licence";
 
 // LicenceService 
 
 service TaskStateService {
-	rpc SubscribeInvalidNotifications (LicenceInvalidRequest) returns (stream LicenceInvalid);
-	rpc SubscribeChangedNotifications (LicenceChangedRequest) returns (stream LicenceChanged);
-	rpc SubscribeExpiringNotifications (LicenceExpiryRequest) returns (stream LicenceExpiryWarning);
+	rpc SubscribeInvalidNotifications (LicenceInvalidRequest) returns (stream gaapicommon.messages.LicenceInvalidDto);
+	rpc SubscribeChangedNotifications (LicenceChangedRequest) returns (stream gaapicommon.messages.LicenceChangedDto);
+	rpc SubscribeExpiringNotifications (LicenceExpiryRequest) returns (stream gaapicommon.messages.LicenceExpiryWarningDto);
 }
 
 // Message Parameters
@@ -16,18 +20,3 @@ service TaskStateService {
 message LicenceInvalidRequest { }
 message LicenceChangedRequest { }
 message LicenceExpiryRequest { }
-
-// Data Objects
-
-message LicenceInvalid {
-	string FailureReason = 1;
-}
-
-message LicenceChanged {
-	string ChangedElement = 1;
-}
-
-message LicenceExpiryWarning {
-	int32 DaysRemaining = 1;
-	string ExpiryType = 2;
-}

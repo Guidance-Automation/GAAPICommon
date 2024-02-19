@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Protos/Messages/SemVer.proto";
+import "Protos/Messages/SemVerDto.proto";
 
 package gaapicommon;
 option csharp_namespace = "GAAPICommon";
@@ -34,6 +34,6 @@ message ServiceCallResultSemVer{
   string ExceptionMessage = 1;
   string ExceptionSource = 2;
   string ExceptionStackTrace = 3;
-  gaapicommon.messages.SemVer Value = 4;
+  gaapicommon.messages.SemVerDto Value = 4;
   int32 ServiceCode = 5;
 }

@@ -1,10 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Enums/JobStatus.proto";
-import "Protos/Enums/JobPriority.proto";
-import "Protos/Enums/TaskStatus.proto";
-import "Protos/Enums/TaskType.proto";
-import "Protos/Messages/RoadmapItemTaskSummary.proto";
+import "Protos/Messages/JobSummaryDto.proto";
+import "Protos/Messages/JobProgressDto.proto";
 
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
@@ -15,7 +12,7 @@ service JobStateService {
 	rpc GetCurrentJobSummaryForAgentId (GetCurrentJobSummaryForAgentIdRequest) returns (GetCurrentJobSummaryForAgentIdResult);
 	rpc GetJobSummary (GetJobSummaryRequest) returns (GetJobSummaryResult);
 	rpc GetParentJobSummaryFromTaskId (GetParentJobSummaryFromTaskIdRequest) returns (GetParentJobSummaryFromTaskIdResult);
-	rpc Subscribe(JobStateSubscribeRequest) returns (stream JobProgress);
+	rpc Subscribe(JobStateSubscribeRequest) returns (stream gaapicommon.messages.JobProgressDto);
 }
 
 // Message Parameters
@@ -40,7 +37,7 @@ message GetCurrentJobSummaryForAgentIdResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	JobSummary Value = 4;
+	gaapicommon.messages.JobSummaryDto Value = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -48,7 +45,7 @@ message GetJobSummaryResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	JobSummary Value = 4;
+	gaapicommon.messages.JobSummaryDto Value = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -56,33 +53,6 @@ message GetParentJobSummaryFromTaskIdResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	JobSummary Value = 4;
+	gaapicommon.messages.JobSummaryDto Value = 4;
 	int32 ServiceCode = 5;
-}
-
-// Data Objects
-
-message JobProgress {
-	int32 AssignedAgentId = 1;
-	int32 JobId = 2;
-	gaapicommon.enums.JobStatus JobStatus = 3;
-}
-
-message JobSummary {
-	int32 AssignedAgentId = 1;
-	string Description = 2;
-	int32 JobId = 3;
-	gaapicommon.enums.JobPriority JobPriority = 4;
-	gaapicommon.enums.JobStatus JobStatus = 5;
-	repeated string Notes = 6;
-	int32 RootOrderedListTaskId = 7;
-	repeated TaskSummary TaskSummaries = 8;
-}
-
-message TaskSummary {
-	gaapicommon.messages.RoadmapItemTaskSummary RoadmapItemTaskSummary = 1;
-	int32 ParentTaskId = 2;
-	int32 TaskId = 3;
-	gaapicommon.enums.TaskStatus TaskStatus = 4;
-	gaapicommon.enums.TaskType TaskType = 5;
 }

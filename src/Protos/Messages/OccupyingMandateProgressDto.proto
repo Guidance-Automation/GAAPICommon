@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto"; 
+import "Protos/Enums/OccupyingMandateState.proto";
+import "Protos/Messages/OccupyingMandateMapItemDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message OccupyingMandateProgressDto {
+	repeated OccupyingMandateMapItemDto OccupyingMandateMapItem = 1;
+	gaapicommon.enums.OccupyingMandateState OccupyingMandateState = 2;
+	google.protobuf.Duration TimeoutRemaining = 3;
+}

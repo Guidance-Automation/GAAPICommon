@@ -1,6 +1,5 @@
 ﻿using GAAPICommon.Enums;
 using GAAPICommon.Messages;
-using GAAPICommon.Services.Scheduling;
 using System.Net;
 using System.Text;
 
@@ -8,7 +7,7 @@ namespace GAAPICommon;
 
 public static class ExtensionMethods
 {
-    public static bool IsInFault(this KingpinState kingpinState)
+    public static bool IsInFault(this KingpinStateDto kingpinState)
     {
         if (kingpinState == null)
             return false;
@@ -19,15 +18,7 @@ public static class ExtensionMethods
             || kingpinState.ExtendedDataFaultStatus.IsFault();
     }
 
-    /*public static string ToBookingStateString(this BookingState bookingState)
-    {
-        if (bookingState == null)
-            return string.Empty;
-
-        return $"AgentId:{bookingState.AgentId} BookingState:{bookingState.BookingState} JobId:{bookingState.JobId} TaskId:{bookingState.TaskId}";
-    }*/
-
-    public static string ToChargeBookingStateString(this ChargeBookingState chargeBookingState)
+    public static string ToChargeBookingStateString(this ChargeBookingStateDto chargeBookingState)
     {
         if (chargeBookingState == null)
             return string.Empty;
@@ -67,7 +58,7 @@ public static class ExtensionMethods
         DynamicLimiterStatus.MotorFault
     ];
 
-    public static byte[] ToBytes(this KeyedSpeedDemand keyedSpeedDemand)
+    public static byte[] ToBytes(this KeyedSpeedDemandDto keyedSpeedDemand)
     {
         ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
 
@@ -81,7 +72,7 @@ public static class ExtensionMethods
         return bytes;
     }
 
-    public static byte[] ToBytes(this SpeedDemand speedDemand)
+    public static byte[] ToBytes(this SpeedDemandDto speedDemand)
     {
         ArgumentNullException.ThrowIfNull(speedDemand);
 
@@ -97,7 +88,7 @@ public static class ExtensionMethods
         return bytes;
     }
 
-    public static string ToSummary(this ServiceCodeDefinition dto)
+    public static string ToSummary(this ServiceCodeDefinitionDto dto)
     {
         ArgumentNullException.ThrowIfNull(dto);
 

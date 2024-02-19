@@ -1,6 +1,7 @@
 ﻿syntax = "proto3";
 
 import "Protos/Common/GenericResult.proto";
+import "Protos/Messages/JobStateDto.proto";
 
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
@@ -13,7 +14,7 @@ service JobsStateService {
     rpc AbortJob (AbortJobRequest) returns (gaapicommon.GenericResult);
     rpc AbortTask (AbortTaskRequest) returns (gaapicommon.GenericResult);
     rpc GetActiveJobIdsForAgent (GetActiveJobIdsForAgentRequest) returns (GetActiveJobIdsForAgentResult);
-    rpc Subscribe(JobsStateSubscribeRequest) returns (stream JobState);
+    rpc Subscribe(JobsStateSubscribeRequest) returns (stream gaapicommon.messages.JobStateDto);
 }
 
 // Message Parameters
@@ -47,12 +48,4 @@ message GetActiveJobIdsForAgentResult {
     string ExceptionStackTrace = 3;
     repeated int32 Value = 4;
     int32 ServiceCode = 5;
-}
-
-// Data Objects
-
-message JobState {
-    int32 AssigningCount = 1;
-    int32 InProgressCount = 2;
-    int32 WaitingCount =3;
 }

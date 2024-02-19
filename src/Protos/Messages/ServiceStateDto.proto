@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ServiceStateDto {
+	int32 BeneficiaryId = 1;
+	int32 ExecutorId = 2;
+	int32 TaskId = 3;
+}

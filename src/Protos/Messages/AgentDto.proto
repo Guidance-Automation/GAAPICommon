@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "Protos/Enums/AgentLifetimeState.proto";
+import "Protos/Enums/AgentMarkovState.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message AgentDto {
+	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 1;
+	string Alias = 2;
+	int32 Id = 3;
+	string IPAddress = 4;
+	gaapicommon.enums.AgentMarkovState AgentMarkovState = 5;
+	int32 CurrentJobId = 6;
+	int32 CurrentNodeId = 7;
+}

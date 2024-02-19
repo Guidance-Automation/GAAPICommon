@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message LicenceExpiryWarningDto {
+	int32 DaysRemaining = 1;
+	string ExpiryType = 2;
+}

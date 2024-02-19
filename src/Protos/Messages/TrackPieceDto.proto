@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "Protos/Enums/MovementType.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message TrackPieceDto {
+	int32 DeltaX = 1;
+	int32 DeltaY = 2;
+	double DeltaHeading = 3;
+	double SpeedLimit = 4;
+	gaapicommon.enums.MovementType MovementType = 5;
+}

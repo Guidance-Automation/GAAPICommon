@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "Protos/Enums/ChargeType.proto";
+import "Protos/Enums/BookingState.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ChargeBookingStateDto {
+	int32 AgentId = 1;
+	gaapicommon.enums.ChargeType ChargeType = 2;
+	gaapicommon.enums.BookingState BookingState = 3;
+	int32 JobId = 4;
+	int32 TaskId = 5;
+}

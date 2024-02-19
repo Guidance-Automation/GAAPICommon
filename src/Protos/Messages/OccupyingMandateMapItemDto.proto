@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message OccupyingMandateMapItemDto {
+	int32 MapItemId = 1;
+	bool IsOccupied = 2;
+}

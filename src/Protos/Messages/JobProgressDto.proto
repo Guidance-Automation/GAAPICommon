@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Protos/Enums/JobStatus.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message JobProgressDto {
+	int32 AssignedAgentId = 1;
+	int32 JobId = 2;
+	gaapicommon.enums.JobStatus JobStatus = 3;
+}

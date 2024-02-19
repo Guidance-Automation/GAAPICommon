@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Protos/Enums/TaskStatus.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message TaskProgressDto {
+	int32 AssignedAgentId = 1;
+	int32 TaskId = 2;
+	gaapicommon.enums.TaskStatus TaskStatus = 3;
+}

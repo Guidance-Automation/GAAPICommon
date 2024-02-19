@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message SpeedDemandDto {
+	string IPAddress = 1;
+	int32 Forward = 2;
+	int32 Angular = 3;
+	int32 Lateral = 4;
+}

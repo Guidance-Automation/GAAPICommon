@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "Protos/Common/GenericResult.proto";
+import "Protos/Messages/ServiceStateDto.proto";
 
 package gaapicommon.services.servicing;
 option csharp_namespace = "GAAPICommon.Services.Servicing";
@@ -10,7 +11,7 @@ option csharp_namespace = "GAAPICommon.Services.Servicing";
 service ServicingService {
 	rpc GetOutstandingServiceRequests (GetOutstandingServiceRequestsRequest) returns (GetOutstandingServiceRequestsResult);
 	rpc SetServiceComplete (SetServiceCompleteRequest) returns (GenericResult);
-	rpc Subscribe(ServicingSubscribeRequest) returns (stream ServiceState);
+	rpc Subscribe(ServicingSubscribeRequest) returns (stream gaapicommon.messages.ServiceStateDto);
 }
 
 // Message Parameters
@@ -28,14 +29,6 @@ message GetOutstandingServiceRequestsResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated ServiceState Value = 4;
+	repeated gaapicommon.messages.ServiceStateDto Value = 4;
 	int32 ServiceCode = 5;
-}
-
-// Data Objects
-
-message ServiceState {
-	int32 BeneficiaryId = 1;
-	int32 ExecutorId = 2;
-	int32 TaskId = 3;
 }

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package gaapicommon.messages;
-option csharp_namespace = "GAAPICommon.Messages";
-
-message LicenceVersion {
-	int32 MajorVersion = 1;
-	int32 MinorVersion = 2;
-}

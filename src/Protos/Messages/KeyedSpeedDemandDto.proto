@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Protos/Messages/SpeedDemandDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message KeyedSpeedDemandDto {
+	int32 Tick = 1;
+	gaapicommon.messages.SpeedDemandDto SpeedDemand = 2;
+	string Guid = 3;
+}

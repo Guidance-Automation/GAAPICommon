@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message SpotManagerConfigDto {
+	google.protobuf.Duration IdleTimeout = 1;
+	double ChargeDowngradeLevel = 2;
+	double ImmediateChargeLevel = 3;
+}

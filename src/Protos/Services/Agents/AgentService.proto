@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "Protos/Common/GenericResult.proto";
 import "Protos/Enums/AgentLifetimeState.proto";
-import "Protos/Enums/AgentMarkovState.proto";
+import "Protos/Messages/AgentDto.proto";
 
 package gaapicommon.services.agents;
 option csharp_namespace = "GAAPICommon.Services.Agents";
@@ -34,7 +34,7 @@ message GetAllAgentDataResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated Agent Value = 4;
+	repeated gaapicommon.messages.AgentDto Value = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -42,18 +42,6 @@ message GetAllAgentsInLifetimeStateResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated Agent Value = 4;
+	repeated gaapicommon.messages.AgentDto Value = 4;
 	int32 ServiceCode = 5;
-}
-
-// Data Objects
-
-message Agent {
-	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 1;
-	string Alias = 2;
-	int32 Id = 3;
-	string IPAddress = 4;
-	gaapicommon.enums.AgentMarkovState AgentMarkovState = 5;
-	int32 CurrentJobId = 6;
-	int32 CurrentNodeId = 7;
 }

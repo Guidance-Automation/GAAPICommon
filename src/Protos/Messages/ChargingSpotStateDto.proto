@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Protos/Messages/ChargeBookingStateDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ChargingSpotStateDto {
+	ChargeBookingStateDto ChargeBookingState = 1;
+	int32 NodeId = 2;
+	bool IsBooked = 3;
+}
