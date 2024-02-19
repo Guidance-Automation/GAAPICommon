@@ -4,6 +4,7 @@ import "Protos/Enums/JobStatus.proto";
 import "Protos/Enums/JobPriority.proto";
 import "Protos/Enums/TaskStatus.proto";
 import "Protos/Enums/TaskType.proto";
+import "Protos/Messages/RoadmapItemTaskSummary.proto";
 
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
@@ -79,13 +80,9 @@ message JobSummary {
 }
 
 message TaskSummary {
-	RoadMapItemTaskSummary RoadMapItemTaskSummary = 1;
+	gaapicommon.messages.RoadmapItemTaskSummary RoadmapItemTaskSummary = 1;
 	int32 ParentTaskId = 2;
 	int32 TaskId = 3;
 	gaapicommon.enums.TaskStatus TaskStatus = 4;
 	gaapicommon.enums.TaskType TaskType = 5;
-}
-
-message RoadMapItemTaskSummary {
-	int32 RoadMapItemId = 1;
 }

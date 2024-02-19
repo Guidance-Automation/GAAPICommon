@@ -15,7 +15,7 @@ option csharp_namespace = "GAAPICommon.Messages";
 message KingpinState {
 	string Alias = 1;
 	bool IsVirtual = 2;
-	gaapicommon.enums.MovementType MovementType = 3;
+	gaapicommon.enums.MovementType CurrentMovementType = 3;
 	int32 Tick = 4;
 	gaapicommon.enums.AgvMode AgvMode = 5;
 	double BatteryChargePercentage = 6;
