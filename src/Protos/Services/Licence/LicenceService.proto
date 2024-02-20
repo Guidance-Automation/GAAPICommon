@@ -9,7 +9,7 @@ option csharp_namespace = "GAAPICommon.Services.Licence";
 
 // LicenceService 
 
-service TaskStateService {
+service TaskStateServiceProto {
 	rpc SubscribeInvalidNotifications (LicenceInvalidRequest) returns (stream gaapicommon.messages.LicenceInvalidDto);
 	rpc SubscribeChangedNotifications (LicenceChangedRequest) returns (stream gaapicommon.messages.LicenceChangedDto);
 	rpc SubscribeExpiringNotifications (LicenceExpiryRequest) returns (stream gaapicommon.messages.LicenceExpiryWarningDto);

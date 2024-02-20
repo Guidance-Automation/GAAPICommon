@@ -8,7 +8,7 @@ option csharp_namespace = "GAAPICommon.Services.Jobs";
 
 // JobsStateService 
 
-service JobsStateService {
+service JobsStateServiceProto {
     rpc AbortAllJobs (AbortAllJobsRequest) returns (gaapicommon.GenericResult);
     rpc AbortAllJobsForAgent (AbortAllJobsForAgentRequest) returns (gaapicommon.GenericResult);
     rpc AbortJob (AbortJobRequest) returns (gaapicommon.GenericResult);
@@ -26,7 +26,7 @@ message AbortAllJobsForAgentRequest {
 }
 
 message AbortJobRequest {
-    int32 AgentId = 1;
+    int32 JobId = 1;
     string Note = 2;
 }
 
@@ -46,6 +46,6 @@ message GetActiveJobIdsForAgentResult {
     string ExceptionMessage = 1;
     string ExceptionSource = 2;
     string ExceptionStackTrace = 3;
-    repeated int32 Value = 4;
+    repeated int32 ActiveJobs = 4;
     int32 ServiceCode = 5;
 }

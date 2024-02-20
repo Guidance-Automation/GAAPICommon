@@ -8,7 +8,7 @@ option csharp_namespace = "GAAPICommon.Services.Jobs";
 
 // JobStateService
 
-service JobStateService {
+service JobStateServiceProto {
 	rpc GetCurrentJobSummaryForAgentId (GetCurrentJobSummaryForAgentIdRequest) returns (GetCurrentJobSummaryForAgentIdResult);
 	rpc GetJobSummary (GetJobSummaryRequest) returns (GetJobSummaryResult);
 	rpc GetParentJobSummaryFromTaskId (GetParentJobSummaryFromTaskIdRequest) returns (GetParentJobSummaryFromTaskIdResult);
@@ -37,7 +37,7 @@ message GetCurrentJobSummaryForAgentIdResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobSummaryDto Value = 4;
+	gaapicommon.messages.JobSummaryDto JobSummary = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -45,7 +45,7 @@ message GetJobSummaryResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobSummaryDto Value = 4;
+	gaapicommon.messages.JobSummaryDto JobSummary = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -53,6 +53,6 @@ message GetParentJobSummaryFromTaskIdResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobSummaryDto Value = 4;
+	gaapicommon.messages.JobSummaryDto JobSummary = 4;
 	int32 ServiceCode = 5;
 }

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+import "Protos/Common/GenericResult.proto";
+import "Protos/Enums/FrozenState.proto";
+import "Protos/Enums/VehicleControllerState.proto";
+import "Protos/Messages/PoseDto.proto";
+
+package gaapicommon.services.fleetmanager;
+option csharp_namespace = "GAAPICommon.Services.FleetManager";
+
+// FleetManagerService
+
+service FleetManagerServiceProto {
+	rpc GetKingpinDescription (GetKingpinDescriptionRequest) returns (GetKingpinDescriptionResult);
+	rpc SetFrozenState (SetFrozenStateRequest) returns (gaapicommon.GenericResult);
+	rpc CreateVirtualVehicle (CreateVirtualVehicleRequest)  returns (gaapicommon.GenericResult);
+	rpc RemoveVehicle (RemoveVehicleRequest) returns (gaapicommon.GenericResult);
+	rpc SetPose (SetPoseRequest) returns (gaapicommon.GenericResult);
+	rpc SetFleetState (SetFleetStateRequest)  returns (gaapicommon.GenericResult);
+	rpc SetKingpinState (SetKingpinStateRequest)  returns (gaapicommon.GenericResult);
+}
+
+// Message Parameters
+
+message GetKingpinDescriptionRequest {
+	string IPAddress = 1;
+}
+
+message SetFrozenStateRequest {
+	gaapicommon.enums.FrozenState FrozenState = 1;
+}
+
+message CreateVirtualVehicleRequest {
+	string IPAddress = 1;
+	gaapicommon.messages.PoseDto Pose = 2;
+}
+
+message RemoveVehicleRequest {
+	string IPAddress = 1;
+}
+
+message SetPoseRequest {
+	string IPAddress = 1;
+	gaapicommon.messages.PoseDto Pose = 2;
+}
+
+message SetFleetStateRequest {
+	gaapicommon.enums.VehicleControllerState ControllerState = 1;
+}
+
+message SetKingpinStateRequest {
+	string IPAddress = 1;
+	gaapicommon.enums.VehicleControllerState ControllerState = 2;
+}
+
+// Message Returns
+
+message GetKingpinDescriptionResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	string KingpinDescription = 4;
+	int32 ServiceCode = 5;
+}

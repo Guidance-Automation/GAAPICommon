@@ -13,7 +13,7 @@ option csharp_namespace = "GAAPICommon.Services.Jobs";
 
 // JobBuilderService 
 
-service JobBuilderService {
+service JobBuilderServiceProto {
   rpc BeginEditingJob (EditingJobRequest) returns (gaapicommon.BoolResult);
   rpc CommitJob (CommitJobRequest) returns (gaapicommon.GenericResult);
   rpc CreateAwaitingTask (CreateAwaitingTaskRequest) returns (gaapicommon.Int32Result);
@@ -41,7 +41,7 @@ message EditingJobRequest {
 
 message CommitJobRequest {
 	int32 JobId = 1;
-	int32 AgentId = 2;
+	optional int32 AgentId = 2;
 }
 
 message CreateAwaitingTaskRequest {
@@ -50,7 +50,7 @@ message CreateAwaitingTaskRequest {
 }
 
 message CreateJobRequest {
-	gaapicommon.enums.JobPriority JobPriority = 1;
+	optional gaapicommon.enums.JobPriority JobPriority = 1;
 }
 
 message CreateGoToNodeTaskRequest {
@@ -75,13 +75,13 @@ message CreateServicingTaskRequest {
 	int32 ParentTaskId = 1;
 	int32 NodeId = 2;
 	gaapicommon.enums.ServiceType ServiceType = 3;
-	google.protobuf.Duration Timespan = 4;
+	optional google.protobuf.Duration ExpectedDuration = 4;
 }
 
 message CreateSleepingTaskRequest {
 	int32 ParentTaskId = 1;
 	int32 NodeId = 2;
-	google.protobuf.Duration ExpectedDuration = 3;
+	optional google.protobuf.Duration ExpectedDuration = 3;
 }
 
 message CreateUnorderedListTaskRequest {
@@ -116,6 +116,6 @@ message CreateJobResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobDto Value = 4;
+	gaapicommon.messages.JobDto Job = 4;
 	int32 ServiceCode = 5;
 }

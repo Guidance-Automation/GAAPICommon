@@ -13,7 +13,7 @@ option csharp_namespace = "GAAPICommon.Services.Maps";
 
 // MapService 
 
-service MapService {
+service MapServiceProto {
 	rpc ClearOccupyingMandate (ClearOccupyingMandateRequest) returns (gaapicommon.GenericResult);
 	rpc GetOccupyingMandateProgressData (GetOccupyingMandateRequest) returns (GetOccupyingMandateProgressDataResult);
 	rpc SetOccupyingMandate (SetOccupyingMandateRequest) returns (gaapicommon.GenericResult);
@@ -50,7 +50,7 @@ message GetOccupyingMandateProgressDataResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	gaapicommon.messages.OccupyingMandateProgressDto Value = 4;
+	gaapicommon.messages.OccupyingMandateProgressDto OccupyingMandateProgress = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -58,7 +58,7 @@ message GetAllMoveDataResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.MoveDto Value = 4;
+	repeated gaapicommon.messages.MoveDto Move = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -66,7 +66,7 @@ message GetAllNodeDataResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.NodeDto Value = 4;
+	repeated gaapicommon.messages.NodeDto Node = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -74,7 +74,7 @@ message GetAllParameterDataResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.ParameterDto Value = 4;
+	repeated gaapicommon.messages.ParameterDto Parameter = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -82,6 +82,6 @@ message GetTrajectoryResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.WaypointDto Value = 4;
+	repeated gaapicommon.messages.WaypointDto Waypoint = 4;
 	int32 ServiceCode = 5;
 }

@@ -7,7 +7,7 @@ option csharp_namespace = "GAAPICommon.Services.Scheduling";
 
 // SchedulingService 
 
-service SchedulingService {
+service SchedulingServiceProto {
 	rpc Subscribe(SchedulingSubscribeRequest) returns (stream gaapicommon.messages.SchedulerStateDto);
 }
 

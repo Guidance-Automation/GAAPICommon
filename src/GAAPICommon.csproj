@@ -2,12 +2,12 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.6</PackageVersion>
+		<PackageVersion>2.0.0-alpha.7</PackageVersion>
 		<Platforms>x64</Platforms>
-		<Authors>Martin Davies, Ollie Sharratt</Authors>
+		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
-		<Description>API Components for Guidance Automation assemblies.</Description>
-		<RepositoryUrl>https://github.com/GuidanceAutomation/GAAPICommon</RepositoryUrl>
+		<Description>gRPC API Components for Guidance Automation assemblies.</Description>
+		<RepositoryUrl>https://github.com/Guidance-Automation/GAAPICommon</RepositoryUrl>
 		<PackageId>GAAPICommon</PackageId>
 		<Company>Guidance Automation LTD</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -16,36 +16,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Protos\Common\BoolResult.proto" />
-		<None Remove="Protos\Common\Int32Result.proto" />
-		<None Remove="Protos\Enums\AgentLifetimeState.proto" />
-		<None Remove="Protos\Enums\JobStatus.proto" />
-		<None Remove="Protos\Enums\TaskStatus.proto" />
-		<None Remove="Protos\Messages\ChargeBookingStateDto.proto" />
-		<None Remove="Protos\Messages\ChargingSpotStateDto.proto" />
-		<None Remove="Protos\Messages\JobProgressDto.proto" />
-		<None Remove="Protos\Messages\JobSummaryDto.proto" />
-		<None Remove="Protos\Messages\LicenceChangedDto.proto" />
-		<None Remove="Protos\Messages\LicenceExpiryWarningDto.proto" />
-		<None Remove="Protos\Messages\LicenceInvalidDto.proto" />
-		<None Remove="Protos\Messages\ModuleInfoDto.proto" />
-		<None Remove="Protos\Messages\MoveDto.proto" />
-		<None Remove="Protos\Messages\NodeDto.proto" />
-		<None Remove="Protos\Messages\OccupyingMandateMapItemDto.proto" />
-		<None Remove="Protos\Messages\OccupyingMandateProgressDto.proto" />
-		<None Remove="Protos\Messages\ParameterDto.proto" />
-		<None Remove="Protos\Messages\ParkBookingStateDto.proto" />
-		<None Remove="Protos\Messages\ParkingSpotStateDto.proto" />
-		<None Remove="Protos\Messages\PoseDto.proto" />
-		<None Remove="Protos\Messages\SchedulerStateDto.proto" />
-		<None Remove="Protos\Messages\ServiceStateDto.proto" />
-		<None Remove="Protos\Messages\SpotManagerStateDto.proto" />
-		<None Remove="Protos\Messages\TaskProgressDto.proto" />
-		<None Remove="Protos\Messages\TaskSummaryDto.proto" />
-		<None Remove="Protos\Messages\WaypointDto.proto" />
-	</ItemGroup>
 
 	<ItemGroup>
 
@@ -85,6 +55,7 @@
 		<Protobuf Include="Protos\Enums\TaskStatus.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Enums\TaskType.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Enums\VehicleControllerState.proto" GrpcServices="Both" />
+		
 		<Protobuf Include="Protos\Messages\ServiceStateDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\SchedulerStateDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\SpotManagerStateDto.proto" GrpcServices="Both" />
@@ -92,23 +63,14 @@
 		<Protobuf Include="Protos\Messages\ChargingSpotStateDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\ParkBookingStateDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\ChargeBookingStateDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\AgentDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\LicenceExpiryWarningDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\LicenceChangedDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\LicenceInvalidDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\WaypointDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\ParameterDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\NodeDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\PoseDto.proto" GrpcServices="Both" />
-
 		<Protobuf Include="Protos\Messages\MoveDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\AMRFleetConfigurationDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\ComponentManagerStatusDto.proto" GrpcServices="Both" />
@@ -144,6 +106,7 @@
 		<Protobuf Include="Protos\Messages\VirtualStatusOverridesDto.proto" GrpcServices="Both" />
 
 		<Protobuf Include="Protos\Services\Agents\AgentService.proto" GrpcServices="Both" />
+		<Protobuf Include="Protos\Services\FleetManager\FleetManagerService.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Services\Jobs\JobBuilderService.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Services\Jobs\JobsStateService.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Services\Jobs\JobStateService.proto" GrpcServices="Both" />
@@ -159,6 +122,7 @@
 		<Folder Include="Protos\Services\Agents\" />
 		<Folder Include="Protos\Services\Maps\" />
 		<Folder Include="Protos\Services\Licence\" />
+		<Folder Include="Protos\Services\FleetManager\" />
 		<Folder Include="Protos\Services\Servicing\" />
 		<Folder Include="Protos\Services\Scheduling\" />
 	</ItemGroup>

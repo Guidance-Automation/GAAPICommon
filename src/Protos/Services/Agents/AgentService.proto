@@ -9,7 +9,7 @@ option csharp_namespace = "GAAPICommon.Services.Agents";
 
 // JobBuilderService 
 
-service AgentService {
+service AgentServiceProto {
 	rpc GetAllAgentData (GetAllAgentDataRequest) returns (GetAllAgentDataResult);
 	rpc GetAllAgentsInLifetimeState (GetAllAgentsInLifetimeStateRequest) returns (GetAllAgentsInLifetimeStateResult);
 	rpc SetAgentLifetimeState (SetAgentLifetimeStateRequest) returns (GenericResult);
@@ -34,7 +34,7 @@ message GetAllAgentDataResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.AgentDto Value = 4;
+	repeated gaapicommon.messages.AgentDto Agent = 4;
 	int32 ServiceCode = 5;
 }
 
@@ -42,6 +42,6 @@ message GetAllAgentsInLifetimeStateResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.AgentDto Value = 4;
+	repeated gaapicommon.messages.AgentDto Agent = 4;
 	int32 ServiceCode = 5;
 }

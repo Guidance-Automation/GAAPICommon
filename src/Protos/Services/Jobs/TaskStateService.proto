@@ -7,7 +7,7 @@ option csharp_namespace = "GAAPICommon.Services.Jobs";
 
 // TaskStateService 
 
-service TaskStateService {
+service TaskStateServiceProto {
 	rpc Subscribe(TaskStateSubscribeRequest) returns (stream gaapicommon.messages.TaskProgressDto);
 }
 

@@ -8,7 +8,7 @@ option csharp_namespace = "GAAPICommon.Services.Servicing";
 
 // ServicingService 
 
-service ServicingService {
+service ServicingServiceProto {
 	rpc GetOutstandingServiceRequests (GetOutstandingServiceRequestsRequest) returns (GetOutstandingServiceRequestsResult);
 	rpc SetServiceComplete (SetServiceCompleteRequest) returns (GenericResult);
 	rpc Subscribe(ServicingSubscribeRequest) returns (stream gaapicommon.messages.ServiceStateDto);
@@ -29,6 +29,6 @@ message GetOutstandingServiceRequestsResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.ServiceStateDto Value = 4;
+	repeated gaapicommon.messages.ServiceStateDto ServiceState = 4;
 	int32 ServiceCode = 5;
 }
