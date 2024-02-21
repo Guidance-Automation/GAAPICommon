@@ -29,6 +29,6 @@ message GetOutstandingServiceRequestsResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.ServiceStateDto ServiceState = 4;
+	repeated gaapicommon.messages.ServiceStateDto ServiceStates = 4;
 	int32 ServiceCode = 5;
 }

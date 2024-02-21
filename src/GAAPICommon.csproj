@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.7</PackageVersion>
+		<PackageVersion>2.0.0-alpha.8</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -18,16 +18,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-
 		<PackageReference Include="Google.Protobuf" Version="3.25.3" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
 		<PackageReference Include="Grpc.Tools" Version="2.61.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+	</ItemGroup>
 
+	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
 
+	<ItemGroup>
 		<Protobuf Include="Protos\Common\Service.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Common\Int32Result.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Common\BoolResult.proto" GrpcServices="Both" />
@@ -55,7 +58,7 @@
 		<Protobuf Include="Protos\Enums\TaskStatus.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Enums\TaskType.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Enums\VehicleControllerState.proto" GrpcServices="Both" />
-		
+
 		<Protobuf Include="Protos\Messages\ServiceStateDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\SchedulerStateDto.proto" GrpcServices="Both" />
 		<Protobuf Include="Protos\Messages\SpotManagerStateDto.proto" GrpcServices="Both" />
@@ -125,6 +128,13 @@
 		<Folder Include="Protos\Services\FleetManager\" />
 		<Folder Include="Protos\Services\Servicing\" />
 		<Folder Include="Protos\Services\Scheduling\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Protos\**\*.*">
+			<IncludeInPackage>true</IncludeInPackage>
+			<BuildAction>Content</BuildAction>
+		</Content>
 	</ItemGroup>
 
 </Project>
