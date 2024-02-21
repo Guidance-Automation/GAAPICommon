@@ -1,12 +1,12 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto"; 
-import "Protos/Common/GenericResult.proto";
-import "Protos/Messages/MoveDto.proto";
-import "Protos/Messages/ParameterDto.proto";
-import "Protos/Messages/NodeDto.proto";
-import "Protos/Messages/WaypointDto.proto";
-import "Protos/Messages/OccupyingMandateProgressDto.proto";
+import "Common/GenericResult.proto";
+import "Messages/MoveDto.proto";
+import "Messages/ParameterDto.proto";
+import "Messages/NodeDto.proto";
+import "Messages/WaypointDto.proto";
+import "Messages/OccupyingMandateProgressDto.proto";
 
 package gaapicommon.services.maps;
 option csharp_namespace = "GAAPICommon.Services.Maps";

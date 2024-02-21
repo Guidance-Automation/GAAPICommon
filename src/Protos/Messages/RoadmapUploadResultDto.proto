@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Enums/RoadmapUploadResultFaultCode.proto";
-import "Protos/Messages/MapCardDto.proto";
+import "Enums/RoadmapUploadResultFaultCode.proto";
+import "Messages/MapCardDto.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

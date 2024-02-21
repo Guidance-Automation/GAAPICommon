@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Protos/Messages/TaskProgressDto.proto";
+import "Messages/TaskProgressDto.proto";
 
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";

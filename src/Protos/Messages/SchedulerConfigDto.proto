@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Messages/MapMetadataDto.proto";
-import "Protos/Messages/SpotManagerConfigDto.proto";
+import "Messages/MapMetadataDto.proto";
+import "Messages/SpotManagerConfigDto.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

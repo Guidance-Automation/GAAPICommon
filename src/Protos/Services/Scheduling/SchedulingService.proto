@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Protos/Messages/SchedulerStateDto.proto";
+import "Messages/SchedulerStateDto.proto";
 
 package gaapicommon.services.scheduling;
 option csharp_namespace = "GAAPICommon.Services.Scheduling";

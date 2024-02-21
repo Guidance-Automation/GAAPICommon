@@ -1,8 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto"; 
-import "Protos/Enums/OccupyingMandateState.proto";
-import "Protos/Messages/OccupyingMandateMapItemDto.proto";
+import "Enums/OccupyingMandateState.proto";
+import "Messages/OccupyingMandateMapItemDto.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

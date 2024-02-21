@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Protos/Messages/SemVerDto.proto";
+import "Messages/SemVerDto.proto";
 
 package gaapicommon;
 option csharp_namespace = "GAAPICommon";

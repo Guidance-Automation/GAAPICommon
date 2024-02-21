@@ -1,9 +1,10 @@
 syntax = "proto3";
 
-import "Protos/Common/GenericResult.proto";
-import "Protos/Enums/FrozenState.proto";
-import "Protos/Enums/VehicleControllerState.proto";
-import "Protos/Messages/PoseDto.proto";
+import "Common/GenericResult.proto";
+import "Enums/FrozenState.proto";
+import "Enums/VehicleControllerState.proto";
+import "Messages/FleetStateDto.proto";
+import "Messages/PoseDto.proto";
 
 package gaapicommon.services.fleetmanager;
 option csharp_namespace = "GAAPICommon.Services.FleetManager";
@@ -18,6 +19,7 @@ service FleetManagerServiceProto {
 	rpc SetPose (SetPoseRequest) returns (gaapicommon.GenericResult);
 	rpc SetFleetState (SetFleetStateRequest)  returns (gaapicommon.GenericResult);
 	rpc SetKingpinState (SetKingpinStateRequest)  returns (gaapicommon.GenericResult);
+	rpc Subscribe (SubscribeRequest) returns (stream gaapicommon.messages.FleetStateDto);
 }
 
 // Message Parameters
@@ -52,6 +54,8 @@ message SetKingpinStateRequest {
 	string IPAddress = 1;
 	gaapicommon.enums.VehicleControllerState ControllerState = 2;
 }
+
+message SubscribeRequest { }
 
 // Message Returns
 

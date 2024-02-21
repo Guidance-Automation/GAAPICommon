@@ -1,13 +1,13 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto"; 
-import "Protos/Enums/AgvMode.proto";
-import "Protos/Enums/DynamicLimiterStatus.proto";
-import "Protos/Enums/ExtendedDataFaultStatus.proto";
-import "Protos/Enums/FrozenState.proto";
-import "Protos/Enums/MovementType.proto";
-import "Protos/Enums/NavigationStatus.proto";
-import "Protos/Enums/PositionControlStatus.proto";
+import "Enums/AgvMode.proto";
+import "Enums/DynamicLimiterStatus.proto";
+import "Enums/ExtendedDataFaultStatus.proto";
+import "Enums/FrozenState.proto";
+import "Enums/MovementType.proto";
+import "Enums/NavigationStatus.proto";
+import "Enums/PositionControlStatus.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

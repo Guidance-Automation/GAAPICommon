@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Protos/Enums/JobStatus.proto";
+import "Enums/JobStatus.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

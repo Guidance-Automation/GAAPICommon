@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Common/GenericResult.proto";
-import "Protos/Messages/ServiceStateDto.proto";
+import "Common/GenericResult.proto";
+import "Messages/ServiceStateDto.proto";
 
 package gaapicommon.services.servicing;
 option csharp_namespace = "GAAPICommon.Services.Servicing";

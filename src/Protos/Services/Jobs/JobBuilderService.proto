@@ -1,12 +1,12 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto"; 
-import "Protos/Common/GenericResult.proto";
-import "Protos/Common/BoolResult.proto";
-import "Protos/Common/Int32Result.proto";
-import "Protos/Enums/JobPriority.proto";
-import "Protos/Enums/ServiceType.proto";
-import "Protos/Messages/JobDto.proto";
+import "Common/GenericResult.proto";
+import "Common/BoolResult.proto";
+import "Common/Int32Result.proto";
+import "Enums/JobPriority.proto";
+import "Enums/ServiceType.proto";
+import "Messages/JobDto.proto";
 
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";

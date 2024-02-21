@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "Protos/Enums/NavigationStatus.proto";
-import "Protos/Enums/DynamicLimiterStatus.proto";
-import "Protos/Enums/PositionControlStatus.proto";
+import "Enums/NavigationStatus.proto";
+import "Enums/DynamicLimiterStatus.proto";
+import "Enums/PositionControlStatus.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

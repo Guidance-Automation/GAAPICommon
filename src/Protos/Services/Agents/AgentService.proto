@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "Protos/Common/GenericResult.proto";
-import "Protos/Enums/AgentLifetimeState.proto";
-import "Protos/Messages/AgentDto.proto";
+import "Common/GenericResult.proto";
+import "Enums/AgentLifetimeState.proto";
+import "Messages/AgentDto.proto";
 
 package gaapicommon.services.agents;
 option csharp_namespace = "GAAPICommon.Services.Agents";

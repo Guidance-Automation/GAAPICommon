@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Messages/ChargingSpotStateDto.proto";
-import "Protos/Messages/ParkingSpotStateDto.proto";
+import "Messages/ChargingSpotStateDto.proto";
+import "Messages/ParkingSpotStateDto.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

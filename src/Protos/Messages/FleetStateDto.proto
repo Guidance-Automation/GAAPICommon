@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Enums/FrozenState.proto";
-import "Protos/Messages/KingpinStateDto.proto";
+import "Enums/FrozenState.proto";
+import "Messages/KingpinStateDto.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

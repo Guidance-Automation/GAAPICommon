@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "Protos/Messages/LicenceInvalidDto.proto";
-import "Protos/Messages/LicenceChangedDto.proto";
-import "Protos/Messages/LicenceExpiryWarningDto.proto";
+import "Messages/LicenceInvalidDto.proto";
+import "Messages/LicenceChangedDto.proto";
+import "Messages/LicenceExpiryWarningDto.proto";
 
 package gaapicommon.services.licence;
 option csharp_namespace = "GAAPICommon.Services.Licence";

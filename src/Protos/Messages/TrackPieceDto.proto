@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "Protos/Enums/MovementType.proto";
+import "Enums/MovementType.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

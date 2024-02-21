@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "Protos/Enums/ChargeType.proto";
-import "Protos/Enums/BookingState.proto";
+import "Enums/ChargeType.proto";
+import "Enums/BookingState.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";

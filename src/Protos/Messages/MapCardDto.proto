@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
-import "Protos/Messages/MapMetadataDto.proto";
+import "Messages/MapMetadataDto.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
