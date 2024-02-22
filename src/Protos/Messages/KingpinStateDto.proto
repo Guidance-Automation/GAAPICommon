@@ -30,8 +30,8 @@ message KingpinStateDto {
 	bool IsCharging = 15;
 	int32 LastCompletedInstructionId = 16;
 	double Speed = 17;
-	repeated int32 StateCastExtendedData = 18;
-	repeated int32 CurrentWaypointExtendedData = 19;
+	bytes StateCastExtendedData = 18;
+	bytes CurrentWaypointExtendedData = 19;
 	google.protobuf.Duration Stationary = 20;
 	int32 WaypointLastId = 21;
 	int32 WaypointNextId = 22;
