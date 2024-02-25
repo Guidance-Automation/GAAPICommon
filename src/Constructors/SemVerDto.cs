@@ -7,7 +7,7 @@ public partial class SemVerDto
     {
         {Enums.ReleaseFlag.Alpha, "Alpha" },
         {Enums.ReleaseFlag.Beta, "Beta" },
-        {Enums.ReleaseFlag.ReleaseCandidate, "Release candidate" },
+        {Enums.ReleaseFlag.ReleaseCandidate, "ReleaseCandidate" },
         {Enums.ReleaseFlag.Release, "Release" }
     };
 
