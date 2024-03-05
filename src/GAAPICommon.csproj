@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.11</PackageVersion>
+		<PackageVersion>2.0.0-alpha.12</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -67,9 +67,6 @@
 		<Protobuf Include="Protos\Messages\ParkBookingStateDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\ChargeBookingStateDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\AgentDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Messages\LicenceExpiryWarningDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Messages\LicenceChangedDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Messages\LicenceInvalidDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\WaypointDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\ParameterDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\NodeDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
@@ -114,7 +111,6 @@
 		<Protobuf Include="Protos\Services\Jobs\JobsStateService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Services\Jobs\JobStateService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Services\Jobs\TaskStateService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Services\Licence\LicenceService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Services\Maps\MapService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Services\Scheduling\SchedulingService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Services\Servicing\ServicingService.proto" GrpcServices="Both" ProtoRoot="Protos\" />
@@ -127,7 +123,6 @@
 	<ItemGroup>
 		<Folder Include="Protos\Services\Agents\" />
 		<Folder Include="Protos\Services\Maps\" />
-		<Folder Include="Protos\Services\Licence\" />
 		<Folder Include="Protos\Services\FleetManager\" />
 		<Folder Include="Protos\Services\Servicing\" />
 		<Folder Include="Protos\Services\Scheduling\" />
