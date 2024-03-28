@@ -1,5 +1,6 @@
 ﻿using GAAPICommon.Constructors;
 using GAAPICommon.Enums;
+using GAAPICommon.Interfaces;
 using GAAPICommon.Messages;
 using System.Net;
 using System.Text;
@@ -8,7 +9,7 @@ namespace GAAPICommon;
 
 public static class ExtensionMethods
 {
-    public static bool IsInFault(this KingpinStateDto kingpinState)
+    public static bool IsInFault(this IKingpinState kingpinState)
     {
         if (kingpinState == null)
             return false;
@@ -59,29 +60,26 @@ public static class ExtensionMethods
         DynamicLimiterStatus.MotorFault
     ];
 
-    public static byte[] ToBytes(this KeyedSpeedDemandDto keyedSpeedDemand)
+    public static byte[] ToBytes(this KeyedSpeedDemand keyedSpeedDemand)
     {
         ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
 
         byte[] bytes = new byte[27];
 
-        bytes[0] = (byte)keyedSpeedDemand.Tick;
-        Guid guid = Guid.Parse(keyedSpeedDemand.Guid);
-        guid.ToByteArray().CopyTo(bytes, 1);
-        keyedSpeedDemand.SpeedDemand.ToBytes().CopyTo(bytes, 17);
+        bytes[0] = keyedSpeedDemand.Tick;
+        keyedSpeedDemand.Guid.ToByteArray().CopyTo(bytes, 1);
+        keyedSpeedDemand.SpeedDemand?.ToBytes().CopyTo(bytes, 17);
 
         return bytes;
     }
 
-    public static byte[] ToBytes(this SpeedDemandDto speedDemand)
+    public static byte[] ToBytes(this SpeedDemand speedDemand)
     {
         ArgumentNullException.ThrowIfNull(speedDemand);
 
         byte[] bytes = new byte[10];
 
-        IPAddress iPAddress = IPAddress.Parse(speedDemand.IPAddress);
-        iPAddress.GetAddressBytes().CopyTo(bytes, 0);
-
+        speedDemand.IPAddress?.GetAddressBytes().CopyTo(bytes, 0);
         BitConverter.GetBytes(speedDemand.Forward).CopyTo(bytes, 4);
         BitConverter.GetBytes(speedDemand.Angular).CopyTo(bytes, 6);
         BitConverter.GetBytes(speedDemand.Lateral).CopyTo(bytes, 8);
@@ -146,7 +144,7 @@ public static class ExtensionMethods
         };
     }
 
-    public static KingpinState ToKingpinState(this KingpinStateDto dto)
+    public static IKingpinState ToKingpinState(this KingpinStateDto dto)
     {
         return new KingpinState
         {
@@ -176,7 +174,7 @@ public static class ExtensionMethods
         };
     }
 
-    public static KingpinStateDto ToKingpinStateDto(this KingpinState state)
+    public static KingpinStateDto ToKingpinStateDto(this IKingpinState state)
     {
         return new KingpinStateDto
         {
@@ -210,7 +208,7 @@ public static class ExtensionMethods
     {
         return new FleetState
         {
-            KingpinStates = Array.ConvertAll(dto.KingpinStates.ToArray(), e => e.ToKingpinState()),
+            KingpinStates = Array.ConvertAll(dto.KingpinStates.ToArray(), e => (KingpinState)e.ToKingpinState()),
             Tick = Convert.ToByte(dto.Tick),
             FrozenState = dto.FrozenState
         };
