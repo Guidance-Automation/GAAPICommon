@@ -1,4 +1,5 @@
-﻿using GAAPICommon.Enums;
+﻿using GAAPICommon.Constructors;
+using GAAPICommon.Enums;
 using GAAPICommon.Messages;
 using System.Net;
 using System.Text;
@@ -101,5 +102,107 @@ public static class ExtensionMethods
         builder.Append($"\tSolution: {dto.Solution}");
 
         return builder.ToString();
+    }
+
+    public static SpeedDemandDto ToDemandDto(this SpeedDemand demand)
+    {
+        return new SpeedDemandDto
+        {
+            IPAddress = demand.IPAddress?.ToString(),
+            Forward = demand.Forward,
+            Angular = demand.Angular,
+            Lateral = demand.Lateral
+        };
+    }
+
+    public static SpeedDemand ToDemand(this SpeedDemandDto dto)
+    {
+        return new SpeedDemand
+        {
+            IPAddress = IPAddress.Parse(dto.IPAddress),
+            Forward = Convert.ToInt16(dto.Forward),
+            Angular = Convert.ToInt16(dto.Angular),
+            Lateral = Convert.ToInt16(dto.Lateral)
+        };
+    }
+
+    public static KeyedSpeedDemand ToKeyedDemand(this KeyedSpeedDemandDto dto)
+    {
+        return new KeyedSpeedDemand
+        {
+            Tick = Convert.ToByte(dto.Tick),
+            SpeedDemand = dto.SpeedDemand.ToDemand(),
+            Guid = Guid.Parse(dto.Guid),
+        };
+    }
+
+    public static KeyedSpeedDemandDto ToKeyedDemandDto(this KeyedSpeedDemand dto)
+    {
+        return new KeyedSpeedDemandDto
+        {
+            Tick = dto.Tick,
+            SpeedDemand = dto.SpeedDemand?.ToDemandDto(),
+            Guid = dto.Guid.ToString(),
+        };
+    }
+
+    public static KingpinState ToKingpinState(this KingpinStateDto dto)
+    {
+        return new KingpinState
+        {
+            Alias = dto.Alias,
+            IsVirtual = dto.IsVirtual,
+            CurrentMovementType = dto.CurrentMovementType,
+            Tick = Convert.ToByte(dto.Tick),
+            AgvMode = dto.AgvMode,
+            BatteryChargePercentage = dto.BatteryChargePercentage,
+            PositionControlStatus = dto.PositionControlStatus,
+            NavigationStatus = dto.NavigationStatus,
+            DynamicLimiterStatus = dto.DynamicLimiterStatus,
+            ExtendedDataFaultStatus = dto.ExtendedDataFaultStatus,
+            FrozenState = dto.FrozenState,
+            Heading = dto.Heading,
+            IPAddress = IPAddress.Parse(dto.IPAddress),
+            IsCharging = dto.IsCharging,
+            LastCompletedInstructionId = dto.LastCompletedInstructionId,
+            Speed = dto.Speed,
+            StateCastExtendedData = dto.StateCastExtendedData.ToByteArray(),
+            CurrentWaypointExtendedData = dto.CurrentWaypointExtendedData.ToByteArray(),
+            Stationary = dto.Stationary.ToTimeSpan(),
+            WaypointLastId = dto.WaypointLastId,
+            WaypointNextId = dto.WaypointNextId,
+            X = dto.X,
+            Y = dto.Y
+        };
+    }
+
+    public static KingpinStateDto ToKingpinStateDto(this KingpinState state)
+    {
+        return new KingpinStateDto
+        {
+            Alias = state.Alias,
+            IsVirtual = state.IsVirtual,
+            CurrentMovementType = state.CurrentMovementType,
+            Tick = Convert.ToByte(state.Tick),
+            AgvMode = state.AgvMode,
+            BatteryChargePercentage = state.BatteryChargePercentage,
+            PositionControlStatus = state.PositionControlStatus,
+            NavigationStatus = state.NavigationStatus,
+            DynamicLimiterStatus = state.DynamicLimiterStatus,
+            ExtendedDataFaultStatus = state.ExtendedDataFaultStatus,
+            FrozenState = state.FrozenState,
+            Heading = state.Heading,
+            IPAddress = state.IPAddress?.ToString(),
+            IsCharging = state.IsCharging,
+            LastCompletedInstructionId = state.LastCompletedInstructionId,
+            Speed = state.Speed,
+            StateCastExtendedData = Google.Protobuf.ByteString.CopyFrom(state.StateCastExtendedData),
+            CurrentWaypointExtendedData = Google.Protobuf.ByteString.CopyFrom(state.CurrentWaypointExtendedData),
+            Stationary = Google.Protobuf.WellKnownTypes.Duration.FromTimeSpan(state.Stationary),
+            WaypointLastId = state.WaypointLastId,
+            WaypointNextId = state.WaypointNextId,
+            X = state.X,
+            Y = state.Y
+        };
     }
 }
