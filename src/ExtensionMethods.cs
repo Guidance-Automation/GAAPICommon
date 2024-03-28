@@ -205,4 +205,26 @@ public static class ExtensionMethods
             Y = state.Y
         };
     }
+
+    public static FleetState ToFleetState(this FleetStateDto dto)
+    {
+        return new FleetState
+        {
+            KingpinStates = Array.ConvertAll(dto.KingpinStates.ToArray(), e => e.ToKingpinState()),
+            Tick = Convert.ToByte(dto.Tick),
+            FrozenState = dto.FrozenState
+        };
+    }
+
+    public static FleetStateDto ToFleetStateDto(this FleetState dto)
+    {
+        FleetStateDto newDto = new()
+        {
+            Tick = dto.Tick,
+            FrozenState = dto.FrozenState
+        };
+        KingpinStateDto[] states = Array.ConvertAll(dto.KingpinStates ?? [], e => e.ToKingpinStateDto());
+        newDto.KingpinStates.AddRange(states);
+        return newDto;
+    }
 }
