@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.17</PackageVersion>
+		<PackageVersion>2.0.0-alpha.18</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -37,7 +37,7 @@
 		<Protobuf Include="Protos\Common\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Enums\**\*.proto" Exclude="Protos\google\**"  GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Services\Servicing\**\*.proto" Exclude="Protos\google\**" GrpcServices="Both" ProtoRoot="Protos\" />
+		<Protobuf Include="Protos\Services\**\*.proto" Exclude="Protos\google\**" GrpcServices="Both" ProtoRoot="Protos\" />
 
 		<Content Include="Protos\**\*.proto">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
