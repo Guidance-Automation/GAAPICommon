@@ -4,15 +4,34 @@ import "Common/GenericResult.proto";
 import "Enums/AgentLifetimeState.proto";
 import "Messages/AgentDto.proto";
 
+import "google/api/annotations.proto";
+
 package gaapicommon.services.agents;
 option csharp_namespace = "GAAPICommon.Services.Agents";
 
-// JobBuilderService 
-
+// Agent Service for managing agents.
 service AgentServiceProto {
-	rpc GetAllAgentData (GetAllAgentDataRequest) returns (GetAllAgentDataResult);
-	rpc GetAllAgentsInLifetimeState (GetAllAgentsInLifetimeStateRequest) returns (GetAllAgentsInLifetimeStateResult);
-	rpc SetAgentLifetimeState (SetAgentLifetimeStateRequest) returns (GenericResult);
+
+	// Get all agents.
+	rpc GetAllAgentData (GetAllAgentDataRequest) returns (GetAllAgentDataResult) {
+		option (google.api.http) = {
+            get: "/Agent/GetAllAgentData"
+        };
+	}
+
+	// Get all agents in lifetime state.
+	rpc GetAllAgentsInLifetimeState (GetAllAgentsInLifetimeStateRequest) returns (GetAllAgentsInLifetimeStateResult) {
+		option (google.api.http) = {
+            get: "/Agent/GetAllAgentsInLifetimeState"
+        };
+	}
+
+	// Set an agents lifetime state.
+	rpc SetAgentLifetimeState (SetAgentLifetimeStateRequest) returns (GenericResult) {
+		option (google.api.http) = {
+            post: "/Agent/SetAgentLifetimeState"
+        };
+	}
 }
 
 // Message Parameters

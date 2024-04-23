@@ -3,49 +3,84 @@
 import "Common/GenericResult.proto";
 import "Messages/JobStateDto.proto";
 
+import "google/api/annotations.proto";
+
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
 
-// JobsStateService 
+// JobsStateService
 
 service JobsStateServiceProto {
-    rpc AbortAllJobs (AbortAllJobsRequest) returns (gaapicommon.GenericResult);
-    rpc AbortAllJobsForAgent (AbortAllJobsForAgentRequest) returns (gaapicommon.GenericResult);
-    rpc AbortJob (AbortJobRequest) returns (gaapicommon.GenericResult);
-    rpc AbortTask (AbortTaskRequest) returns (gaapicommon.GenericResult);
-    rpc GetActiveJobIdsForAgent (GetActiveJobIdsForAgentRequest) returns (GetActiveJobIdsForAgentResult);
-    rpc Subscribe(JobsStateSubscribeRequest) returns (stream gaapicommon.messages.JobStateDto);
+
+  // Abort all active jobs in the scheduler.
+  rpc AbortAllJobs(AbortAllJobsRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobsState/AbortAllJobs"
+    };
+  }
+
+  // Abort all active jobs for a specified agent.
+  rpc AbortAllJobsForAgent(AbortAllJobsForAgentRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobsState/AbortAllJobsForAgent"
+    };
+  }
+
+  // Abort a specified job.
+  rpc AbortJob(AbortJobRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobsState/AbortJob"
+    };
+  }
+
+  // Abort a specified task.
+  rpc AbortTask(AbortTaskRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobsState/AbortTask"
+    };
+  }
+
+  // Get all active jobs for an agent.
+  rpc GetActiveJobIdsForAgent(GetActiveJobIdsForAgentRequest)
+      returns (GetActiveJobIdsForAgentResult) {
+    option (google.api.http) = {
+      get : "/JobsState/GetActiveJobIdsForAgent"
+    };
+  }
+
+  // Subscribe to receive job state updates.
+  rpc Subscribe(JobsStateSubscribeRequest)
+      returns (stream gaapicommon.messages.JobStateDto) {
+    option (google.api.http) = {
+      get : "/JobsState/Subscribe"
+    };
+  }
 }
 
 // Message Parameters
 
 message AbortAllJobsRequest {}
 
-message AbortAllJobsForAgentRequest {
-    int32 AgentId = 1;
-}
+message AbortAllJobsForAgentRequest { int32 AgentId = 1; }
 
 message AbortJobRequest {
-    int32 JobId = 1;
-    string Note = 2;
+  int32 JobId = 1;
+  string Note = 2;
 }
 
-message AbortTaskRequest {
-    int32 TaskId = 1;
-}
+message AbortTaskRequest { int32 TaskId = 1; }
 
-message GetActiveJobIdsForAgentRequest {
-    int32 AgentId = 1;
-}
+message GetActiveJobIdsForAgentRequest { int32 AgentId = 1; }
 
-message JobsStateSubscribeRequest { }
+message JobsStateSubscribeRequest {}
 
 // Message Returns
 
 message GetActiveJobIdsForAgentResult {
-    string ExceptionMessage = 1;
-    string ExceptionSource = 2;
-    string ExceptionStackTrace = 3;
-    repeated int32 ActiveJobs = 4;
-    int32 ServiceCode = 5;
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated int32 ActiveJobs = 4;
+  int32 ServiceCode = 5;
 }

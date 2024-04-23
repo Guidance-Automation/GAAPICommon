@@ -3,56 +3,78 @@ syntax = "proto3";
 import "Messages/JobSummaryDto.proto";
 import "Messages/JobProgressDto.proto";
 
+import "google/api/annotations.proto";
+
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
 
-// JobStateService
-
+// Job State Service
 service JobStateServiceProto {
-	rpc GetCurrentJobSummaryForAgentId (GetCurrentJobSummaryForAgentIdRequest) returns (GetCurrentJobSummaryForAgentIdResult);
-	rpc GetJobSummary (GetJobSummaryRequest) returns (GetJobSummaryResult);
-	rpc GetParentJobSummaryFromTaskId (GetParentJobSummaryFromTaskIdRequest) returns (GetParentJobSummaryFromTaskIdResult);
-	rpc Subscribe(JobStateSubscribeRequest) returns (stream gaapicommon.messages.JobProgressDto);
+
+  // Get a current job summary for a vehicle.
+  rpc GetCurrentJobSummaryForAgentId(GetCurrentJobSummaryForAgentIdRequest)
+      returns (GetCurrentJobSummaryForAgentIdResult) {
+    option (google.api.http) = {
+      get : "/JobState/GetCurrentJobSummaryForAgentId"
+    };
+  }
+
+  // Get the job summary.
+  rpc GetJobSummary(GetJobSummaryRequest) returns (GetJobSummaryResult) {
+    option (google.api.http) = {
+      get : "/JobState/GetJobSummary"
+    };
+  }
+
+  // Get parent job summary for specified task.
+  rpc GetParentJobSummaryFromTaskId(GetParentJobSummaryFromTaskIdRequest)
+      returns (GetParentJobSummaryFromTaskIdResult) {
+    option (google.api.http) = {
+      get : "/JobState/GetParentJobSummaryFromTaskId"
+    };
+  }
+
+  // Subscribe to receive job progress updates.
+  rpc Subscribe(JobStateSubscribeRequest)
+      returns (stream gaapicommon.messages.JobProgressDto) {
+    option (google.api.http) = {
+      get : "/JobState/Subscribe"
+    };
+  }
 }
 
 // Message Parameters
 
-message GetCurrentJobSummaryForAgentIdRequest {
-	int32 AgentId = 1;
-}
+message GetCurrentJobSummaryForAgentIdRequest { int32 AgentId = 1; }
 
-message GetJobSummaryRequest {
-	int32 JobId = 1;
-}
+message GetJobSummaryRequest { int32 JobId = 1; }
 
-message GetParentJobSummaryFromTaskIdRequest {
-	int32 TaskId = 1;
-}
+message GetParentJobSummaryFromTaskIdRequest { int32 TaskId = 1; }
 
-message JobStateSubscribeRequest { }
+message JobStateSubscribeRequest {}
 
 // Message Returns
 
 message GetCurrentJobSummaryForAgentIdResult {
-	string ExceptionMessage = 1;
-	string ExceptionSource = 2;
-	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobSummaryDto JobSummary = 4;
-	int32 ServiceCode = 5;
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.JobSummaryDto JobSummary = 4;
+  int32 ServiceCode = 5;
 }
 
 message GetJobSummaryResult {
-	string ExceptionMessage = 1;
-	string ExceptionSource = 2;
-	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobSummaryDto JobSummary = 4;
-	int32 ServiceCode = 5;
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.JobSummaryDto JobSummary = 4;
+  int32 ServiceCode = 5;
 }
 
 message GetParentJobSummaryFromTaskIdResult {
-	string ExceptionMessage = 1;
-	string ExceptionSource = 2;
-	string ExceptionStackTrace = 3;
-	gaapicommon.messages.JobSummaryDto JobSummary = 4;
-	int32 ServiceCode = 5;
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.JobSummaryDto JobSummary = 4;
+  int32 ServiceCode = 5;
 }

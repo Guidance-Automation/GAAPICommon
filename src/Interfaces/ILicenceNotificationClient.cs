@@ -1,5 +1,8 @@
 ﻿namespace GAAPICommon.Interfaces;
 
+/// <summary>
+/// Defines the interface for a Licence notification client.
+/// </summary>
 public interface ILicenceNotificationClient
 {
     /// <summary>

@@ -7,8 +7,16 @@ using System.Text;
 
 namespace GAAPICommon;
 
+/// <summary>
+/// Provides extension methods for various data types used in moNitrav.
+/// </summary>
 public static class ExtensionMethods
 {
+    /// <summary>
+    /// Determines if any of the status properties in the kingpin state indicate a fault.
+    /// </summary>
+    /// <param name="kingpinState">The kingpin state to check for faults.</param>
+    /// <returns>True if any status property indicates a fault; otherwise, false.</returns>
     public static bool IsInFault(this IKingpinState kingpinState)
     {
         if (kingpinState == null)
@@ -20,6 +28,12 @@ public static class ExtensionMethods
             || kingpinState.ExtendedDataFaultStatus.IsFault();
     }
 
+    /// <summary>
+    /// Converts a <see cref="ChargeBookingStateDto"/> object to a string representation that includes
+    /// the booking state, charge type, and agent ID.
+    /// </summary>
+    /// <param name="chargeBookingState">The charge booking state to convert to string.</param>
+    /// <returns>A string representation of the charge booking state.</returns>
     public static string ToChargeBookingStateString(this ChargeBookingStateDto chargeBookingState)
     {
         if (chargeBookingState == null)
@@ -28,14 +42,29 @@ public static class ExtensionMethods
         return $"{chargeBookingState.BookingState} {chargeBookingState.ChargeType} {chargeBookingState.AgentId} ChargeType:{chargeBookingState.ChargeType}";
     }
 
+    /// <summary>
+    /// Checks if the given <see cref="ExtendedDataFaultStatus"/> indicates a fault.
+    /// </summary>
     public static bool IsFault(this ExtendedDataFaultStatus exFaultStatus) => ExDataFaultStates.Contains(exFaultStatus);
 
+    /// <summary>
+    /// Checks if the given <see cref="PositionControlStatus"/> indicates a fault.
+    /// </summary>
     public static bool IsFault(this PositionControlStatus positionControlStatus) => PCSFaultStates.Contains(positionControlStatus);
 
+    /// <summary>
+    /// Checks if the given <see cref="NavigationStatus"/> indicates a fault.
+    /// </summary>
     public static bool IsFault(this NavigationStatus navigationStatus) => NavigationFaultStates.Contains(navigationStatus);
 
+    /// <summary>
+    /// Checks if the given <see cref="DynamicLimiterStatus"/> indicates a fault.
+    /// </summary>
     public static bool IsFault(this DynamicLimiterStatus dynamicLimiterStatus) => DynamicFaultStates.Contains(dynamicLimiterStatus);
 
+    /// <summary>
+    /// Static property defining which navigation statuses are considered faults.
+    /// </summary>
     public static HashSet<NavigationStatus> NavigationFaultStates { get; } =
     [
         NavigationStatus.AssociationFailure,
@@ -44,22 +73,34 @@ public static class ExtensionMethods
         NavigationStatus.NoScannerData
     ];
 
+    /// <summary>
+    /// Static property defining which position control statuses are considered faults.
+    /// </summary>
     public static HashSet<PositionControlStatus> PCSFaultStates { get; } =
     [
         PositionControlStatus.OutOfPosition,
         PositionControlStatus.WaypointDiscontinuity
     ];
 
+    /// <summary>
+    /// Static property defining which extended data fault statuses are considered actual faults.
+    /// </summary>
     public static HashSet<ExtendedDataFaultStatus> ExDataFaultStates { get; } =
     [
         ExtendedDataFaultStatus.Fault
     ];
 
+    /// <summary>
+    /// Static property defining which dynamic limiter statuses are considered faults.
+    /// </summary>
     public static HashSet<DynamicLimiterStatus> DynamicFaultStates { get; } =
     [
         DynamicLimiterStatus.MotorFault
     ];
 
+    /// <summary>
+    /// Converts a <see cref="KeyedSpeedDemand"/> object to a byte array suitable for serialization.
+    /// </summary>
     public static byte[] ToBytes(this KeyedSpeedDemand keyedSpeedDemand)
     {
         ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
@@ -73,6 +114,9 @@ public static class ExtensionMethods
         return bytes;
     }
 
+    /// <summary>
+    /// Converts a <see cref="SpeedDemand"/> object to a byte array suitable for serialization.
+    /// </summary>
     public static byte[] ToBytes(this SpeedDemand speedDemand)
     {
         ArgumentNullException.ThrowIfNull(speedDemand);
@@ -87,6 +131,9 @@ public static class ExtensionMethods
         return bytes;
     }
 
+    /// <summary>
+    /// Converts a <see cref="ServiceCodeDefinitionDto"/> to a summary string that details its contents.
+    /// </summary>
     public static string ToSummary(this ServiceCodeDefinitionDto dto)
     {
         ArgumentNullException.ThrowIfNull(dto);
@@ -102,6 +149,9 @@ public static class ExtensionMethods
         return builder.ToString();
     }
 
+    /// <summary>
+    /// Converts a <see cref="KingpinStateDto"/> to an <see cref="IKingpinState"/> instance.
+    /// </summary>
     public static IKingpinState ToKingpinState(this KingpinStateDto dto)
     {
         return new KingpinState
@@ -132,6 +182,9 @@ public static class ExtensionMethods
         };
     }
 
+    /// <summary>
+    /// Converts an <see cref="IKingpinState"/> to a <see cref="KingpinStateDto"/>.
+    /// </summary>
     public static KingpinStateDto ToKingpinStateDto(this IKingpinState state)
     {
         return new KingpinStateDto
@@ -162,6 +215,9 @@ public static class ExtensionMethods
         };
     }
 
+    /// <summary>
+    /// Converts a <see cref="FleetStateDto"/> to a <see cref="FleetState"/>.
+    /// </summary>
     public static FleetState ToFleetState(this FleetStateDto dto)
     {
         return new FleetState
@@ -172,6 +228,9 @@ public static class ExtensionMethods
         };
     }
 
+    /// <summary>
+    /// Converts a <see cref="FleetState"/> to a <see cref="FleetStateDto"/>.
+    /// </summary>
     public static FleetStateDto ToFleetStateDto(this FleetState dto)
     {
         FleetStateDto newDto = new()

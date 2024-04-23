@@ -2,15 +2,24 @@ syntax = "proto3";
 
 import "Messages/TaskProgressDto.proto";
 
+import "google/api/annotations.proto";
+
 package gaapicommon.services.jobs;
 option csharp_namespace = "GAAPICommon.Services.Jobs";
 
-// TaskStateService 
+// TaskStateService
 
 service TaskStateServiceProto {
-	rpc Subscribe(TaskStateSubscribeRequest) returns (stream gaapicommon.messages.TaskProgressDto);
+
+  // Subscribe to receive task progress updates.
+  rpc Subscribe(TaskStateSubscribeRequest)
+      returns (stream gaapicommon.messages.TaskProgressDto) {
+    option (google.api.http) = {
+      get : "/TaskState/Subscribe"
+    };
+  }
 }
 
 // Message Parameters
 
-message TaskStateSubscribeRequest { }
+message TaskStateSubscribeRequest {}

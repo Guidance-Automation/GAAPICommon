@@ -3,32 +3,51 @@ syntax = "proto3";
 import "Common/GenericResult.proto";
 import "Messages/ServiceStateDto.proto";
 
+import "google/api/annotations.proto";
+
 package gaapicommon.services.servicing;
 option csharp_namespace = "GAAPICommon.Services.Servicing";
 
-// ServicingService 
-
+// Servicing Service
 service ServicingServiceProto {
-	rpc GetOutstandingServiceRequests (GetOutstandingServiceRequestsRequest) returns (GetOutstandingServiceRequestsResult);
-	rpc SetServiceComplete (SetServiceCompleteRequest) returns (GenericResult);
-	rpc Subscribe(ServicingSubscribeRequest) returns (stream gaapicommon.messages.ServiceStateDto);
+
+  // Get all outstanding service requests.
+  rpc GetOutstandingServiceRequests(GetOutstandingServiceRequestsRequest)
+      returns (GetOutstandingServiceRequestsResult) {
+    option (google.api.http) = {
+      get : "/Servicing/GetOutstandingServiceRequests"
+    };
+  }
+
+  // Set a service as complete.
+  rpc SetServiceComplete(SetServiceCompleteRequest) returns (GenericResult) {
+    option (google.api.http) = {
+      post : "/Servicing/SetServiceComplete"
+    };
+  }
+
+  // Subscribe to service status updates.
+  rpc Subscribe(ServicingSubscribeRequest)
+      returns (stream gaapicommon.messages.ServiceStateDto) {
+    option (google.api.http) = {
+      get : "/Servicing/Subscribe"
+    };
+  }
 }
 
 // Message Parameters
 
-message GetOutstandingServiceRequestsRequest { }
-message ServicingSubscribeRequest { }
+message GetOutstandingServiceRequestsRequest {}
+message ServicingSubscribeRequest {}
 
-message SetServiceCompleteRequest {
-	int32 TaskId = 1;
-}
+message SetServiceCompleteRequest { int32 TaskId = 1; }
 
 // Message returns
 
 message GetOutstandingServiceRequestsResult {
-	string ExceptionMessage = 1;
-	string ExceptionSource = 2;
-	string ExceptionStackTrace = 3;
-	repeated gaapicommon.messages.ServiceStateDto ServiceStates = 4;
-	int32 ServiceCode = 5;
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.ServiceStateDto ServiceStates = 4;
+  int32 ServiceCode = 5;
 }

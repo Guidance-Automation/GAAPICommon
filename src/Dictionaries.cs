@@ -2,8 +2,14 @@
 
 namespace GAAPICommon;
 
+/// <summary>
+/// Shared dictionaries for API operations.
+/// </summary>
 public static class Dictionaries
 {
+    /// <summary>
+    /// Map the <see cref="RoadmapUploadResultFaultCode"/> to a string for display / logging.
+    /// </summary>
     public static Dictionary<RoadmapUploadResultFaultCode, string> RoadmapUploadResultFaultCodeDescriptions { get; } = new()
     {
         { RoadmapUploadResultFaultCode.Success, "Success"},
