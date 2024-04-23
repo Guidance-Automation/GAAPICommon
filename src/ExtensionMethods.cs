@@ -102,48 +102,6 @@ public static class ExtensionMethods
         return builder.ToString();
     }
 
-    public static SpeedDemandDto ToDemandDto(this SpeedDemand demand)
-    {
-        return new SpeedDemandDto
-        {
-            IPAddress = demand.IPAddress?.ToString(),
-            Forward = demand.Forward,
-            Angular = demand.Angular,
-            Lateral = demand.Lateral
-        };
-    }
-
-    public static SpeedDemand ToDemand(this SpeedDemandDto dto)
-    {
-        return new SpeedDemand
-        {
-            IPAddress = IPAddress.Parse(dto.IPAddress),
-            Forward = Convert.ToInt16(dto.Forward),
-            Angular = Convert.ToInt16(dto.Angular),
-            Lateral = Convert.ToInt16(dto.Lateral)
-        };
-    }
-
-    public static KeyedSpeedDemand ToKeyedDemand(this KeyedSpeedDemandDto dto)
-    {
-        return new KeyedSpeedDemand
-        {
-            Tick = Convert.ToByte(dto.Tick),
-            SpeedDemand = dto.SpeedDemand.ToDemand(),
-            Guid = Guid.Parse(dto.Guid),
-        };
-    }
-
-    public static KeyedSpeedDemandDto ToKeyedDemandDto(this KeyedSpeedDemand dto)
-    {
-        return new KeyedSpeedDemandDto
-        {
-            Tick = dto.Tick,
-            SpeedDemand = dto.SpeedDemand?.ToDemandDto(),
-            Guid = dto.Guid.ToString(),
-        };
-    }
-
     public static IKingpinState ToKingpinState(this KingpinStateDto dto)
     {
         return new KingpinState

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.15</PackageVersion>
+		<PackageVersion>2.0.0-alpha.16</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -85,7 +85,6 @@
 		<Protobuf Include="Protos\Messages\JobProgressDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\JobDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\JobStateDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Messages\KeyedSpeedDemandDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\LicenceInfoDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\LicenceVersionDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\MapCardDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
@@ -99,7 +98,6 @@
 		<Protobuf Include="Protos\Messages\SchedulerConfigDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\SemVerDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\ServiceCodeDefinitionDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Messages\SpeedDemandDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\SpotManagerConfigDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\TrackPieceDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\VirtualBatteryProfileModelDto.proto" GrpcServices="None" ProtoRoot="Protos\" />
