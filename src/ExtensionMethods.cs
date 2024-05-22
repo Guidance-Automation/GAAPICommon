@@ -20,12 +20,17 @@ public static class ExtensionMethods
     public static bool IsInFault(this IKingpinState kingpinState)
     {
         if (kingpinState == null)
+        {
             return false;
+        }
 
-        return kingpinState.PositionControlStatus.IsFault()
+        bool isInFault = kingpinState.PositionControlStatus.IsFault()
             || kingpinState.NavigationStatus.IsFault()
             || kingpinState.DynamicLimiterStatus.IsFault()
             || kingpinState.ExtendedDataFaultStatus.IsFault();
+
+        kingpinState.IsInFault = isInFault;
+        return isInFault;
     }
 
     /// <summary>

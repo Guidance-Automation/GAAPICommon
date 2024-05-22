@@ -126,4 +126,9 @@ public class KingpinState : IKingpinState
     /// Y-coordinate of the kingpin's current location.
     /// </summary>
     public float Y { get; set; } = float.NaN;
+
+    /// <summary>
+    /// Binding check for if is in fault.
+    /// </summary>
+    public bool IsInFault { get; set; } = false;
 }

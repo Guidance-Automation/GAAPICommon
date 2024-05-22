@@ -107,4 +107,9 @@ public interface IKingpinState : IKingpinStatusReporter
     /// A byte array containing extended data specific to the current waypoint.
     /// </summary>
     public byte[] CurrentWaypointExtendedData { get; }
+
+    /// <summary>
+    /// Binding check for if is in fault.
+    /// </summary>
+    public bool IsInFault { get; set; }
 }
