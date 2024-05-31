@@ -32,7 +32,7 @@ service FleetManagerServiceProto {
 
   // Create a virtual vehicle.
   rpc CreateVirtualVehicle(CreateVirtualVehicleRequest)
-      returns (gaapicommon.GenericResult) {
+      returns (CreateVirtualVehicleResult) {
     option (google.api.http) = {
       put : "/FleetManager/CreateVirtualVehicle"
     };
@@ -83,7 +83,6 @@ message GetKingpinDescriptionRequest { string IPAddress = 1; }
 message SetFrozenStateRequest { gaapicommon.enums.FrozenState FrozenState = 1; }
 
 message CreateVirtualVehicleRequest {
-  string IPAddress = 1;
   gaapicommon.messages.PoseDto Pose = 2;
 }
 
@@ -112,5 +111,13 @@ message GetKingpinDescriptionResult {
   string ExceptionSource = 2;
   string ExceptionStackTrace = 3;
   string KingpinDescription = 4;
+  int32 ServiceCode = 5;
+}
+
+message CreateVirtualVehicleResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  string IPAddress = 4;
   int32 ServiceCode = 5;
 }
