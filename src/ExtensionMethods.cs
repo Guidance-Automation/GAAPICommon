@@ -120,20 +120,25 @@ public static class ExtensionMethods
     }
 
     /// <summary>
-    /// Converts a <see cref="SpeedDemand"/> object to a byte array suitable for serialization.
+    /// Converts a <see cref="SpeedDemandDto"/> object to a byte array suitable for serialization.
     /// </summary>
-    public static byte[] ToBytes(this SpeedDemand speedDemand)
+    public static byte[] ToBytes(this SpeedDemandDto speedDemand)
     {
         ArgumentNullException.ThrowIfNull(speedDemand);
 
-        byte[] bytes = new byte[10];
-
-        speedDemand.IPAddress?.GetAddressBytes().CopyTo(bytes, 0);
-        BitConverter.GetBytes(speedDemand.Forward).CopyTo(bytes, 4);
-        BitConverter.GetBytes(speedDemand.Angular).CopyTo(bytes, 6);
-        BitConverter.GetBytes(speedDemand.Lateral).CopyTo(bytes, 8);
-
-        return bytes;
+        if(IPAddress.TryParse(speedDemand.IPAddress, out IPAddress? address))
+        {
+            byte[] bytes = new byte[10];
+            address.GetAddressBytes().CopyTo(bytes, 0);
+            BitConverter.GetBytes((short)speedDemand.Forward).CopyTo(bytes, 4);
+            BitConverter.GetBytes((short)speedDemand.Angular).CopyTo(bytes, 6);
+            BitConverter.GetBytes((short)speedDemand.Lateral).CopyTo(bytes, 8);
+            return bytes;
+        }
+        else
+        {
+            throw new ArgumentException("IP Address is not valid", nameof(speedDemand));
+        }
     }
 
     /// <summary>

@@ -20,14 +20,15 @@ public partial class SemVerDto
     /// Initializes a new instance of <see cref="SemVerDto"/> class using a <see cref="Version"/> object.
     /// </summary>
     /// <param name="version">The version object containing major, minor, build, and revision components.</param>
-    public SemVerDto(Version version)
+    /// <param name="releaseFlag">The release flag enum to define the state of release.</param>
+    public SemVerDto(Version version, ReleaseFlag releaseFlag)
     {
         ArgumentNullException.ThrowIfNull(version);
 
         Major = version.Major;
         Minor = version.Minor;
         Patch = version.Build;
-        ReleaseFlag = _releaseFlagDictionary[(ReleaseFlag)version.Revision];
+        ReleaseFlag = _releaseFlagDictionary[releaseFlag];
     }
 
     /// <summary>

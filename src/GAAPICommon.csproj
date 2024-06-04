@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-alpha.21</PackageVersion>
+		<PackageVersion>2.0.0-rc.1</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -20,13 +20,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" Version="3.26.1" />
+		<PackageReference Include="Google.Protobuf" Version="3.27.0" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
-		<PackageReference Include="Grpc.Tools" Version="2.62.0">
+		<PackageReference Include="Grpc.Tools" Version="2.64.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -35,7 +35,7 @@
 
 	<ItemGroup>
 		<Protobuf Include="Protos\Common\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
-		<Protobuf Include="Protos\Enums\**\*.proto" Exclude="Protos\google\**"  GrpcServices="None" ProtoRoot="Protos\" />
+		<Protobuf Include="Protos\Enums\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Messages\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
 		<Protobuf Include="Protos\Services\**\*.proto" Exclude="Protos\google\**" GrpcServices="Both" ProtoRoot="Protos\" />
 
