@@ -252,4 +252,89 @@ public static class ExtensionMethods
         newDto.KingpinStates.AddRange(states);
         return newDto;
     }
+
+    /// <summary>
+    /// Converts the given <see cref="PositionControlStatus"/> to a string value for display purposes.
+    /// </summary>
+    /// <param name="status">The <see cref="PositionControlStatus"/> to convert.</param>
+    /// <returns>A string representing the given value.</returns>
+    public static string ToDescriptiveName(this PositionControlStatus status) 
+    {
+        switch (status) 
+        {
+            case PositionControlStatus.Disabled:
+                return "Disabled";
+            case PositionControlStatus.Disabling:
+                return "Disabling";
+            case PositionControlStatus.NoWaypoints:
+                return "No Waypoints";
+            case PositionControlStatus.WaypointDiscontinuity:
+                return "Waypoint Discontinuity";
+            case PositionControlStatus.OutOfPosition:
+                return "Out Of Position";
+            case PositionControlStatus.Okposition:
+                return "OK";
+            case PositionControlStatus.UnknownPosition:
+                return "Unknown";
+        }
+        return "Error";
+    }
+
+    /// <summary>
+    /// Converts the given <see cref="NavigationStatus"/> to a string value for display purposes.
+    /// </summary>
+    /// <param name="status">The <see cref="NavigationStatus"/> to convert.</param>
+    /// <returns>A string representing the given value.</returns>
+    public static string ToDescriptiveName(this NavigationStatus status)
+    {
+        switch (status)
+        {
+            case NavigationStatus.UnknownNavigation:
+                return "Unknown";
+            case NavigationStatus.NoScannerData:
+                return "No Scanner Data";
+            case NavigationStatus.NoResponse:
+                return "No Response";
+            case NavigationStatus.AssociationFailure:
+                return "Association Failure";
+            case NavigationStatus.PoorAssociation:
+                return "Poor Association";
+            case NavigationStatus.Lost:
+                return "Lost";
+            case NavigationStatus.HighUncertainty:
+                return "High Uncertainty";
+            case NavigationStatus.Oknavigation:
+                return "OK";    
+        }
+        return "Error";
+    }
+
+    /// <summary>
+    /// Converts the given <see cref="DynamicLimiterStatus"/> to a string value for display purposes.
+    /// </summary>
+    /// <param name="status">The <see cref="DynamicLimiterStatus"/> to convert.</param>
+    /// <returns>A string representing the given value.</returns>
+    public static string ToDescriptiveName(this DynamicLimiterStatus status)
+    {
+        switch (status)
+        {
+            case DynamicLimiterStatus.Ok:
+                return "OK";
+            case DynamicLimiterStatus.SafetySensor:
+                return "Safety Sensor";
+            case DynamicLimiterStatus.Warning1:
+                return "Inner Warning";
+            case DynamicLimiterStatus.Warning2:
+                return "Outer Warning";
+            case DynamicLimiterStatus.MotorFault:
+                return "Motor Fault";
+            case DynamicLimiterStatus.FastStop:
+                return "Fast Stop";
+            case DynamicLimiterStatus.GoSlow:
+                return "Go Slow";
+            case DynamicLimiterStatus.Unknown:
+                return "Unknown";
+        }
+        return "Error";
+    }
 }

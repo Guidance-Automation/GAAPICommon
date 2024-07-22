@@ -73,4 +73,13 @@ public partial class SemVerDto
 
         return ReleaseFlag.CompareTo(other.ReleaseFlag);
     }
+
+    /// <summary>
+    /// Convert this object into a formatted string defining the version.
+    /// </summary>
+    /// <returns>A string in the format "Major.Minor.Patch-ReleaseFlag"</returns>
+    public string ToVersionString()
+    {
+        return $"{Major}.{Minor}.{Patch}-{ReleaseFlag}";
+    }
 }

@@ -8,7 +8,7 @@ enum NavigationStatus {
     Lost = 1;
     AssociationFailure = 2;
     HighUncertainty = 3;
-    PoorAssociaton = 4;
+    PoorAssociation = 4;
     NoResponse = 5;
     NoScannerData = 6;
     UnknownNavigation = 65535;

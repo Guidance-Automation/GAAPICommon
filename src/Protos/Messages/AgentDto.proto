@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "Enums/AgentLifetimeState.proto";
 import "Enums/AgentMarkovState.proto";
+import "Enums/AgvMode.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
@@ -14,4 +15,5 @@ message AgentDto {
 	gaapicommon.enums.AgentMarkovState AgentMarkovState = 5;
 	int32 CurrentJobId = 6;
 	int32 CurrentNodeId = 7;
+	gaapicommon.enums.AgvMode AgentMode = 8;
 }
