@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "Enums/TaskStatus.proto";
+import "Enums/TaskType.proto";
+import "Messages/RoadmapItemTaskSummaryDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message TaskSummaryDto {
+	gaapicommon.messages.RoadmapItemTaskSummaryDto RoadmapItemTaskSummary = 1;
+	int32 ParentTaskId = 2;
+	int32 TaskId = 3;
+	gaapicommon.enums.TaskStatus TaskStatus = 4;
+	gaapicommon.enums.TaskType TaskType = 5;
+}

@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+import "Common/GenericResult.proto";
+import "Enums/FrozenState.proto";
+import "Enums/VehicleControllerState.proto";
+import "Messages/FleetStateDto.proto";
+import "Messages/PoseDto.proto";
+
+import "google/api/annotations.proto";
+
+package gaapicommon.services.fleetmanager;
+option csharp_namespace = "GAAPICommon.Services.FleetManager";
+
+// Fleet Manager Service
+service FleetManagerServiceProto {
+
+  // Get the KingpinDescription for a given vehicle.
+  rpc GetKingpinDescription(GetKingpinDescriptionRequest)
+      returns (GetKingpinDescriptionResult) {
+    option (google.api.http) = {
+      get : "/FleetManager/GetKingpinDescription"
+    };
+  }
+
+  // Set the system frozen state.
+  rpc SetFrozenState(SetFrozenStateRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/FleetManager/SetFrozenState"
+    };
+  }
+
+  // Create a virtual vehicle.
+  rpc CreateVirtualVehicle(CreateVirtualVehicleRequest)
+      returns (CreateVirtualVehicleResult) {
+    option (google.api.http) = {
+      put : "/FleetManager/CreateVirtualVehicle"
+    };
+  }
+
+  // Remove a specified vehicle.
+  rpc RemoveVehicle(RemoveVehicleRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      delete : "/FleetManager/RemoveVehicle"
+    };
+  }
+
+  // Set the position of a specified vehicle.
+  rpc SetPose(SetPoseRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/FleetManager/SetPose"
+    };
+  }
+
+  // Set the state of the fleet.
+  rpc SetFleetState(SetFleetStateRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/FleetManager/SetFleetState"
+    };
+  }
+
+  // Set the state of a specified vehicle.
+  rpc SetKingpinState(SetKingpinStateRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/FleetManager/SetKingpinState"
+    };
+  }
+
+  // Subscribe to receive fleet state updates.
+  rpc Subscribe(SubscribeRequest)
+      returns (stream gaapicommon.messages.FleetStateDto) {
+    option (google.api.http) = {
+      get : "/FleetManager/Subscribe"
+    };
+  }
+}
+
+// Message Parameters
+
+message GetKingpinDescriptionRequest { string IPAddress = 1; }
+
+message SetFrozenStateRequest { gaapicommon.enums.FrozenState FrozenState = 1; }
+
+message CreateVirtualVehicleRequest {
+  gaapicommon.messages.PoseDto Pose = 2;
+}
+
+message RemoveVehicleRequest { string IPAddress = 1; }
+
+message SetPoseRequest {
+  string IPAddress = 1;
+  gaapicommon.messages.PoseDto Pose = 2;
+}
+
+message SetFleetStateRequest {
+  gaapicommon.enums.VehicleControllerState ControllerState = 1;
+}
+
+message SetKingpinStateRequest {
+  string IPAddress = 1;
+  gaapicommon.enums.VehicleControllerState ControllerState = 2;
+}
+
+message SubscribeRequest {}
+
+// Message Returns
+
+message GetKingpinDescriptionResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  string KingpinDescription = 4;
+  int32 ServiceCode = 5;
+}
+
+message CreateVirtualVehicleResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  string IPAddress = 4;
+  int32 ServiceCode = 5;
+}

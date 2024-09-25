@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "Enums/RoadmapUploadResultFaultCode.proto";
+import "Messages/MapCardDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message RoadmapUploadResultDto {
+	int32 Id = 1;
+	string LocalName = 2;
+	gaapicommon.enums.RoadmapUploadResultFaultCode FaultCode = 3;
+	MapCardDto ConflictingMapCard = 4;
+	bool Success = 5;
+}

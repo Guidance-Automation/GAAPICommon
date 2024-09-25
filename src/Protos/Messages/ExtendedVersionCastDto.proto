@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "Messages/SemVerDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ExtendedVersionCastDto {
+	bytes DynamicData = 1;
+	string IPAddress = 2;
+	int32 Port = 3;
+	gaapicommon.messages.SemVerDto SemVer = 4;
+}

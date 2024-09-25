@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum JobPriority {
+    None = 0;
+    Low = 50;
+    Normal = 60;
+    High = 70;
+    Urgent = 80;
+    Immediate = 90;
+    Critical = 100;
+}

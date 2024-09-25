@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum ServiceType {
+	Charge = 0;
+	Park = 1;
+	Fault = 2;
+	ManualLoadHandling = 3;
+	Execution = 4;
+}

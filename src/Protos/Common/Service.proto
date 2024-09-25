@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "Messages/SemVerDto.proto";
+
+package gaapicommon;
+option csharp_namespace = "GAAPICommon";
+
+// Message Parameters
+
+message GetDescriptionRequest { }
+message GetIsConfiguredRequest { }
+message GetNameRequest { }
+message GetSummaryRequest { }
+
+// Message Returns
+
+message GetDescriptionResult {
+	string Description = 1;
+}
+
+message GetIsConfiguredResult {
+	bool IsConfigured = 1;
+}
+
+message GetNameResult {
+	string Name = 1;
+}
+
+message GetSummaryResult {
+	string Summary = 1;
+}
+
+message ServiceCallResultSemVer{
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.SemVerDto Value = 4;
+  int32 ServiceCode = 5;
+}

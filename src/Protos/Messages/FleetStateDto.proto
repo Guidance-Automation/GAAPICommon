@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "Enums/FrozenState.proto";
+import "Messages/KingpinStateDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message FleetStateDto {
+	repeated KingpinStateDto KingpinStates = 1;
+	int32 Tick = 2;
+	gaapicommon.enums.FrozenState FrozenState = 3;
+}

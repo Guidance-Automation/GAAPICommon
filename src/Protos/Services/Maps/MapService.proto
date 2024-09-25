@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+import "Common/GenericResult.proto";
+import "Messages/MoveDto.proto";
+import "Messages/ParameterDto.proto";
+import "Messages/NodeDto.proto";
+import "Messages/WaypointDto.proto";
+import "Messages/OccupyingMandateProgressDto.proto";
+
+import "google/api/annotations.proto";
+
+package gaapicommon.services.maps;
+option csharp_namespace = "GAAPICommon.Services.Maps";
+
+// Map Service
+service MapServiceProto {
+
+  // Clear all occupying mandates.
+  rpc ClearOccupyingMandate(ClearOccupyingMandateRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/Map/ClearOccupyingMandate"
+    };
+  }
+
+  // Get occupying mandates.
+  rpc GetOccupyingMandateProgressData(GetOccupyingMandateRequest)
+      returns (GetOccupyingMandateProgressDataResult) {
+    option (google.api.http) = {
+      get : "/Map/GetOccupyingMandateProgressData"
+    };
+  }
+
+  // Set an occupying mandate.
+  rpc SetOccupyingMandate(SetOccupyingMandateRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/Map/SetOccupyingMandate"
+    };
+  }
+
+  // Get all moves.
+  rpc GetAllMoveData(GetAllMoveDataRequest) returns (GetAllMoveDataResult) {
+    option (google.api.http) = {
+      get : "/Map/GetAllMoveData"
+    };
+  }
+
+  // Get all nodes.
+  rpc GetAllNodeData(GetAllNodeDataRequest) returns (GetAllNodeDataResult) {
+    option (google.api.http) = {
+      get : "/Map/GetAllNodeData"
+    };
+  }
+
+  // Get all parameters.
+  rpc GetAllParameterData(GetAllParameterDataRequest)
+      returns (GetAllParameterDataResult) {
+    option (google.api.http) = {
+      get : "/Map/GetAllParameterData"
+    };
+  }
+
+  // Get a trajectory.
+  rpc GetTrajectory(GetTrajectoryRequest) returns (GetTrajectoryResult) {
+    option (google.api.http) = {
+      get : "/Map/GetTrajectory"
+    };
+  }
+
+  // Subscribe to receive Occupying Mandate Progress updates.
+  rpc Subscribe(MapSubscribeRequest)
+      returns (stream gaapicommon.messages.OccupyingMandateProgressDto) {
+    option (google.api.http) = {
+      get : "/Map/Subscribe"
+    };
+  }
+}
+
+// Message Parameters
+
+message ClearOccupyingMandateRequest {}
+message GetOccupyingMandateRequest {}
+
+message SetOccupyingMandateRequest {
+  repeated int32 MapItemIds = 1;
+  google.protobuf.Duration Timeout = 2;
+}
+
+message GetAllMoveDataRequest {}
+message GetAllNodeDataRequest {}
+message GetAllParameterDataRequest {}
+
+message GetTrajectoryRequest { int32 MoveId = 1; }
+
+message MapSubscribeRequest {}
+
+// Message Returns
+
+message GetOccupyingMandateProgressDataResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.OccupyingMandateProgressDto OccupyingMandateProgress = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetAllMoveDataResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.MoveDto Moves = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetAllNodeDataResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.NodeDto Nodes = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetAllParameterDataResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.ParameterDto Parameters = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetTrajectoryResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.WaypointDto Waypoints = 4;
+  int32 ServiceCode = 5;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gaapicommon;
+option csharp_namespace = "GAAPICommon";
+
+message BoolResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	bool Value = 4;
+	int32 ServiceCode = 5;
+}

@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<PackageVersion>2.0.0</PackageVersion>
+		<Platforms>x64</Platforms>
+		<Authors>Ollie Sharratt</Authors>
+		<Copyright>Guidance Automation 2024</Copyright>
+		<Description>gRPC API Components for Guidance Automation assemblies.</Description>
+		<RepositoryUrl>https://github.com/Guidance-Automation/GAAPICommon</RepositoryUrl>
+		<PackageId>GAAPICommon</PackageId>
+		<Company>Guidance Automation LTD</Company>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<IncludeHttpRuleProtos>true</IncludeHttpRuleProtos>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.*" />
+		<PackageReference Include="Grpc.Core" Version="2.*" />
+		<PackageReference Include="Grpc.Tools" Version="2.*">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="Protos\Common\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
+		<Protobuf Include="Protos\Enums\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
+		<Protobuf Include="Protos\Messages\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />
+		<Protobuf Include="Protos\Services\**\*.proto" Exclude="Protos\google\**" GrpcServices="Both" ProtoRoot="Protos\" />
+
+		<Content Include="Protos\**\*.proto">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Protos\Services\Agents\" />
+		<Folder Include="Protos\Services\Maps\" />
+		<Folder Include="Protos\Services\FleetManager\" />
+		<Folder Include="Protos\Services\Servicing\" />
+		<Folder Include="Protos\Services\Scheduling\" />
+	</ItemGroup>
+
+</Project>

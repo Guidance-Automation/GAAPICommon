@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "Enums/BookingState.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ParkBookingStateDto { 
+	int32 AgentId = 1;
+	gaapicommon.enums.BookingState BookingState = 2;
+	int32 JobId = 3;
+	int32 TaskId = 4;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "Messages/ChargingSpotStateDto.proto";
+import "Messages/ParkingSpotStateDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message SpotManagerStateDto {
+	repeated ChargingSpotStateDto ChargingSpotStates = 1;
+	repeated ParkingSpotStateDto ParkingSpotStates = 2;
+	bool IsChanged = 3;
+	int32 Tick = 4;
+}

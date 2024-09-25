@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Messages/SemVerDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message PluginInfoDto {
+	string AbsFilePath = 1;
+	string AssemblyName = 2;
+	SemVerDto Version = 3;
+}

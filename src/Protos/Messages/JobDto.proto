@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message JobDto {
+	int32 JobId = 1;
+	int32 RootOrderedListTaskId = 2;
+}

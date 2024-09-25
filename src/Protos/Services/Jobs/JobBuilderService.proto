@@ -1,0 +1,229 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+import "Common/GenericResult.proto";
+import "Common/BoolResult.proto";
+import "Common/Int32Result.proto";
+import "Enums/JobPriority.proto";
+import "Enums/ServiceType.proto";
+import "Messages/JobDto.proto";
+
+import "google/api/annotations.proto";
+
+package gaapicommon.services.jobs;
+option csharp_namespace = "GAAPICommon.Services.Jobs";
+
+// JobBuilderService
+
+service JobBuilderServiceProto {
+
+  // Request to edit a job.
+  rpc BeginEditingJob(EditingJobRequest) returns (gaapicommon.BoolResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/BeginEditingJob"
+    };
+  }
+
+  // Commit a job to the scheduler.
+  rpc CommitJob(CommitJobRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/CommitJob"
+    };
+  }
+
+  // Create an awaiting task.
+  rpc CreateAwaitingTask(CreateAwaitingTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateAwaitingTask"
+    };
+  }
+
+  // Create a job.
+  rpc CreateJob(CreateJobRequest) returns (CreateJobResult) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateJob"
+    };
+  }
+
+  // Create a go to node task.
+  rpc CreateGoToNodeTask(CreateGoToNodeTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateGoToNodeTask"
+    };
+  }
+
+  // Create an ordered list task.
+  rpc CreateOrderedListTask(CreateOrderedListTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateOrderedListTask"
+    };
+  }
+
+  // Create an atomic move list task.
+  rpc CreateAtomicMoveListTask(CreateAtomicMoveListTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateAtomicMoveListTask"
+    };
+  }
+
+  // Create a servicing task.
+  rpc CreateServicingTask(CreateServicingTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateServicingTask"
+    };
+  }
+
+  // Create an atomic move task.
+  rpc CreateAtomicMoveTask(CreateAtomicMoveTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateAtomicMoveTask"
+    };
+  }
+
+  // Create a sleeping task.
+  rpc CreateSleepingTask(CreateSleepingTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateSleepingTask"
+    };
+  }
+
+  // Create an unordered list task.
+  rpc CreateUnorderedListTask(CreateUnorderedListTaskRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      put : "/JobBuilder/CreateUnorderedListTask"
+    };
+  }
+
+  // Finish editing a job.
+  rpc FinishEditingJob(FinishEditingJobRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/FinishEditingJob"
+    };
+  }
+
+  // Issue an enum directive to a task.
+  rpc IssueEnumDirective(IssueIntDirectiveRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/IssueEnumDirective"
+    };
+  }
+
+  // Issue a float directive to a task.
+  rpc IssueFloatDirective(IssueFloatDirectiveRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/IssueFloatDirective"
+    };
+  }
+
+  // Issue an IP Address directive to a task.
+  rpc IssueIPAddressDirective(IssueIPAddressDirectiveRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/IssueIPAddressDirective"
+    };
+  }
+
+  // Issue a short directive to a task.
+  rpc IssueShortDirective(IssueIntDirectiveRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/IssueShortDirective"
+    };
+  }
+
+  // Issue a ushort directive to a task.
+  rpc IssueUShortDirective(IssueIntDirectiveRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      post : "/JobBuilder/IssueUShortDirective"
+    };
+  }
+}
+
+// Message Parameters
+
+message EditingJobRequest { int32 JobId = 1; }
+
+message CommitJobRequest {
+  int32 JobId = 1;
+  optional int32 AgentId = 2;
+}
+
+message CreateAwaitingTaskRequest {
+  int32 ParentTaskId = 1;
+  int32 NodeId = 2;
+}
+
+message CreateJobRequest {
+  optional gaapicommon.enums.JobPriority JobPriority = 1;
+}
+
+message CreateGoToNodeTaskRequest {
+  int32 ParentTaskId = 1;
+  int32 NodeId = 2;
+}
+
+message CreateAtomicMoveListTaskRequest { int32 ParentTaskId = 1; }
+
+message CreateAtomicMoveTaskRequest {
+  int32 ParentAtomicMoveListTaskId = 1;
+  int32 MoveId = 2;
+}
+
+message CreateOrderedListTaskRequest { int32 ParentTaskId = 1; }
+
+message CreateServicingTaskRequest {
+  int32 ParentTaskId = 1;
+  int32 NodeId = 2;
+  gaapicommon.enums.ServiceType ServiceType = 3;
+  optional google.protobuf.Duration ExpectedDuration = 4;
+}
+
+message CreateSleepingTaskRequest {
+  int32 ParentTaskId = 1;
+  int32 NodeId = 2;
+  optional google.protobuf.Duration ExpectedDuration = 3;
+}
+
+message CreateUnorderedListTaskRequest { int32 ParentTaskId = 1; }
+
+message FinishEditingJobRequest { int32 JobId = 1; }
+
+message IssueIntDirectiveRequest {
+  int32 TaskId = 1;
+  string Alias = 2;
+  int32 value = 3;
+}
+
+message IssueFloatDirectiveRequest {
+  int32 TaskId = 1;
+  string Alias = 2;
+  float value = 3;
+}
+
+message IssueIPAddressDirectiveRequest {
+  int32 TaskId = 1;
+  string Alias = 2;
+  string value = 3;
+}
+
+// Message returns
+
+message CreateJobResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.JobDto Job = 4;
+  int32 ServiceCode = 5;
+}

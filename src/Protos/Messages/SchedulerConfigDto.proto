@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "Messages/MapMetadataDto.proto";
+import "Messages/SpotManagerConfigDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message SchedulerConfigDto {
+	bool IsInAttractMode = 1;
+	bool IsSpotManagementEnabled = 2;
+	bool IsUpdateLoopPluginsEnabled = 3;
+	MapMetadataDto MapMetadata = 4;
+	SpotManagerConfigDto SpotManagerConfig = 5;
+}

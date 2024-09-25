@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "Messages/ParkBookingStateDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ParkingSpotStateDto {
+	ParkBookingStateDto ParkBookingState = 1;
+	int32 NodeId = 2;
+	bool IsBooked = 3;
+}

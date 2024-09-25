@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum DynamicLimiterStatus {
+    OK = 0;
+    SafetySensor = 1;
+    Warning_1 = 2;
+    Warning_2 = 3;
+    MotorFault = 4;
+    FastStop = 5;
+    GoSlow = 6;
+    Unknown = 65535;
+}

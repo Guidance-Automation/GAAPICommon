@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "Messages/SchedulerStateDto.proto";
+
+import "google/api/annotations.proto";
+
+package gaapicommon.services.scheduling;
+option csharp_namespace = "GAAPICommon.Services.Scheduling";
+
+// Scheduling Service
+service SchedulingServiceProto {
+
+  // Subscribe to state updates.
+  rpc Subscribe(SchedulingSubscribeRequest)
+      returns (stream gaapicommon.messages.SchedulerStateDto) {
+    option (google.api.http) = {
+      get : "/Scheduling/Subscribe"
+    };
+  }
+}
+
+// Message Parameters
+
+message SchedulingSubscribeRequest {}

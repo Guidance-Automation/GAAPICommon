@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum TaskStatus {
+    UnstartedTask = 0;
+    InProgressTask = 1;
+    CompletedTask = 2;
+    AbortingTask = 3;
+    AbortedTask = 4;
+    FailingTask = 5;
+    FailedTask = 6;
+    EditingTask = 7;
+    PartiallyCompletedTask = 8;
+}

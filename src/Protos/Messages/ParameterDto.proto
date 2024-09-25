@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message ParameterDto {
+	int32 AGVType = 1;
+	string Alias = 2;
+	string DataType = 3;
+	int32 ParameterId = 4;
+}

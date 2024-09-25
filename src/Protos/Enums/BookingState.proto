@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum BookingState {
+    AwaitingArrival = 0;
+    CheckedIn = 1;
+    AwaitingCheckout = 2;
+    CheckedOut = 3;
+}

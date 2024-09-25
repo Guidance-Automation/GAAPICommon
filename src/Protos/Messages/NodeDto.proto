@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "Enums/ServiceType.proto";
+import "Messages/PoseDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message NodeDto {
+	int32 Id = 1;
+	string Alias = 2;
+	PoseDto Pose = 3;
+	repeated gaapicommon.enums.ServiceType Services = 4;
+}

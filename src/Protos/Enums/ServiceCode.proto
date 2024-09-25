@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum ServiceCode {
+    NoError = 0;
+    UnknownFailure = 1;
+    UnknownException = 2;
+    ServiceNotConfigured = 3;
+    ClientException = 4;
+};

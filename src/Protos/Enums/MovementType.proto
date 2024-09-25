@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum MovementType {
+    Stationary = 0;
+    ClothoidForwards = 1;
+    ClothoidBackwards = 2;
+    ACRIP = 3; // Anti-clockwise rotate in place
+    CRIP = 4; // Clockwise rotate in place
+    StrafeLinear = 5; // WSAD
+    StrafeClothoidForwards = 6;
+    StrafeClothoidBackwards = 7;
+}

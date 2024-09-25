@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import "Messages/SemVerDto.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message FleetManagementMetadataDto {
+	string ProductName = 1;
+	SemVerDto SemVer = 2;
+}
