@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.0-rc.4</PackageVersion>
+		<PackageVersion>2.0.0</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -20,9 +20,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" Version="3.27.*" />
-		<PackageReference Include="Grpc.Core" Version="2.46.*" />
-		<PackageReference Include="Grpc.Tools" Version="2.65.*">
+		<PackageReference Include="Google.Protobuf" Version="3.*" />
+		<PackageReference Include="Grpc.Core" Version="2.*" />
+		<PackageReference Include="Grpc.Tools" Version="2.*">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
