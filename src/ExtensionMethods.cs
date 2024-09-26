@@ -188,7 +188,8 @@ public static class ExtensionMethods
             WaypointLastId = dto.WaypointLastId,
             WaypointNextId = dto.WaypointNextId,
             X = dto.X,
-            Y = dto.Y
+            Y = dto.Y,
+            IsLoaded = dto.IsLoaded
         };
     }
 
@@ -221,7 +222,8 @@ public static class ExtensionMethods
             WaypointLastId = state.WaypointLastId,
             WaypointNextId = state.WaypointNextId,
             X = state.X,
-            Y = state.Y
+            Y = state.Y,
+            IsLoaded = state.IsLoaded
         };
     }
 
