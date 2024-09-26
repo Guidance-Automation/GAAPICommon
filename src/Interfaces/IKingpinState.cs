@@ -112,4 +112,9 @@ public interface IKingpinState : IKingpinStatusReporter
     /// Binding check for if is in fault.
     /// </summary>
     public bool IsInFault { get; set; }
+
+    /// <summary>
+    /// Whether or not the vehicle has a vessel.
+    /// </summary>
+    public bool IsLoaded { get; set; }
 }

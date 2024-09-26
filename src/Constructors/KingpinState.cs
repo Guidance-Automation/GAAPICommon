@@ -131,4 +131,9 @@ public class KingpinState : IKingpinState
     /// Binding check for if is in fault.
     /// </summary>
     public bool IsInFault { get; set; } = false;
+
+    /// <summary>
+    /// Whether or not the vehicle has a vessel.
+    /// </summary>
+    public bool IsLoaded { get; set; } = false;
 }
