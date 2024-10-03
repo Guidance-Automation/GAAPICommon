@@ -9,4 +9,6 @@ message TaskProgressDto {
 	int32 AssignedAgentId = 1;
 	int32 TaskId = 2;
 	gaapicommon.enums.TaskStatus TaskStatus = 3;
+	int32 JobId = 4;
+	int32 MapItemId = 5;
 }
