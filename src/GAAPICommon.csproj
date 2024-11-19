@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<PackageVersion>2.0.2</PackageVersion>
+		<TargetFramework>net9.0</TargetFramework>
+		<PackageVersion>2.0.3</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
@@ -26,7 +26,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
