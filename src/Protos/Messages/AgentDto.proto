@@ -13,7 +13,7 @@ message AgentDto {
 	int32 Id = 3;
 	string IPAddress = 4;
 	gaapicommon.enums.AgentMarkovState AgentMarkovState = 5;
-	int32 CurrentJobId = 6;
+	int32 CurrentTaskId = 6;
 	int32 CurrentNodeId = 7;
 	gaapicommon.enums.AgvMode AgentMode = 8;
 }
