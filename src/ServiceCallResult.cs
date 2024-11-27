@@ -25,4 +25,20 @@ public readonly struct ServiceCallResult<T>(bool isSuccess, T? value, int? error
     /// The success or error details.
     /// </summary>
     public string? Message { get; } = message;
+
+    /// <summary>
+    /// Generate a Service Call Result from success.
+    /// </summary>
+    public static ServiceCallResult<T> FromSuccess(T? value, string? message = null)
+    {
+        return new ServiceCallResult<T>(true, value, null, message);
+    }
+
+    /// <summary>
+    /// Generate a Service Call Result from an error.
+    /// </summary>
+    public static ServiceCallResult<T> FromError(int errorCode, string message)
+    {
+        return new ServiceCallResult<T>(false, default, errorCode, message);
+    }
 }
