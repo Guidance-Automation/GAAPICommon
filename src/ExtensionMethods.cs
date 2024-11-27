@@ -339,20 +339,4 @@ public static class ExtensionMethods
         }
         return "Error";
     }
-
-    /// <summary>
-    /// Generate a Service Call Result from success.
-    /// </summary>
-    public static ServiceCallResult<T> FromSuccess<T>(T? value, string? message = null)
-    {
-        return new ServiceCallResult<T>(true, value, null, message);
-    }
-
-    /// <summary>
-    /// Generate a Service Call Result from an error.
-    /// </summary>
-    public static ServiceCallResult<T> FromError<T>(int errorCode, string message)
-    {
-        return new ServiceCallResult<T>(false, default, errorCode, message);
-    }
 }
