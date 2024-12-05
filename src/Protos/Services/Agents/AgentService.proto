@@ -32,6 +32,20 @@ service AgentServiceProto {
             post: "/Agent/SetAgentLifetimeState"
         };
 	}
+
+	// Get an agent.
+	rpc GetAgentData (GetAgentDataRequest) returns (GetAgentDataResult) {
+		option (google.api.http) = {
+            get: "/Agent/GetAgentData"
+        };
+	}
+
+	// Subscribe to receive agent state updates.
+    rpc Subscribe(SubscribeRequest) returns (stream AgentSubscribeResult) {
+		option (google.api.http) = {
+			get : "/Agent/Subscribe"
+		};
+	}
 }
 
 // Message Parameters
@@ -46,6 +60,10 @@ message SetAgentLifetimeStateRequest {
 	int32 AgentId = 1;
 	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 2;
 }
+
+message GetAgentDataRequest { }
+
+message SubscribeRequest {}
 
 // Message Returns
 
@@ -63,4 +81,16 @@ message GetAllAgentsInLifetimeStateResult {
 	string ExceptionStackTrace = 3;
 	repeated gaapicommon.messages.AgentDto Agents = 4;
 	int32 ServiceCode = 5;
+}
+
+message GetAgentDataResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	gaapicommon.messages.AgentDto Agent = 4;
+	int32 ServiceCode = 5;
+}
+
+message AgentSubscribeResult {
+	repeated gaapicommon.messages.AgentDto Agents = 1;
 }
