@@ -61,7 +61,9 @@ message SetAgentLifetimeStateRequest {
 	gaapicommon.enums.AgentLifetimeState AgentLifetimeState = 2;
 }
 
-message GetAgentDataRequest { }
+message GetAgentDataRequest {
+	int32 AgentId = 1;
+}
 
 message SubscribeRequest {}
 
