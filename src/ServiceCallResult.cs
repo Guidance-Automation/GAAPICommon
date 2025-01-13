@@ -27,18 +27,40 @@ public readonly struct ServiceCallResult<T>(bool isSuccess, T? value, int? error
     public string? Message { get; } = message;
 
     /// <summary>
-    /// Generate a Service Call Result from success.
+    /// Create a successful result.
     /// </summary>
-    public static ServiceCallResult<T> FromSuccess(T? value, string? message = null)
-    {
-        return new ServiceCallResult<T>(true, value, null, message);
-    }
+    public static ServiceCallResult<T> FromSuccess(T value, string? message = null) =>
+        new(true, value, null, message);
 
     /// <summary>
-    /// Generate a Service Call Result from an error.
+    /// Create a successful result without a value.
     /// </summary>
-    public static ServiceCallResult<T> FromError(int errorCode, string message)
-    {
-        return new ServiceCallResult<T>(false, default, errorCode, message);
-    }
+    public static ServiceCallResult<T> FromSuccess(string? message = null) =>
+        new(true, default, null, message);
+
+    /// <summary>
+    /// Create an error result.
+    /// </summary>
+    public static ServiceCallResult<T> FromError(int errorCode, string message) =>
+        new(false, default, errorCode, message);
+
+    /// <summary>
+    /// Create an error result from an exception.
+    /// </summary>
+    public static ServiceCallResult<T> FromException(Exception ex) =>
+        new(false, default, ex.HResult, ex.Message);
+
+    /// <summary>
+    /// Implicit conversion to directly create a successful response.
+    /// </summary>
+    /// <param name="value"></param>
+    public static implicit operator ServiceCallResult<T>(T value) =>
+        FromSuccess(value);
+
+    /// <summary>
+    /// Implicit conversion to directly create an exception based response.
+    /// </summary>
+    /// <param name="ex"></param>
+    public static implicit operator ServiceCallResult<T>(Exception ex) =>
+        FromException(ex);
 }
