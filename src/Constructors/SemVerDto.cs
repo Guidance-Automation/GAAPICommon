@@ -90,6 +90,9 @@ public partial class SemVerDto
     /// <returns>A string in the format "Major.Minor.Patch-ReleaseFlag"</returns>
     public string ToVersionString()
     {
-        return $"{Major}.{Minor}.{Patch}-{ReleaseFlag}";
+        if (string.IsNullOrEmpty(ReleaseFlag))
+            return $"{Major}.{Minor}.{Patch}";
+        else
+            return $"{Major}.{Minor}.{Patch}-{ReleaseFlag}";
     }
 }
