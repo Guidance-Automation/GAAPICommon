@@ -12,4 +12,5 @@ message SchedulerConfigDto {
 	bool IsUpdateLoopPluginsEnabled = 3;
 	MapMetadataDto MapMetadata = 4;
 	SpotManagerConfigDto SpotManagerConfig = 5;
+	int32 WaypointItineraryBufferS = 6;
 }

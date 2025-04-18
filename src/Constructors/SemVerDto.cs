@@ -10,10 +10,10 @@ public partial class SemVerDto
 {
     private static readonly Dictionary<ReleaseFlag, string> _releaseFlagDictionary = new()
     {
-        {Enums.ReleaseFlag.Alpha, "Alpha" },
-        {Enums.ReleaseFlag.Beta, "Beta" },
-        {Enums.ReleaseFlag.ReleaseCandidate, "ReleaseCandidate" },
-        {Enums.ReleaseFlag.Release, "Release" }
+        {Enums.ReleaseFlag.Alpha, "alpha" },
+        {Enums.ReleaseFlag.Beta, "beta" },
+        {Enums.ReleaseFlag.ReleaseCandidate, "rc" },
+        {Enums.ReleaseFlag.Release, "" }
     };
 
     /// <summary>
@@ -90,6 +90,9 @@ public partial class SemVerDto
     /// <returns>A string in the format "Major.Minor.Patch-ReleaseFlag"</returns>
     public string ToVersionString()
     {
-        return $"{Major}.{Minor}.{Patch}-{ReleaseFlag}";
+        if (string.IsNullOrEmpty(ReleaseFlag))
+            return $"{Major}.{Minor}.{Patch}";
+        else
+            return $"{Major}.{Minor}.{Patch}-{ReleaseFlag}";
     }
 }
