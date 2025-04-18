@@ -9,4 +9,5 @@ message SpotManagerConfigDto {
 	google.protobuf.Duration IdleTimeout = 1;
 	double ChargeDowngradeLevel = 2;
 	double ImmediateChargeLevel = 3;
+	double ChargeMaximumLevel = 4;
 }
