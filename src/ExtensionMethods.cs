@@ -204,8 +204,7 @@ public static class ExtensionMethods
             X = state.X,
             Y = state.Y,
             IsLoaded = state.IsLoaded,
-            PeripheralData = state.PeripheralData,
-            IPAddressLong = state.IPAddress != null ? BitConverter.ToUInt32(state.IPAddress.GetAddressBytes(), 0) : 0
+            PeripheralData = state.PeripheralData
         };
     }
 
