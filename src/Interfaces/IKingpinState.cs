@@ -111,10 +111,15 @@ public interface IKingpinState : IKingpinStatusReporter
     /// <summary>
     /// Binding check for if is in fault.
     /// </summary>
-    public bool IsInFault { get; set; }
+    public bool IsInFault { get; }
 
     /// <summary>
     /// Whether or not the vehicle has a vessel.
     /// </summary>
     public bool IsLoaded { get; set; }
+
+    /// <summary>
+    /// Field used to propagate peripheral information, such as a barcode scan.
+    /// </summary>
+    public string PeripheralData { get; set; }
 }

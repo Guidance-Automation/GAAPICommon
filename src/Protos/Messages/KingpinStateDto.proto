@@ -38,4 +38,5 @@ message KingpinStateDto {
 	float X = 23;
 	float Y = 24;
 	bool IsLoaded = 25;
+	string PeripheralData = 26;
 }
