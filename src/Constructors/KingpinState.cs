@@ -11,6 +11,8 @@ namespace GAAPICommon.Constructors;
 /// </summary>
 public class KingpinState : IKingpinState
 {
+    private bool _isInFault = false;
+
     /// <summary>
     /// Gets or sets the alias name for the kingpin.
     /// </summary>
@@ -130,10 +132,29 @@ public class KingpinState : IKingpinState
     /// <summary>
     /// Binding check for if is in fault.
     /// </summary>
-    public bool IsInFault { get; set; } = false;
+    public bool IsInFault
+    {
+        get
+        {
+            _isInFault = PositionControlStatus.IsFault()
+                || NavigationStatus.IsFault()
+                ||  DynamicLimiterStatus.IsFault()
+                || ExtendedDataFaultStatus.IsFault();
+            return _isInFault;
+        }
+        set
+        {
+            _isInFault = value;
+        }
+    }
 
     /// <summary>
     /// Whether or not the vehicle has a vessel.
     /// </summary>
     public bool IsLoaded { get; set; } = false;
+
+    /// <summary>
+    /// Field used to propagate peripheral information, such as a barcode scan.
+    /// </summary>
+    public string PeripheralData { get; set; } = string.Empty;
 }

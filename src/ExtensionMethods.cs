@@ -13,27 +13,6 @@ namespace GAAPICommon;
 public static class ExtensionMethods
 {
     /// <summary>
-    /// Determines if any of the status properties in the kingpin state indicate a fault.
-    /// </summary>
-    /// <param name="kingpinState">The kingpin state to check for faults.</param>
-    /// <returns>True if any status property indicates a fault; otherwise, false.</returns>
-    public static bool IsInFault(this IKingpinState kingpinState)
-    {
-        if (kingpinState == null)
-        {
-            return false;
-        }
-
-        bool isInFault = kingpinState.PositionControlStatus.IsFault()
-            || kingpinState.NavigationStatus.IsFault()
-            || kingpinState.DynamicLimiterStatus.IsFault()
-            || kingpinState.ExtendedDataFaultStatus.IsFault();
-
-        kingpinState.IsInFault = isInFault;
-        return isInFault;
-    }
-
-    /// <summary>
     /// Converts a <see cref="ChargeBookingStateDto"/> object to a string representation that includes
     /// the booking state, charge type, and agent ID.
     /// </summary>
@@ -189,7 +168,8 @@ public static class ExtensionMethods
             WaypointNextId = dto.WaypointNextId,
             X = dto.X,
             Y = dto.Y,
-            IsLoaded = dto.IsLoaded
+            IsLoaded = dto.IsLoaded,
+            PeripheralData = dto.PeripheralData
         };
     }
 
@@ -223,7 +203,8 @@ public static class ExtensionMethods
             WaypointNextId = state.WaypointNextId,
             X = state.X,
             Y = state.Y,
-            IsLoaded = state.IsLoaded
+            IsLoaded = state.IsLoaded,
+            PeripheralData = state.PeripheralData
         };
     }
 

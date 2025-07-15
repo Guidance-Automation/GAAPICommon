@@ -3,6 +3,6 @@ syntax = "proto3";
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
 
-message AMRFleetConfigurationDto {
-	int32 AMRLimit = 1;
+message FleetConfigurationDto {
+	int32 VehicleLimit = 1;
 }
