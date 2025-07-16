@@ -2,10 +2,10 @@
 
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
-		<PackageVersion>2.4.0</PackageVersion>
+		<PackageVersion>2.5.0</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
-		<Copyright>Guidance Automation 2024</Copyright>
+		<Copyright>Guidance Automation 2025</Copyright>
 		<Description>gRPC API Components for Guidance Automation assemblies.</Description>
 		<RepositoryUrl>https://github.com/Guidance-Automation/GAAPICommon</RepositoryUrl>
 		<PackageId>GAAPICommon</PackageId>

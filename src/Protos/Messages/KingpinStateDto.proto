@@ -8,6 +8,7 @@ import "Enums/FrozenState.proto";
 import "Enums/MovementType.proto";
 import "Enums/NavigationStatus.proto";
 import "Enums/PositionControlStatus.proto";
+import "Enums/LoadedState.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
@@ -37,6 +38,7 @@ message KingpinStateDto {
 	int32 WaypointNextId = 22;
 	float X = 23;
 	float Y = 24;
-	bool IsLoaded = 25;
+	gaapicommon.enums.LoadedState LoadedState = 25;
 	string PeripheralData = 26;
+	int32 PayloadCount = 27;
 }

@@ -149,12 +149,17 @@ public class KingpinState : IKingpinState
     }
 
     /// <summary>
-    /// Whether or not the vehicle has a vessel.
+    /// Current loaded state of the kingpin, indicating whether it is loaded, unloaded, or in transition.
     /// </summary>
-    public bool IsLoaded { get; set; } = false;
+    public LoadedState LoadedState { get; set; }
 
     /// <summary>
     /// Field used to propagate peripheral information, such as a barcode scan.
     /// </summary>
     public string PeripheralData { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Used to track the number of payloads currently associated with the kingpin.
+    /// </summary>
+    public int PayloadCount { get; set; } = 0;
 }

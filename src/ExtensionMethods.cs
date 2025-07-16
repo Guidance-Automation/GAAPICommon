@@ -168,8 +168,9 @@ public static class ExtensionMethods
             WaypointNextId = dto.WaypointNextId,
             X = dto.X,
             Y = dto.Y,
-            IsLoaded = dto.IsLoaded,
-            PeripheralData = dto.PeripheralData
+            LoadedState = dto.LoadedState,
+            PeripheralData = dto.PeripheralData,
+            PayloadCount = dto.PayloadCount
         };
     }
 
@@ -203,8 +204,9 @@ public static class ExtensionMethods
             WaypointNextId = state.WaypointNextId,
             X = state.X,
             Y = state.Y,
-            IsLoaded = state.IsLoaded,
-            PeripheralData = state.PeripheralData
+            LoadedState = state.LoadedState,
+            PeripheralData = state.PeripheralData,
+            PayloadCount = state.PayloadCount
         };
     }
 

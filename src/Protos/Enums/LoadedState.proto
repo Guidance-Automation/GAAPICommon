@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum LoadedState {
+    Unloaded = 0;
+    Loaded = 1;
+    Transitioning = 2;
+}
