@@ -170,7 +170,8 @@ public static class ExtensionMethods
             Y = dto.Y,
             LoadedState = dto.LoadedState,
             PeripheralData = dto.PeripheralData,
-            PayloadCount = dto.PayloadCount
+            PayloadCount = dto.PayloadCount,
+            DockingState = dto.DockingState
         };
     }
 
@@ -206,7 +207,8 @@ public static class ExtensionMethods
             Y = state.Y,
             LoadedState = state.LoadedState,
             PeripheralData = state.PeripheralData,
-            PayloadCount = state.PayloadCount
+            PayloadCount = state.PayloadCount,
+            DockingState = state.DockingState
         };
     }
 
