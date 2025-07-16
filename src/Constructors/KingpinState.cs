@@ -151,7 +151,7 @@ public class KingpinState : IKingpinState
     /// <summary>
     /// Current loaded state of the kingpin, indicating whether it is loaded, unloaded, or in transition.
     /// </summary>
-    public LoadedState LoadedState { get; set; }
+    public LoadedState LoadedState { get; set; } = LoadedState.Unloaded;
 
     /// <summary>
     /// Field used to propagate peripheral information, such as a barcode scan.
@@ -162,4 +162,9 @@ public class KingpinState : IKingpinState
     /// Used to track the number of payloads currently associated with the kingpin.
     /// </summary>
     public int PayloadCount { get; set; } = 0;
+
+    /// <summary>
+    /// Current docking state of the kingpin.
+    /// </summary>
+    public DockingState DockingState { get; set; } = DockingState.Good;
 }

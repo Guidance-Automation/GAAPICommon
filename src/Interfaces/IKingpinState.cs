@@ -127,4 +127,9 @@ public interface IKingpinState : IKingpinStatusReporter
     /// Used to track the number of payloads currently associated with the kingpin.
     /// </summary>
     public int PayloadCount { get; set; }
+
+    /// <summary>
+    /// Current docking state of the kingpin.
+    /// </summary>
+    public DockingState DockingState { get; set; }
 }

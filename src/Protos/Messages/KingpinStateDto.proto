@@ -9,6 +9,7 @@ import "Enums/MovementType.proto";
 import "Enums/NavigationStatus.proto";
 import "Enums/PositionControlStatus.proto";
 import "Enums/LoadedState.proto";
+import "Enums/DockingState.proto";
 
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
@@ -41,4 +42,5 @@ message KingpinStateDto {
 	gaapicommon.enums.LoadedState LoadedState = 25;
 	string PeripheralData = 26;
 	int32 PayloadCount = 27;
+	gaapicommon.enums.DockingState DockingState = 28;
 }
