@@ -43,4 +43,5 @@ message KingpinStateDto {
 	string PeripheralData = 26;
 	int32 PayloadCount = 27;
 	gaapicommon.enums.DockingState DockingState = 28;
+	string SerialNumber = 29;
 }

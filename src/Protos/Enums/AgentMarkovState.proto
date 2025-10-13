@@ -15,4 +15,7 @@ enum AgentMarkovState {
     Executing = 8;
     Aborting = 9;
     NotInMap = 10;
+    Estopped = 11;
+    Safety = 12;
+    Offline = 13;
 }

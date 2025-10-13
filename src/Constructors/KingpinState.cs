@@ -167,4 +167,9 @@ public class KingpinState : IKingpinState
     /// Current docking state of the kingpin.
     /// </summary>
     public DockingState DockingState { get; set; } = DockingState.Good;
+
+    /// <summary>
+    /// The serial number of the AGV.
+    /// </summary>
+    public string SerialNumber { get; set; } = string.Empty;
 }

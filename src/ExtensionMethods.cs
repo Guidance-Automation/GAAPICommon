@@ -171,7 +171,8 @@ public static class ExtensionMethods
             LoadedState = dto.LoadedState,
             PeripheralData = dto.PeripheralData,
             PayloadCount = dto.PayloadCount,
-            DockingState = dto.DockingState
+            DockingState = dto.DockingState,
+            SerialNumber = dto.SerialNumber
         };
     }
 
@@ -208,7 +209,8 @@ public static class ExtensionMethods
             LoadedState = state.LoadedState,
             PeripheralData = state.PeripheralData,
             PayloadCount = state.PayloadCount,
-            DockingState = state.DockingState
+            DockingState = state.DockingState,
+            SerialNumber = state.SerialNumber
         };
     }
 
