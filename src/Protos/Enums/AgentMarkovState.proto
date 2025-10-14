@@ -18,4 +18,5 @@ enum AgentMarkovState {
     Estopped = 11;
     Safety = 12;
     Offline = 13;
+    Charging = 14;
 }
