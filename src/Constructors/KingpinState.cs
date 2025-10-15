@@ -172,4 +172,9 @@ public class KingpinState : IKingpinState
     /// The serial number of the AGV.
     /// </summary>
     public string SerialNumber { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Boolean indicating if the kingpin is currently connected.
+    /// </summary>
+    public bool IsConnected { get; set; } = false;
 }

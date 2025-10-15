@@ -136,5 +136,10 @@ public interface IKingpinState : IKingpinStatusReporter
     /// <summary>
     /// The serial number of the AGV.
     /// </summary>
-    public string SerialNumber { get; set; } 
+    public string SerialNumber { get; set; }
+
+    /// <summary>
+    /// Boolean indicating if the kingpin is currently connected.
+    /// </summary>
+    public bool IsConnected { get; set; }
 }

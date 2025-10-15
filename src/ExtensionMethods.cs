@@ -172,7 +172,8 @@ public static class ExtensionMethods
             PeripheralData = dto.PeripheralData,
             PayloadCount = dto.PayloadCount,
             DockingState = dto.DockingState,
-            SerialNumber = dto.SerialNumber
+            SerialNumber = dto.SerialNumber,
+            IsConnected = dto.IsConnected
         };
     }
 
@@ -210,7 +211,8 @@ public static class ExtensionMethods
             PeripheralData = state.PeripheralData,
             PayloadCount = state.PayloadCount,
             DockingState = state.DockingState,
-            SerialNumber = state.SerialNumber
+            SerialNumber = state.SerialNumber,
+            IsConnected = state.IsConnected
         };
     }
 
