@@ -251,24 +251,17 @@ public static class ExtensionMethods
     /// <returns>A string representing the given value.</returns>
     public static string ToDescriptiveName(this PositionControlStatus status) 
     {
-        switch (status) 
+        return status switch
         {
-            case PositionControlStatus.Disabled:
-                return "Disabled";
-            case PositionControlStatus.Disabling:
-                return "Disabling";
-            case PositionControlStatus.NoWaypoints:
-                return "No Waypoints";
-            case PositionControlStatus.WaypointDiscontinuity:
-                return "Waypoint Discontinuity";
-            case PositionControlStatus.OutOfPosition:
-                return "Out Of Position";
-            case PositionControlStatus.Okposition:
-                return "OK";
-            case PositionControlStatus.UnknownPosition:
-                return "Unknown";
-        }
-        return "Error";
+            PositionControlStatus.Disabled => "Disabled",
+            PositionControlStatus.Disabling => "Disabling",
+            PositionControlStatus.NoWaypoints => "No Waypoints",
+            PositionControlStatus.WaypointDiscontinuity => "Waypoint Discontinuity",
+            PositionControlStatus.OutOfPosition => "Out Of Position",
+            PositionControlStatus.Okposition => "OK",
+            PositionControlStatus.UnknownPosition => "Unknown",
+            _ => "Error",
+        };
     }
 
     /// <summary>
@@ -278,26 +271,18 @@ public static class ExtensionMethods
     /// <returns>A string representing the given value.</returns>
     public static string ToDescriptiveName(this NavigationStatus status)
     {
-        switch (status)
+        return status switch
         {
-            case NavigationStatus.UnknownNavigation:
-                return "Unknown";
-            case NavigationStatus.NoScannerData:
-                return "No Scanner Data";
-            case NavigationStatus.NoResponse:
-                return "No Response";
-            case NavigationStatus.AssociationFailure:
-                return "Association Failure";
-            case NavigationStatus.PoorAssociation:
-                return "Poor Association";
-            case NavigationStatus.Lost:
-                return "Lost";
-            case NavigationStatus.HighUncertainty:
-                return "High Uncertainty";
-            case NavigationStatus.Oknavigation:
-                return "OK";    
-        }
-        return "Error";
+            NavigationStatus.UnknownNavigation => "Unknown",
+            NavigationStatus.NoScannerData => "No Scanner Data",
+            NavigationStatus.NoResponse => "No Response",
+            NavigationStatus.AssociationFailure => "Association Failure",
+            NavigationStatus.PoorAssociation => "Poor Association",
+            NavigationStatus.Lost => "Lost",
+            NavigationStatus.HighUncertainty => "High Uncertainty",
+            NavigationStatus.Oknavigation => "OK",
+            _ => "Error",
+        };
     }
 
     /// <summary>
@@ -307,25 +292,18 @@ public static class ExtensionMethods
     /// <returns>A string representing the given value.</returns>
     public static string ToDescriptiveName(this DynamicLimiterStatus status)
     {
-        switch (status)
+        return status switch
         {
-            case DynamicLimiterStatus.Ok:
-                return "OK";
-            case DynamicLimiterStatus.SafetySensor:
-                return "Safety Sensor";
-            case DynamicLimiterStatus.Warning1:
-                return "Inner Warning";
-            case DynamicLimiterStatus.Warning2:
-                return "Outer Warning";
-            case DynamicLimiterStatus.MotorFault:
-                return "Motor Fault";
-            case DynamicLimiterStatus.FastStop:
-                return "Fast Stop";
-            case DynamicLimiterStatus.GoSlow:
-                return "Go Slow";
-            case DynamicLimiterStatus.Unknown:
-                return "Unknown";
-        }
-        return "Error";
+            DynamicLimiterStatus.Ok => "OK",
+            DynamicLimiterStatus.Estopped => "Safety Sensor",
+            DynamicLimiterStatus.Protection => "Protection Zone",
+            DynamicLimiterStatus.Warning1 => "Inner Warning",
+            DynamicLimiterStatus.Warning2 => "Outer Warning",
+            DynamicLimiterStatus.MotorFault => "Motor Fault",
+            DynamicLimiterStatus.StoppedByPeripheral => "Stopped by Peripheral",
+            DynamicLimiterStatus.AboutToMove => "About to Move",
+            DynamicLimiterStatus.Unknown => "Unknown",
+            _ => "Unknown",
+        };
     }
 }
