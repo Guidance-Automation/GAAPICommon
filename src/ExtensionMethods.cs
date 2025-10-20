@@ -295,7 +295,7 @@ public static class ExtensionMethods
         return status switch
         {
             DynamicLimiterStatus.Ok => "OK",
-            DynamicLimiterStatus.Estopped => "Safety Sensor",
+            DynamicLimiterStatus.Estopped => "E-Stopped",
             DynamicLimiterStatus.Protection => "Protection Zone",
             DynamicLimiterStatus.Warning1 => "Inner Warning",
             DynamicLimiterStatus.Warning2 => "Outer Warning",
