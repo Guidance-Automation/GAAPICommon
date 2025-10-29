@@ -173,7 +173,8 @@ public static class ExtensionMethods
             PayloadCount = dto.PayloadCount,
             DockingState = dto.DockingState,
             SerialNumber = dto.SerialNumber,
-            IsConnected = dto.IsConnected
+            IsConnected = dto.IsConnected,
+            AttachmentError = dto.AttachmentError
         };
     }
 
@@ -212,7 +213,8 @@ public static class ExtensionMethods
             PayloadCount = state.PayloadCount,
             DockingState = state.DockingState,
             SerialNumber = state.SerialNumber,
-            IsConnected = state.IsConnected
+            IsConnected = state.IsConnected,
+            AttachmentError = state.AttachmentError
         };
     }
 

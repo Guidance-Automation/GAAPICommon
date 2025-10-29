@@ -177,4 +177,9 @@ public class KingpinState : IKingpinState
     /// Boolean indicating if the kingpin is currently connected.
     /// </summary>
     public bool IsConnected { get; set; } = false;
+
+    /// <summary>
+    /// Set true when the attachment reports an error.
+    /// </summary>
+    public bool AttachmentError { get; set; } = false;
 }

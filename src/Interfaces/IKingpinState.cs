@@ -142,4 +142,9 @@ public interface IKingpinState : IKingpinStatusReporter
     /// Boolean indicating if the kingpin is currently connected.
     /// </summary>
     public bool IsConnected { get; set; }
+
+    /// <summary>
+    /// Set true when the attachment reports an error.
+    /// </summary>
+    public bool AttachmentError { get; set; } 
 }

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0;net10.0</TargetFrameworks>
-		<PackageVersion>2.7.0-alpha.6</PackageVersion>
+		<PackageVersion>2.7.0-alpha.7</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2025</Copyright>

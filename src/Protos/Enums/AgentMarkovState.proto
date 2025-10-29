@@ -19,4 +19,5 @@ enum AgentMarkovState {
     Safety = 12;
     Offline = 13;
     Charging = 14;
+    AttachmentError = 15;
 }
