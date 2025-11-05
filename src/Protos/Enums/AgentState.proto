@@ -3,7 +3,7 @@ syntax = "proto3";
 package gaapicommon.enums;
 option csharp_namespace = "GAAPICommon.Enums";
 
-enum AgentMarkovState {
+enum AgentState {
     Waiting = 0;
     Ready = 1;
     Moving = 2;
@@ -20,4 +20,5 @@ enum AgentMarkovState {
     Offline = 13;
     Charging = 14;
     AttachmentError = 15;
+    Manual = 16;
 }

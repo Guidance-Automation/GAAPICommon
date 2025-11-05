@@ -174,7 +174,8 @@ public static class ExtensionMethods
             DockingState = dto.DockingState,
             SerialNumber = dto.SerialNumber,
             IsConnected = dto.IsConnected,
-            AttachmentError = dto.AttachmentError
+            AttachmentError = dto.AttachmentError,
+            ResetRequired = dto.ResetRequired
         };
     }
 
@@ -214,7 +215,8 @@ public static class ExtensionMethods
             DockingState = state.DockingState,
             SerialNumber = state.SerialNumber,
             IsConnected = state.IsConnected,
-            AttachmentError = state.AttachmentError
+            AttachmentError = state.AttachmentError,
+            ResetRequired = state.ResetRequired
         };
     }
 

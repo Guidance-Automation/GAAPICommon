@@ -182,4 +182,9 @@ public class KingpinState : IKingpinState
     /// Set true when the attachment reports an error.
     /// </summary>
     public bool AttachmentError { get; set; } = false;
+
+    /// <summary>
+    /// Used internally to indicate if a reset is required.
+    /// </summary>
+    public bool ResetRequired { get; set; } = false;
 }

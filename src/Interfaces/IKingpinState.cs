@@ -146,5 +146,10 @@ public interface IKingpinState : IKingpinStatusReporter
     /// <summary>
     /// Set true when the attachment reports an error.
     /// </summary>
-    public bool AttachmentError { get; set; } 
+    public bool AttachmentError { get; set; }
+
+    /// <summary>
+    /// Used internally to indicate if a reset is required.
+    /// </summary>
+    public bool ResetRequired { get; set; }
 }

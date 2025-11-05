@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 import "Enums/AgentLifetimeState.proto";
-import "Enums/AgentMarkovState.proto";
+import "Enums/AgentState.proto";
 import "Enums/AgvMode.proto";
 
 package gaapicommon.messages;
@@ -12,7 +12,7 @@ message AgentDto {
 	string Alias = 2;
 	int32 Id = 3;
 	string IPAddress = 4;
-	gaapicommon.enums.AgentMarkovState AgentMarkovState = 5;
+	gaapicommon.enums.AgentState AgentState = 5;
 	int32 CurrentTaskId = 6;
 	int32 CurrentNodeId = 7;
 	gaapicommon.enums.AgvMode AgentMode = 8;

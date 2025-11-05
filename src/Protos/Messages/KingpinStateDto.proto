@@ -46,4 +46,5 @@ message KingpinStateDto {
 	string SerialNumber = 29;
 	bool IsConnected = 30;
 	bool AttachmentError = 31;
+	bool ResetRequired = 32;
 }
