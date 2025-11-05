@@ -20,5 +20,5 @@ enum AgentState {
     Offline = 13;
     Charging = 14;
     AttachmentError = 15;
-    Manual = 16;
+    ManualMode = 16;
 }
