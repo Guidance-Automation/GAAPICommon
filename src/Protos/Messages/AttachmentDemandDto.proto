@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message AttachmentDemandDto {
+	bool Up = 1;
+	bool Down = 2;
+	bool Left = 3;
+	bool Right = 4;
+}
