@@ -21,8 +21,8 @@ public class KeyedSpeedDemand
             throw new ArgumentOutOfRangeException(nameof(bytes));
 
         Tick = bytes[0];
-        Guid = new Guid(bytes.Skip(1).Take(16).ToArray());
-        SpeedDemand = new SpeedDemandDto(bytes.Skip(17).Take(10).ToArray());
+        Guid = new Guid([.. bytes.Skip(1).Take(16)]);
+        SpeedDemand = new SpeedDemandDto([.. bytes.Skip(17).Take(10)]);
     }
 
     /// <summary>

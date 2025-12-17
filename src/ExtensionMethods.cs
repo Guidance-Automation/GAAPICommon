@@ -99,6 +99,22 @@ public static class ExtensionMethods
     }
 
     /// <summary>
+    /// Converts a <see cref="KeyedAttachmentDemand"/> object to a byte array suitable for serialization.
+    /// </summary>
+    public static byte[] ToBytes(this KeyedAttachmentDemand keyedSpeedDemand)
+    {
+        ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
+
+        byte[] bytes = new byte[25];
+
+        bytes[0] = keyedSpeedDemand.Tick;
+        keyedSpeedDemand.Guid.ToByteArray().CopyTo(bytes, 1);
+        keyedSpeedDemand.AttachmentDemand?.ToBytes().CopyTo(bytes, 17);
+
+        return bytes;
+    }
+
+    /// <summary>
     /// Converts a <see cref="SpeedDemandDto"/> object to a byte array suitable for serialization.
     /// </summary>
     public static byte[] ToBytes(this SpeedDemandDto speedDemand)
@@ -112,6 +128,29 @@ public static class ExtensionMethods
             BitConverter.GetBytes((short)speedDemand.Forward).CopyTo(bytes, 4);
             BitConverter.GetBytes((short)speedDemand.Angular).CopyTo(bytes, 6);
             BitConverter.GetBytes((short)speedDemand.Lateral).CopyTo(bytes, 8);
+            return bytes;
+        }
+        else
+        {
+            throw new ArgumentException("IP Address is not valid", nameof(speedDemand));
+        }
+    }
+
+    /// <summary>
+    /// Converts a <see cref="AttachmentDemandDto"/> object to a byte array suitable for serialization.
+    /// </summary>
+    public static byte[] ToBytes(this AttachmentDemandDto speedDemand)
+    {
+        ArgumentNullException.ThrowIfNull(speedDemand);
+
+        if (IPAddress.TryParse(speedDemand.IPAddress, out IPAddress? address))
+        {
+            byte[] bytes = new byte[8];
+            address.GetAddressBytes().CopyTo(bytes, 0);
+            BitConverter.GetBytes(speedDemand.Up).CopyTo(bytes, 4);
+            BitConverter.GetBytes(speedDemand.Down).CopyTo(bytes, 5);
+            BitConverter.GetBytes(speedDemand.Left).CopyTo(bytes, 6);
+            BitConverter.GetBytes(speedDemand.Right).CopyTo(bytes, 6);
             return bytes;
         }
         else

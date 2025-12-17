@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net9.0;net10.0</TargetFrameworks>
-		<PackageVersion>2.7.0-alpha.11</PackageVersion>
+		<PackageVersion>2.7.0-alpha.12</PackageVersion>
 		<Platforms>x64</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2025</Copyright>
@@ -33,7 +33,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="9.*" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="10.0.0-*" />
+		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="10.*" />
 	</ItemGroup>
 
 	<ItemGroup>

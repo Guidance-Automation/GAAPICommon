@@ -20,7 +20,7 @@ public partial class SpeedDemandDto
         if (bytes.Length != 10)
             throw new ArgumentOutOfRangeException(nameof(bytes));
 
-        IPAddress = new IPAddress(bytes.Take(4).ToArray()).ToString();
+        IPAddress = new IPAddress([.. bytes.Take(4)]).ToString();
         Forward = BitConverter.ToInt16(bytes, 4);
         Angular = BitConverter.ToInt16(bytes, 6);
         Lateral = BitConverter.ToInt16(bytes, 8);
