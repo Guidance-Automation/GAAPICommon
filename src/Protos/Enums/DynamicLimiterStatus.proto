@@ -12,5 +12,6 @@ enum DynamicLimiterStatus {
     StoppedByPeripheral = 5;
     AboutToMove = 6;
     Estopped = 7;
+    ResetRequired = 8;
     Unknown = 65535;
 }
