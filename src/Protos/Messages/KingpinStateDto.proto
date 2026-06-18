@@ -43,4 +43,8 @@ message KingpinStateDto {
 	string PeripheralData = 26;
 	int32 PayloadCount = 27;
 	gaapicommon.enums.DockingState DockingState = 28;
+	string SerialNumber = 29;
+	bool IsConnected = 30;
+	bool AttachmentError = 31;
+	bool ResetRequired = 32;
 }

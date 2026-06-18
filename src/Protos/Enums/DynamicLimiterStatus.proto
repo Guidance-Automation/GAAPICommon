@@ -5,11 +5,13 @@ option csharp_namespace = "GAAPICommon.Enums";
 
 enum DynamicLimiterStatus {
     OK = 0;
-    SafetySensor = 1;
+    Protection = 1;
     Warning_1 = 2;
     Warning_2 = 3;
     MotorFault = 4;
-    FastStop = 5;
-    GoSlow = 6;
+    StoppedByPeripheral = 5;
+    AboutToMove = 6;
+    Estopped = 7;
+    ResetRequired = 8;
     Unknown = 65535;
 }

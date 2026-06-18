@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package gaapicommon.enums;
+option csharp_namespace = "GAAPICommon.Enums";
+
+enum DockingType {
+    None = 0;
+    Front = 1;
+    Rear = 2;
+    Left = 3; 
+    Right = 4; 
+}

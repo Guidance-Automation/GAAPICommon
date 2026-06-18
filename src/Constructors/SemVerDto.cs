@@ -1,4 +1,6 @@
 ﻿using GAAPICommon.Enums;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace GAAPICommon.Messages;
 
@@ -95,4 +97,48 @@ public partial class SemVerDto
         else
             return $"{Major}.{Minor}.{Patch}-{ReleaseFlag}";
     }
+
+    private static readonly Dictionary<string, ReleaseFlag> _stringToReleaseFlag =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            { "alpha", Enums.ReleaseFlag.Alpha },
+            { "beta",  Enums.ReleaseFlag.Beta },
+            { "rc",    Enums.ReleaseFlag.ReleaseCandidate },
+            { "",      Enums.ReleaseFlag.Release }
+    };
+
+    private static readonly Regex _semVerRegex = VersionRegex();
+
+    /// <summary>
+    /// Parses a semantic version string into a <see cref="SemVerDto"/>.
+    /// Supported formats:
+    /// - MAJOR.MINOR.PATCH
+    /// - MAJOR.MINOR.PATCH-flag (alpha, beta, rc)
+    /// </summary>
+    /// <exception cref="ArgumentNullException"/>
+    /// <exception cref="FormatException"/>
+    public static SemVerDto FromString(string value)
+    {
+        value = value.Trim();
+
+        Match match = _semVerRegex.Match(value);
+        if (!match.Success)
+            throw new FormatException($"Invalid semantic version format: '{value}'");
+
+        int major = int.Parse(match.Groups["major"].Value, CultureInfo.InvariantCulture);
+        int minor = int.Parse(match.Groups["minor"].Value, CultureInfo.InvariantCulture);
+        int patch = int.Parse(match.Groups["patch"].Value, CultureInfo.InvariantCulture);
+
+        string flagString = match.Groups["flag"].Success
+            ? match.Groups["flag"].Value
+            : string.Empty;
+
+        if (!_stringToReleaseFlag.TryGetValue(flagString, out ReleaseFlag releaseFlag))
+            throw new FormatException($"Unknown release flag '{flagString}' in '{value}'");
+
+        return new SemVerDto(major, minor, patch, releaseFlag);
+    }
+
+    [GeneratedRegex(@"^(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?:-(?<flag>[A-Za-z]+))?$", RegexOptions.Compiled | RegexOptions.CultureInvariant)]
+    private static partial Regex VersionRegex();
 }

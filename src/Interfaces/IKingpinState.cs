@@ -132,4 +132,24 @@ public interface IKingpinState : IKingpinStatusReporter
     /// Current docking state of the kingpin.
     /// </summary>
     public DockingState DockingState { get; set; }
+
+    /// <summary>
+    /// The serial number of the AGV.
+    /// </summary>
+    public string SerialNumber { get; set; }
+
+    /// <summary>
+    /// Boolean indicating if the kingpin is currently connected.
+    /// </summary>
+    public bool IsConnected { get; set; }
+
+    /// <summary>
+    /// Set true when the attachment reports an error.
+    /// </summary>
+    public bool AttachmentError { get; set; }
+
+    /// <summary>
+    /// Used internally to indicate if a reset is required.
+    /// </summary>
+    public bool ResetRequired { get; set; }
 }

@@ -99,6 +99,22 @@ public static class ExtensionMethods
     }
 
     /// <summary>
+    /// Converts a <see cref="KeyedAttachmentDemand"/> object to a byte array suitable for serialization.
+    /// </summary>
+    public static byte[] ToBytes(this KeyedAttachmentDemand keyedSpeedDemand)
+    {
+        ArgumentNullException.ThrowIfNull(keyedSpeedDemand);
+
+        byte[] bytes = new byte[25];
+
+        bytes[0] = keyedSpeedDemand.Tick;
+        keyedSpeedDemand.Guid.ToByteArray().CopyTo(bytes, 1);
+        keyedSpeedDemand.AttachmentDemand?.ToBytes().CopyTo(bytes, 17);
+
+        return bytes;
+    }
+
+    /// <summary>
     /// Converts a <see cref="SpeedDemandDto"/> object to a byte array suitable for serialization.
     /// </summary>
     public static byte[] ToBytes(this SpeedDemandDto speedDemand)
@@ -112,6 +128,29 @@ public static class ExtensionMethods
             BitConverter.GetBytes((short)speedDemand.Forward).CopyTo(bytes, 4);
             BitConverter.GetBytes((short)speedDemand.Angular).CopyTo(bytes, 6);
             BitConverter.GetBytes((short)speedDemand.Lateral).CopyTo(bytes, 8);
+            return bytes;
+        }
+        else
+        {
+            throw new ArgumentException("IP Address is not valid", nameof(speedDemand));
+        }
+    }
+
+    /// <summary>
+    /// Converts a <see cref="AttachmentDemandDto"/> object to a byte array suitable for serialization.
+    /// </summary>
+    public static byte[] ToBytes(this AttachmentDemandDto speedDemand)
+    {
+        ArgumentNullException.ThrowIfNull(speedDemand);
+
+        if (IPAddress.TryParse(speedDemand.IPAddress, out IPAddress? address))
+        {
+            byte[] bytes = new byte[8];
+            address.GetAddressBytes().CopyTo(bytes, 0);
+            BitConverter.GetBytes(speedDemand.Up).CopyTo(bytes, 4);
+            BitConverter.GetBytes(speedDemand.Down).CopyTo(bytes, 5);
+            BitConverter.GetBytes(speedDemand.Left).CopyTo(bytes, 6);
+            BitConverter.GetBytes(speedDemand.Right).CopyTo(bytes, 6);
             return bytes;
         }
         else
@@ -171,7 +210,11 @@ public static class ExtensionMethods
             LoadedState = dto.LoadedState,
             PeripheralData = dto.PeripheralData,
             PayloadCount = dto.PayloadCount,
-            DockingState = dto.DockingState
+            DockingState = dto.DockingState,
+            SerialNumber = dto.SerialNumber,
+            IsConnected = dto.IsConnected,
+            AttachmentError = dto.AttachmentError,
+            ResetRequired = dto.ResetRequired
         };
     }
 
@@ -208,7 +251,11 @@ public static class ExtensionMethods
             LoadedState = state.LoadedState,
             PeripheralData = state.PeripheralData,
             PayloadCount = state.PayloadCount,
-            DockingState = state.DockingState
+            DockingState = state.DockingState,
+            SerialNumber = state.SerialNumber,
+            IsConnected = state.IsConnected,
+            AttachmentError = state.AttachmentError,
+            ResetRequired = state.ResetRequired
         };
     }
 
@@ -247,24 +294,17 @@ public static class ExtensionMethods
     /// <returns>A string representing the given value.</returns>
     public static string ToDescriptiveName(this PositionControlStatus status) 
     {
-        switch (status) 
+        return status switch
         {
-            case PositionControlStatus.Disabled:
-                return "Disabled";
-            case PositionControlStatus.Disabling:
-                return "Disabling";
-            case PositionControlStatus.NoWaypoints:
-                return "No Waypoints";
-            case PositionControlStatus.WaypointDiscontinuity:
-                return "Waypoint Discontinuity";
-            case PositionControlStatus.OutOfPosition:
-                return "Out Of Position";
-            case PositionControlStatus.Okposition:
-                return "OK";
-            case PositionControlStatus.UnknownPosition:
-                return "Unknown";
-        }
-        return "Error";
+            PositionControlStatus.Disabled => "Disabled",
+            PositionControlStatus.Disabling => "Disabling",
+            PositionControlStatus.NoWaypoints => "No Waypoints",
+            PositionControlStatus.WaypointDiscontinuity => "Waypoint Discontinuity",
+            PositionControlStatus.OutOfPosition => "Out Of Position",
+            PositionControlStatus.Okposition => "OK",
+            PositionControlStatus.UnknownPosition => "Unknown",
+            _ => "Error",
+        };
     }
 
     /// <summary>
@@ -274,26 +314,18 @@ public static class ExtensionMethods
     /// <returns>A string representing the given value.</returns>
     public static string ToDescriptiveName(this NavigationStatus status)
     {
-        switch (status)
+        return status switch
         {
-            case NavigationStatus.UnknownNavigation:
-                return "Unknown";
-            case NavigationStatus.NoScannerData:
-                return "No Scanner Data";
-            case NavigationStatus.NoResponse:
-                return "No Response";
-            case NavigationStatus.AssociationFailure:
-                return "Association Failure";
-            case NavigationStatus.PoorAssociation:
-                return "Poor Association";
-            case NavigationStatus.Lost:
-                return "Lost";
-            case NavigationStatus.HighUncertainty:
-                return "High Uncertainty";
-            case NavigationStatus.Oknavigation:
-                return "OK";    
-        }
-        return "Error";
+            NavigationStatus.UnknownNavigation => "Unknown",
+            NavigationStatus.NoScannerData => "No Scanner Data",
+            NavigationStatus.NoResponse => "No Response",
+            NavigationStatus.AssociationFailure => "Association Failure",
+            NavigationStatus.PoorAssociation => "Poor Association",
+            NavigationStatus.Lost => "Lost",
+            NavigationStatus.HighUncertainty => "High Uncertainty",
+            NavigationStatus.Oknavigation => "OK",
+            _ => "Error",
+        };
     }
 
     /// <summary>
@@ -303,25 +335,18 @@ public static class ExtensionMethods
     /// <returns>A string representing the given value.</returns>
     public static string ToDescriptiveName(this DynamicLimiterStatus status)
     {
-        switch (status)
+        return status switch
         {
-            case DynamicLimiterStatus.Ok:
-                return "OK";
-            case DynamicLimiterStatus.SafetySensor:
-                return "Safety Sensor";
-            case DynamicLimiterStatus.Warning1:
-                return "Inner Warning";
-            case DynamicLimiterStatus.Warning2:
-                return "Outer Warning";
-            case DynamicLimiterStatus.MotorFault:
-                return "Motor Fault";
-            case DynamicLimiterStatus.FastStop:
-                return "Fast Stop";
-            case DynamicLimiterStatus.GoSlow:
-                return "Go Slow";
-            case DynamicLimiterStatus.Unknown:
-                return "Unknown";
-        }
-        return "Error";
+            DynamicLimiterStatus.Ok => "OK",
+            DynamicLimiterStatus.Estopped => "E-Stopped",
+            DynamicLimiterStatus.Protection => "Protection Zone",
+            DynamicLimiterStatus.Warning1 => "Inner Warning",
+            DynamicLimiterStatus.Warning2 => "Outer Warning",
+            DynamicLimiterStatus.MotorFault => "Motor Fault",
+            DynamicLimiterStatus.StoppedByPeripheral => "Stopped by Peripheral",
+            DynamicLimiterStatus.AboutToMove => "About to Move",
+            DynamicLimiterStatus.Unknown => "Unknown",
+            _ => "Unknown",
+        };
     }
 }

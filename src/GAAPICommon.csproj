@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
-		<PackageVersion>2.6.1</PackageVersion>
-		<Platforms>x64</Platforms>
+		<TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+		<PackageVersion>2.7.0</PackageVersion>
+		<Platforms>AnyCPU</Platforms>
 		<Authors>Ollie Sharratt</Authors>
-		<Copyright>Guidance Automation 2025</Copyright>
+		<Copyright>Guidance Automation 2026</Copyright>
 		<Description>gRPC API Components for Guidance Automation assemblies.</Description>
 		<RepositoryUrl>https://github.com/Guidance-Automation/GAAPICommon</RepositoryUrl>
 		<PackageId>GAAPICommon</PackageId>
@@ -26,7 +26,14 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Google.Api.CommonProtos" Version="2.*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="9.*" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="10.*" />
 	</ItemGroup>
 
 	<ItemGroup>

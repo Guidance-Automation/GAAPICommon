@@ -167,4 +167,24 @@ public class KingpinState : IKingpinState
     /// Current docking state of the kingpin.
     /// </summary>
     public DockingState DockingState { get; set; } = DockingState.Good;
+
+    /// <summary>
+    /// The serial number of the AGV.
+    /// </summary>
+    public string SerialNumber { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Boolean indicating if the kingpin is currently connected.
+    /// </summary>
+    public bool IsConnected { get; set; } = false;
+
+    /// <summary>
+    /// Set true when the attachment reports an error.
+    /// </summary>
+    public bool AttachmentError { get; set; } = false;
+
+    /// <summary>
+    /// Used internally to indicate if a reset is required.
+    /// </summary>
+    public bool ResetRequired { get; set; } = false;
 }
