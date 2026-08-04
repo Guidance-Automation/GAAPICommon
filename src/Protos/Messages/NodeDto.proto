@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "Enums/ServiceType.proto";
+import "Messages/MapItemBehaviourData.proto";
 import "Messages/PoseDto.proto";
 
 package gaapicommon.messages;
@@ -11,4 +12,14 @@ message NodeDto {
 	string Alias = 2;
 	PoseDto Pose = 3;
 	repeated gaapicommon.enums.ServiceType Services = 4;
+	bool OnEntryRotate = 5;
+	double EntryRotation = 6;
+	bool OnExitRotate = 7;
+	double ExitRotation = 8;
+	int32 DockingMode = 9;
+	int32 DockingType = 10;
+	float DockingLength = 11;
+	repeated MapItemBehaviourData Triggers = 12;
+	repeated MapItemBehaviourData Constraints = 13;
+	repeated MapItemBehaviourData AllowedDirectives = 14;
 }

@@ -1,0 +1,903 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Jobs/JobBuilderService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "JobBuilderServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/JobBuilder/BeginEditingJob": {
+      "post": {
+        "summary": "Request to edit a job.",
+        "operationId": "JobBuilderServiceProto_BeginEditingJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonBoolResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "JobId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CommitJob": {
+      "post": {
+        "summary": "Commit a job to the scheduler.",
+        "operationId": "JobBuilderServiceProto_CommitJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "JobId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateAtomicMoveListTask": {
+      "put": {
+        "summary": "Create an atomic move list task.",
+        "operationId": "JobBuilderServiceProto_CreateAtomicMoveListTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateAtomicMoveTask": {
+      "put": {
+        "summary": "Create an atomic move task.",
+        "operationId": "JobBuilderServiceProto_CreateAtomicMoveTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentAtomicMoveListTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "MoveId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateAwaitingTask": {
+      "put": {
+        "summary": "Create an awaiting task.",
+        "operationId": "JobBuilderServiceProto_CreateAwaitingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "NodeId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateGoToNodeJob": {
+      "post": {
+        "summary": "Create and commit a complete go-to-node job in one call.",
+        "operationId": "JobBuilderServiceProto_CreateGoToNodeJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jobsCreateGoToNodeJobRequest"
+            }
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateGoToNodeTask": {
+      "put": {
+        "summary": "Create a go to node task.",
+        "operationId": "JobBuilderServiceProto_CreateGoToNodeTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "NodeId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateJob": {
+      "put": {
+        "summary": "Create a job.",
+        "operationId": "JobBuilderServiceProto_CreateJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsCreateJobResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "JobPriority",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "None",
+              "Low",
+              "Normal",
+              "High",
+              "Urgent",
+              "Immediate",
+              "Critical"
+            ],
+            "default": "None"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateOrderedListTask": {
+      "put": {
+        "summary": "Create an ordered list task.",
+        "operationId": "JobBuilderServiceProto_CreateOrderedListTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateServicingTask": {
+      "put": {
+        "summary": "Create a servicing task.",
+        "operationId": "JobBuilderServiceProto_CreateServicingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "NodeId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ServiceType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Charge",
+              "Park",
+              "Fault",
+              "ManualLoadHandling",
+              "Execution"
+            ],
+            "default": "Charge"
+          },
+          {
+            "name": "ExpectedDuration",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateSleepingTask": {
+      "put": {
+        "summary": "Create a sleeping task.",
+        "operationId": "JobBuilderServiceProto_CreateSleepingTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "NodeId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "ExpectedDuration",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/CreateUnorderedListTask": {
+      "put": {
+        "summary": "Create an unordered list task.",
+        "operationId": "JobBuilderServiceProto_CreateUnorderedListTask",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonInt32Result"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ParentTaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/FinishEditingJob": {
+      "post": {
+        "summary": "Finish editing a job.",
+        "operationId": "JobBuilderServiceProto_FinishEditingJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "JobId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/IssueEnumDirective": {
+      "post": {
+        "summary": "Issue an enum directive to a task.",
+        "operationId": "JobBuilderServiceProto_IssueEnumDirective",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Alias",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/IssueFloatDirective": {
+      "post": {
+        "summary": "Issue a float directive to a task.",
+        "operationId": "JobBuilderServiceProto_IssueFloatDirective",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Alias",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "float"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/IssueIPAddressDirective": {
+      "post": {
+        "summary": "Issue an IP Address directive to a task.",
+        "operationId": "JobBuilderServiceProto_IssueIPAddressDirective",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Alias",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/IssueShortDirective": {
+      "post": {
+        "summary": "Issue a short directive to a task.",
+        "operationId": "JobBuilderServiceProto_IssueShortDirective",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Alias",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    },
+    "/JobBuilder/IssueUShortDirective": {
+      "post": {
+        "summary": "Issue a ushort directive to a task.",
+        "operationId": "JobBuilderServiceProto_IssueUShortDirective",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Alias",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobBuilderServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "enumsJobPriority": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Low",
+        "Normal",
+        "High",
+        "Urgent",
+        "Immediate",
+        "Critical"
+      ],
+      "default": "None"
+    },
+    "enumsServiceType": {
+      "type": "string",
+      "enum": [
+        "Charge",
+        "Park",
+        "Fault",
+        "ManualLoadHandling",
+        "Execution"
+      ],
+      "default": "Charge"
+    },
+    "gaapicommonBoolResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "boolean"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gaapicommonGenericResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gaapicommonInt32Result": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "jobsCreateGoToNodeJobRequest": {
+      "type": "object",
+      "properties": {
+        "NodeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "JobPriority": {
+          "$ref": "#/definitions/enumsJobPriority"
+        }
+      }
+    },
+    "jobsCreateJobResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Job": {
+          "$ref": "#/definitions/messagesJobDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesJobDto": {
+      "type": "object",
+      "properties": {
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "RootOrderedListTaskId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

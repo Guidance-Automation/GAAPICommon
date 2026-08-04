@@ -1,0 +1,675 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/FleetManager/FleetManagerService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "FleetManagerServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/FleetManager/CreateVirtualVehicle": {
+      "put": {
+        "summary": "Create a virtual vehicle.",
+        "operationId": "FleetManagerServiceProto_CreateVirtualVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/fleetmanagerCreateVirtualVehicleResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Pose.X",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "Pose.Y",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "Pose.Heading",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/GetKingpinDescription": {
+      "get": {
+        "summary": "Get the KingpinDescription for a given vehicle.",
+        "operationId": "FleetManagerServiceProto_GetKingpinDescription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/fleetmanagerGetKingpinDescriptionResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/RemoveVehicle": {
+      "delete": {
+        "summary": "Remove a specified vehicle.",
+        "operationId": "FleetManagerServiceProto_RemoveVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/SetFleetState": {
+      "post": {
+        "summary": "Set the state of the fleet.",
+        "operationId": "FleetManagerServiceProto_SetFleetState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ControllerState",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "EnabledController",
+              "DisabledController"
+            ],
+            "default": "EnabledController"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/SetFrozenState": {
+      "post": {
+        "summary": "Set the system frozen state.",
+        "operationId": "FleetManagerServiceProto_SetFrozenState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "FrozenState",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Frozen",
+              "Unfrozen"
+            ],
+            "default": "Frozen"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/SetKingpinState": {
+      "post": {
+        "summary": "Set the state of a specified vehicle.",
+        "operationId": "FleetManagerServiceProto_SetKingpinState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ControllerState",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "EnabledController",
+              "DisabledController"
+            ],
+            "default": "EnabledController"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/SetPose": {
+      "post": {
+        "summary": "Set the position of a specified vehicle.",
+        "operationId": "FleetManagerServiceProto_SetPose",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "Pose.X",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "Pose.Y",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "Pose.Heading",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/Subscribe": {
+      "get": {
+        "summary": "Subscribe to receive fleet state updates.",
+        "operationId": "FleetManagerServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/messagesFleetStateDto"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of messagesFleetStateDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "enumsAgvMode": {
+      "type": "string",
+      "enum": [
+        "Manual",
+        "Automatic"
+      ],
+      "default": "Manual"
+    },
+    "enumsDockingState": {
+      "type": "string",
+      "enum": [
+        "Good",
+        "Timeout",
+        "LostPayload",
+        "ChargeError"
+      ],
+      "default": "Good"
+    },
+    "enumsDynamicLimiterStatus": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "Protection",
+        "Warning_1",
+        "Warning_2",
+        "MotorFault",
+        "StoppedByPeripheral",
+        "AboutToMove",
+        "Estopped",
+        "ResetRequired",
+        "Unknown"
+      ],
+      "default": "OK"
+    },
+    "enumsExtendedDataFaultStatus": {
+      "type": "string",
+      "enum": [
+        "NoFault",
+        "Fault"
+      ],
+      "default": "NoFault"
+    },
+    "enumsFrozenState": {
+      "type": "string",
+      "enum": [
+        "Frozen",
+        "Unfrozen"
+      ],
+      "default": "Frozen"
+    },
+    "enumsLoadedState": {
+      "type": "string",
+      "enum": [
+        "Unloaded",
+        "Loaded",
+        "Transitioning"
+      ],
+      "default": "Unloaded"
+    },
+    "enumsMovementType": {
+      "type": "string",
+      "enum": [
+        "Stationary",
+        "ClothoidForwards",
+        "ClothoidBackwards",
+        "ACRIP",
+        "CRIP",
+        "StrafeLinear",
+        "StrafeClothoidForwards",
+        "StrafeClothoidBackwards"
+      ],
+      "default": "Stationary",
+      "title": "- ACRIP: Anti-clockwise rotate in place\n - CRIP: Clockwise rotate in place\n - StrafeLinear: WSAD"
+    },
+    "enumsNavigationStatus": {
+      "type": "string",
+      "enum": [
+        "OKNavigation",
+        "Lost",
+        "AssociationFailure",
+        "HighUncertainty",
+        "PoorAssociation",
+        "NoResponse",
+        "NoScannerData",
+        "UnknownNavigation"
+      ],
+      "default": "OKNavigation"
+    },
+    "enumsPositionControlStatus": {
+      "type": "string",
+      "enum": [
+        "OKPosition",
+        "Disabled",
+        "Disabling",
+        "NoWaypoints",
+        "OutOfPosition",
+        "WaypointDiscontinuity",
+        "UnknownPosition"
+      ],
+      "default": "OKPosition"
+    },
+    "enumsVehicleControllerState": {
+      "type": "string",
+      "enum": [
+        "EnabledController",
+        "DisabledController"
+      ],
+      "default": "EnabledController"
+    },
+    "fleetmanagerCreateVirtualVehicleResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "fleetmanagerGetKingpinDescriptionResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "KingpinDescription": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gaapicommonGenericResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesFleetStateDto": {
+      "type": "object",
+      "properties": {
+        "KingpinStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesKingpinStateDto"
+          }
+        },
+        "Tick": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "FrozenState": {
+          "$ref": "#/definitions/enumsFrozenState"
+        }
+      }
+    },
+    "messagesKingpinStateDto": {
+      "type": "object",
+      "properties": {
+        "Alias": {
+          "type": "string"
+        },
+        "IsVirtual": {
+          "type": "boolean"
+        },
+        "CurrentMovementType": {
+          "$ref": "#/definitions/enumsMovementType"
+        },
+        "Tick": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AgvMode": {
+          "$ref": "#/definitions/enumsAgvMode"
+        },
+        "BatteryChargePercentage": {
+          "type": "number",
+          "format": "double"
+        },
+        "PositionControlStatus": {
+          "$ref": "#/definitions/enumsPositionControlStatus"
+        },
+        "NavigationStatus": {
+          "$ref": "#/definitions/enumsNavigationStatus"
+        },
+        "DynamicLimiterStatus": {
+          "$ref": "#/definitions/enumsDynamicLimiterStatus"
+        },
+        "ExtendedDataFaultStatus": {
+          "$ref": "#/definitions/enumsExtendedDataFaultStatus"
+        },
+        "FrozenState": {
+          "$ref": "#/definitions/enumsFrozenState"
+        },
+        "Heading": {
+          "type": "number",
+          "format": "float"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "IPAddressLong": {
+          "type": "string",
+          "format": "int64"
+        },
+        "IsCharging": {
+          "type": "boolean"
+        },
+        "LastCompletedInstructionId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Speed": {
+          "type": "number",
+          "format": "double"
+        },
+        "StateCastExtendedData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "CurrentWaypointExtendedData": {
+          "type": "string",
+          "format": "byte"
+        },
+        "Stationary": {
+          "type": "string"
+        },
+        "WaypointLastId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "WaypointNextId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "X": {
+          "type": "number",
+          "format": "float"
+        },
+        "Y": {
+          "type": "number",
+          "format": "float"
+        },
+        "LoadedState": {
+          "$ref": "#/definitions/enumsLoadedState"
+        },
+        "PeripheralData": {
+          "type": "string"
+        },
+        "PayloadCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DockingState": {
+          "$ref": "#/definitions/enumsDockingState"
+        },
+        "SerialNumber": {
+          "type": "string"
+        },
+        "IsConnected": {
+          "type": "boolean"
+        },
+        "AttachmentError": {
+          "type": "boolean"
+        },
+        "ResetRequired": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesPoseDto": {
+      "type": "object",
+      "properties": {
+        "X": {
+          "type": "number",
+          "format": "double"
+        },
+        "Y": {
+          "type": "number",
+          "format": "double"
+        },
+        "Heading": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

@@ -54,6 +54,15 @@ service JobBuilderServiceProto {
     };
   }
 
+  // Create and commit a complete go-to-node job in one call.
+  rpc CreateGoToNodeJob(CreateGoToNodeJobRequest)
+      returns (gaapicommon.Int32Result) {
+    option (google.api.http) = {
+      post : "/JobBuilder/CreateGoToNodeJob"
+      body : "*"
+    };
+  }
+
   // Create an ordered list task.
   rpc CreateOrderedListTask(CreateOrderedListTaskRequest)
       returns (gaapicommon.Int32Result) {
@@ -172,6 +181,12 @@ message CreateJobRequest {
 message CreateGoToNodeTaskRequest {
   int32 ParentTaskId = 1;
   int32 NodeId = 2;
+}
+
+message CreateGoToNodeJobRequest {
+  int32 NodeId = 1;
+  int32 AgentId = 2;
+  optional gaapicommon.enums.JobPriority JobPriority = 3;
 }
 
 message CreateAtomicMoveListTaskRequest { int32 ParentTaskId = 1; }

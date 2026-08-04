@@ -1,12 +1,16 @@
 syntax = "proto3";
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "Common/GenericResult.proto";
 import "Messages/MoveDto.proto";
 import "Messages/ParameterDto.proto";
 import "Messages/NodeDto.proto";
 import "Messages/WaypointDto.proto";
 import "Messages/OccupyingMandateProgressDto.proto";
+import "Messages/RoadmapOccupierDto.proto";
+import "Messages/MapCardDto.proto";
+import "Messages/RoadmapUploadResultDto.proto";
 
 import "google/api/annotations.proto";
 
@@ -62,11 +66,90 @@ service MapServiceProto {
     };
   }
 
+  // Get the current occupiers committed to all roadmap nodes and moves.
+  rpc GetRoadmapOccupiers(GetRoadmapOccupiersRequest)
+      returns (GetRoadmapOccupiersResult) {
+    option (google.api.http) = {
+      get : "/Map/GetRoadmapOccupiers"
+    };
+  }
+
   // Get a trajectory.
   rpc GetTrajectory(GetTrajectoryRequest) returns (GetTrajectoryResult) {
     option (google.api.http) = {
       get : "/Map/GetTrajectory"
     };
+  }
+
+  // Get point-cloud points from the active roadmap.
+  rpc GetPointCloud(GetPointCloudRequest) returns (GetPointCloudResult) {
+    option (google.api.http) = { get: "/Map/GetPointCloud" };
+  }
+
+  // Get the occupiers committed to one roadmap item.
+  rpc GetMapItemOccupiers(GetMapItemOccupiersRequest)
+      returns (GetRoadmapOccupiersResult) {
+    option (google.api.http) = { get: "/Map/GetMapItemOccupiers/{MapItemId}" };
+  }
+
+  // Get persisted trajectory generation settings.
+  rpc GetTrajectorySettings(GetTrajectorySettingsRequest)
+      returns (TrajectorySettingsResult) {
+    option (google.api.http) = { get: "/Map/GetTrajectorySettings" };
+  }
+
+  // Update persisted trajectory generation settings.
+  rpc SetTrajectorySettings(SetTrajectorySettingsRequest)
+      returns (TrajectorySettingsResult) {
+    option (google.api.http) = { put: "/Map/SetTrajectorySettings" body: "*" };
+  }
+
+  // Get the roadmap currently loaded by Scheduling.
+  rpc GetActiveRoadmap(GetRoadmapRequest) returns (GetRoadmapResult) {
+    option (google.api.http) = { get: "/Map/GetActiveRoadmap" };
+  }
+
+  // Get the roadmap selected for the next Scheduling restart.
+  rpc GetNextRoadmap(GetRoadmapRequest) returns (GetRoadmapResult) {
+    option (google.api.http) = { get: "/Map/GetNextRoadmap" };
+  }
+
+  // Get the current versions of every available roadmap.
+  rpc GetRoadmaps(GetRoadmapRequest) returns (GetRoadmapsResult) {
+    option (google.api.http) = { get: "/Map/GetRoadmaps" };
+  }
+
+  // Get every roadmap and its immutable version history.
+  rpc GetRoadmapCatalog(GetRoadmapRequest) returns (GetRoadmapCatalogResult) {
+    option (google.api.http) = { get: "/Map/GetRoadmapCatalog" };
+  }
+
+  // Get active, next, and catalog roadmap data as one snapshot.
+  rpc GetRoadmapOverview(GetRoadmapRequest) returns (GetRoadmapOverviewResult) {
+    option (google.api.http) = { get: "/Map/GetRoadmapOverview" };
+  }
+
+  rpc ActivateRoadmap(RoadmapIdRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Map/ActivateRoadmap/{Id}" body: "*" };
+  }
+
+  rpc DeleteRoadmap(RoadmapIdRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { delete: "/Map/DeleteRoadmap/{Id}" };
+  }
+
+  // Upload a roadmap in bounded chunks.
+  rpc UploadRoadmap(stream RoadmapUploadChunk)
+      returns (gaapicommon.messages.RoadmapUploadResultDto);
+
+  // Upload and export a roadmap to traNsitrak, streaming both directions.
+  rpc ExportTransitrak(stream TransitrakExportChunk) returns (stream FileChunk);
+
+  rpc DownloadRoadmap(RoadmapIdRequest) returns (stream FileChunk) {
+    option (google.api.http) = { get: "/Map/DownloadRoadmap/{Id}" };
+  }
+
+  rpc DownloadActiveRoadmap(GetRoadmapRequest) returns (stream FileChunk) {
+    option (google.api.http) = { get: "/Map/DownloadActiveRoadmap" };
   }
 
   // Subscribe to receive Occupying Mandate Progress updates.
@@ -91,8 +174,15 @@ message SetOccupyingMandateRequest {
 message GetAllMoveDataRequest {}
 message GetAllNodeDataRequest {}
 message GetAllParameterDataRequest {}
+message GetRoadmapOccupiersRequest {}
 
 message GetTrajectoryRequest { int32 MoveId = 1; }
+message GetPointCloudRequest { int32 MaxPoints = 1; }
+message GetMapItemOccupiersRequest { int32 MapItemId = 1; }
+message GetTrajectorySettingsRequest {}
+message SetTrajectorySettingsRequest { double ClothoidWaypointSpacingMeters = 1; }
+message GetRoadmapRequest {}
+message RoadmapIdRequest { int32 Id = 1; }
 
 message MapSubscribeRequest {}
 
@@ -130,10 +220,108 @@ message GetAllParameterDataResult {
   int32 ServiceCode = 5;
 }
 
+message GetRoadmapOccupiersResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.RoadmapOccupierDto Occupiers = 4;
+  int32 ServiceCode = 5;
+}
+
 message GetTrajectoryResult {
   string ExceptionMessage = 1;
   string ExceptionSource = 2;
   string ExceptionStackTrace = 3;
   repeated gaapicommon.messages.WaypointDto Waypoints = 4;
   int32 ServiceCode = 5;
+}
+
+message PointCloudPointDto { double X = 1; double Y = 2; }
+
+message GetPointCloudResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated PointCloudPointDto Points = 4;
+  int32 ServiceCode = 5;
+  int32 TotalPointCount = 6;
+  bool IsSampled = 7;
+}
+
+message TrajectorySettingsResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  double ClothoidWaypointSpacingMeters = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetRoadmapResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.MapCardDto Roadmap = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetRoadmapsResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.MapCardDto Roadmaps = 4;
+  int32 ServiceCode = 5;
+}
+
+message RoadmapVersionDto {
+  int32 Id = 1;
+  int32 MapId = 2;
+  int32 Version = 3;
+  string ChangeMessage = 4;
+  google.protobuf.Timestamp CreatedAt = 5;
+  google.protobuf.Timestamp LastAccess = 6;
+  bool IsSelected = 7;
+  bool IsLatest = 8;
+}
+
+message RoadmapCatalogItemDto {
+  int32 MapId = 1;
+  string Alias = 2;
+  string Description = 3;
+  RoadmapVersionDto LatestVersion = 4;
+  repeated RoadmapVersionDto Versions = 5;
+}
+
+message GetRoadmapCatalogResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated RoadmapCatalogItemDto Catalog = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetRoadmapOverviewResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  gaapicommon.messages.MapCardDto ActiveRoadmap = 4;
+  int32 ServiceCode = 5;
+  gaapicommon.messages.MapCardDto NextRoadmap = 6;
+  repeated RoadmapCatalogItemDto Catalog = 7;
+}
+
+message RoadmapUploadChunk {
+  string FileName = 1;
+  string ChangeMessage = 2;
+  bytes Data = 3;
+}
+
+message TransitrakExportChunk {
+  string FileName = 1;
+  string ExportName = 2;
+  bytes Data = 3;
+}
+
+message FileChunk {
+  string FileName = 1;
+  bytes Data = 2;
 }

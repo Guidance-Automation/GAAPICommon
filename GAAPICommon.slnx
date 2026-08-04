@@ -8,6 +8,6 @@
   </Folder>
   <Project Path="src/GAAPICommon.csproj">
     <Platform Solution="Release|*" Project="AnyCPU" />
-    <Build Solution="Release|*" Project="false" />
   </Project>
+  <Project Path="tests/GAAPICommon.Tests.csproj" />
 </Solution>

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+// Trigger, constraint, or allowed directive attached to a roadmap item.
+message MapItemBehaviourData {
+  int32 MapItemId = 1;
+  string Kind = 2;
+  int32 ParameterId = 3;
+  optional string ParameterAlias = 4;
+  optional string ParameterType = 5;
+  optional int32 AgvType = 6;
+  optional string TriggerType = 7;
+  optional string Value = 8;
+}

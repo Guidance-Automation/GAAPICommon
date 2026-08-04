@@ -1,0 +1,197 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Servicing/ServicingService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ServicingServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/Servicing/GetOutstandingServiceRequests": {
+      "get": {
+        "summary": "Get all outstanding service requests.",
+        "operationId": "ServicingServiceProto_GetOutstandingServiceRequests",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/servicingGetOutstandingServiceRequestsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ServicingServiceProto"
+        ]
+      }
+    },
+    "/Servicing/SetServiceComplete": {
+      "post": {
+        "summary": "Set a service as complete.",
+        "operationId": "ServicingServiceProto_SetServiceComplete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "ServicingServiceProto"
+        ]
+      }
+    },
+    "/Servicing/Subscribe": {
+      "get": {
+        "summary": "Subscribe to service status updates.",
+        "operationId": "ServicingServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/messagesServiceStateDto"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of messagesServiceStateDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ServicingServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gaapicommonGenericResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesServiceStateDto": {
+      "type": "object",
+      "properties": {
+        "BeneficiaryId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ExecutorId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "servicingGetOutstandingServiceRequestsResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesServiceStateDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

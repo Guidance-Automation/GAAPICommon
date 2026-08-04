@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "Enums/ReleaseFlag.proto";
+
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
 
@@ -7,5 +9,7 @@ message SemVerDto {
 	int32 Major = 1;
 	int32 Minor = 2;
 	int32 Patch = 3;
-	string ReleaseFlag = 4;
+	gaapicommon.enums.ReleaseFlag ReleaseFlag = 4;
+	string PreRelease = 5; // Identifiers after the release stage, for example "1" in "rc.1".
+	string BuildMetadata = 6; // Optional SemVer build metadata, without the leading "+".
 }

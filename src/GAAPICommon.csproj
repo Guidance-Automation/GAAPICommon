@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0;net10.0</TargetFrameworks>
-		<PackageVersion>2.7.0</PackageVersion>
+		<TargetFrameworks>net10.0</TargetFrameworks>
+		<PackageVersion>3.0.0-rc.1</PackageVersion>
 		<Platforms>AnyCPU</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2026</Copyright>
@@ -20,25 +20,51 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" Version="3.*" />
-		<PackageReference Include="Grpc.Core" Version="2.*" />
-		<PackageReference Include="Grpc.Tools" Version="2.*">
+		<PackageReference Include="Google.Protobuf" Version="3.35.1" />
+		<PackageReference Include="Grpc.Core" Version="2.46.6" />
+		<PackageReference Include="Grpc.Tools" Version="2.83.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Google.Api.CommonProtos" Version="2.*" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="9.*" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="10.*" />
+		<PackageReference Include="Google.Api.CommonProtos" Version="2.17.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="10.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="OpenApi\**\*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Pack>true</Pack>
+			<PackageCopyToOutput>true</PackageCopyToOutput>
+			<PackagePath>contentFiles\any\any\OpenApi\</PackagePath>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<_OpenApiGenerationInput Include="Protos\**\*.proto" />
+		<_OpenApiGenerationInput Include="..\scripts\Generate-OpenApi.ps1" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Agents\AgentService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\FleetManager\FleetManagerService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Jobs\JobBuilderService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Jobs\JobsStateService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Jobs\JobStateService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Jobs\TaskStateService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Maps\MapService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Scheduling\SchedulingService.swagger.json" />
+		<_OpenApiGenerationOutput Include="OpenApi\Services\Servicing\ServicingService.swagger.json" />
+	</ItemGroup>
+
+	<Target Name="GenerateOpenApiDocuments"
+			BeforeTargets="Pack"
+			Inputs="@(_OpenApiGenerationInput)"
+			Outputs="@(_OpenApiGenerationOutput)">
+		<Exec
+			Command="pwsh -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\..\scripts\Generate-OpenApi.ps1&quot;"
+			WorkingDirectory="$(MSBuildProjectDirectory)\.." />
+	</Target>
 
 	<ItemGroup>
 		<Protobuf Include="Protos\Common\**\*.proto" Exclude="Protos\google\**" GrpcServices="None" ProtoRoot="Protos\" />

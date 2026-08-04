@@ -1,0 +1,121 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Jobs/TaskStateService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TaskStateServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/TaskState/Subscribe": {
+      "get": {
+        "summary": "Subscribe to receive task progress updates.",
+        "operationId": "TaskStateServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/messagesTaskProgressDto"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of messagesTaskProgressDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TaskStateServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "enumsTaskStatus": {
+      "type": "string",
+      "enum": [
+        "UnstartedTask",
+        "InProgressTask",
+        "CompletedTask",
+        "AbortingTask",
+        "AbortedTask",
+        "FailingTask",
+        "FailedTask",
+        "EditingTask",
+        "PartiallyCompletedTask"
+      ],
+      "default": "UnstartedTask"
+    },
+    "messagesTaskProgressDto": {
+      "type": "object",
+      "properties": {
+        "AssignedAgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskStatus": {
+          "$ref": "#/definitions/enumsTaskStatus"
+        },
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "MapItemId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

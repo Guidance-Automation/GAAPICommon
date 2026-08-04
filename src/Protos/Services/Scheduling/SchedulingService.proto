@@ -1,6 +1,12 @@
 syntax = "proto3";
 
+import "google/protobuf/duration.proto";
+import "Common/GenericResult.proto";
+import "Messages/ComponentManagerStatusDto.proto";
+import "Messages/ModuleInfoDto.proto";
+import "Messages/SchedulerConfigDto.proto";
 import "Messages/SchedulerStateDto.proto";
+import "Messages/SemVerDto.proto";
 
 import "google/api/annotations.proto";
 
@@ -9,6 +15,87 @@ option csharp_namespace = "GAAPICommon.Services.Scheduling";
 
 // Scheduling Service
 service SchedulingServiceProto {
+
+  rpc GetModuleInfo(SchedulingRequest)
+      returns (gaapicommon.messages.ModuleInfoDto) {
+    option (google.api.http) = { get: "/Scheduling/GetModuleInfo" };
+  }
+
+  rpc GetServiceVersion(SchedulingRequest)
+      returns (gaapicommon.messages.SemVerDto) {
+    option (google.api.http) = { get: "/Scheduling/GetServiceVersion" };
+  }
+
+  rpc RestartService(SchedulingRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { post: "/Scheduling/RestartService" body: "*" };
+  }
+
+  rpc GetSchedulerState(SchedulingRequest)
+      returns (gaapicommon.messages.SchedulerStateDto) {
+    option (google.api.http) = { get: "/Scheduling/GetSchedulerState" };
+  }
+
+  rpc GetSchedulerConfig(SchedulingRequest)
+      returns (gaapicommon.messages.SchedulerConfigDto) {
+    option (google.api.http) = { get: "/Scheduling/GetSchedulerConfig" };
+  }
+
+  rpc GetRuntimeSettings(SchedulingRequest) returns (RuntimeSettingsResult) {
+    option (google.api.http) = { get: "/Scheduling/GetRuntimeSettings" };
+  }
+
+  rpc SetRuntimeSettings(SetRuntimeSettingsRequest) returns (RuntimeSettingsResult) {
+    option (google.api.http) = { put: "/Scheduling/SetRuntimeSettings" body: "*" };
+  }
+
+  rpc GetJobCostings(SchedulingRequest) returns (JobCostingsResult) {
+    option (google.api.http) = { get: "/Scheduling/GetJobCostings" };
+  }
+
+  rpc SetJobCostings(SetJobCostingsRequest) returns (JobCostingsResult) {
+    option (google.api.http) = { put: "/Scheduling/SetJobCostings" body: "*" };
+  }
+
+  rpc RestoreJobCostingDefaults(SchedulingRequest) returns (JobCostingsResult) {
+    option (google.api.http) = { post: "/Scheduling/RestoreJobCostingDefaults" body: "*" };
+  }
+
+  rpc GetComponentManagerStatus(SchedulingRequest)
+      returns (gaapicommon.messages.ComponentManagerStatusDto) {
+    option (google.api.http) = { get: "/Scheduling/GetComponentManagerStatus" };
+  }
+
+  rpc GetComponentManagerFailureReason(SchedulingRequest) returns (StringResult) {
+    option (google.api.http) = { get: "/Scheduling/GetComponentManagerFailureReason" };
+  }
+
+  rpc SetSpotManagement(BoolValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetSpotManagement" body: "*" };
+  }
+
+  rpc SetAttractMode(BoolValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetAttractMode" body: "*" };
+  }
+
+  rpc SetWaypointItineraryBuffer(Int32ValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetWaypointItineraryBuffer" body: "*" };
+  }
+
+  rpc SetImmediateChargeLevel(Int32ValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetImmediateChargeLevel" body: "*" };
+  }
+
+  rpc SetChargeDowngradeLevel(Int32ValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetChargeDowngradeLevel" body: "*" };
+  }
+
+  rpc SetMaximumChargeLevel(Int32ValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetMaximumChargeLevel" body: "*" };
+  }
+
+  rpc SetIdleTimeout(DurationValueRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { put: "/Scheduling/SetIdleTimeout" body: "*" };
+  }
 
   // Subscribe to state updates.
   rpc Subscribe(SchedulingSubscribeRequest)
@@ -21,4 +108,49 @@ service SchedulingServiceProto {
 
 // Message Parameters
 
+message SchedulingRequest {}
 message SchedulingSubscribeRequest {}
+message BoolValueRequest { bool Value = 1; }
+message Int32ValueRequest { int32 Value = 1; }
+message DurationValueRequest { google.protobuf.Duration Value = 1; }
+
+message SetRuntimeSettingsRequest {
+  double MaxJoinDistance = 1;
+  bool AutoMigrate = 2;
+}
+
+message RuntimeSettingsResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  double MaxJoinDistance = 4;
+  int32 ServiceCode = 5;
+  bool AutoMigrate = 6;
+}
+
+message SetJobCostingsRequest {
+  double BaseCostSeconds = 1;
+  double CostScalingThresholdSeconds = 2;
+  double Lambda = 3;
+  bool IsEnabled = 4;
+}
+
+message JobCostingsResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  double BaseCostSeconds = 4;
+  int32 ServiceCode = 5;
+  double CostScalingThresholdSeconds = 6;
+  double MaxCostScalingThresholdSeconds = 7;
+  double Lambda = 8;
+  bool IsEnabled = 9;
+}
+
+message StringResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  string Value = 4;
+  int32 ServiceCode = 5;
+}
