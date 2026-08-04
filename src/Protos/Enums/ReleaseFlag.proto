@@ -4,8 +4,9 @@ package gaapicommon.enums;
 option csharp_namespace = "GAAPICommon.Enums";
 
 enum ReleaseFlag {
-    Alpha = 0; // Internal test 
-    Beta = 1; // External test
-    ReleaseCandidate = 2; // For the testing team
-    Release = 3; // Official release
+    Unspecified = 0;
+    Alpha = 1; // Internal test
+    Beta = 2; // External test
+    ReleaseCandidate = 3; // For the testing team
+    Release = 4; // Official release
 }

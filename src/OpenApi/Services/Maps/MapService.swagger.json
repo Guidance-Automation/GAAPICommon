@@ -1,0 +1,1462 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Maps/MapService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "MapServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/Map/ActivateRoadmap/{Id}": {
+      "put": {
+        "operationId": "MapServiceProto_ActivateRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MapServiceProtoActivateRoadmapBody"
+            }
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/ClearOccupyingMandate": {
+      "post": {
+        "summary": "Clear all occupying mandates.",
+        "operationId": "MapServiceProto_ClearOccupyingMandate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/DeleteRoadmap/{Id}": {
+      "delete": {
+        "operationId": "MapServiceProto_DeleteRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/DownloadActiveRoadmap": {
+      "get": {
+        "operationId": "MapServiceProto_DownloadActiveRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/mapsFileChunk"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of mapsFileChunk"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/DownloadRoadmap/{Id}": {
+      "get": {
+        "operationId": "MapServiceProto_DownloadRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/mapsFileChunk"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of mapsFileChunk"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetActiveRoadmap": {
+      "get": {
+        "summary": "Get the roadmap currently loaded by Scheduling.",
+        "operationId": "MapServiceProto_GetActiveRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetAllMoveData": {
+      "get": {
+        "summary": "Get all moves.",
+        "operationId": "MapServiceProto_GetAllMoveData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetAllMoveDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetAllNodeData": {
+      "get": {
+        "summary": "Get all nodes.",
+        "operationId": "MapServiceProto_GetAllNodeData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetAllNodeDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetAllParameterData": {
+      "get": {
+        "summary": "Get all parameters.",
+        "operationId": "MapServiceProto_GetAllParameterData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetAllParameterDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetMapItemOccupiers/{MapItemId}": {
+      "get": {
+        "summary": "Get the occupiers committed to one roadmap item.",
+        "operationId": "MapServiceProto_GetMapItemOccupiers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapOccupiersResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "MapItemId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetNextRoadmap": {
+      "get": {
+        "summary": "Get the roadmap selected for the next Scheduling restart.",
+        "operationId": "MapServiceProto_GetNextRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetOccupyingMandateProgressData": {
+      "get": {
+        "summary": "Get occupying mandates.",
+        "operationId": "MapServiceProto_GetOccupyingMandateProgressData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetOccupyingMandateProgressDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetPointCloud": {
+      "get": {
+        "summary": "Get point-cloud points from the active roadmap.",
+        "operationId": "MapServiceProto_GetPointCloud",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetPointCloudResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "MaxPoints",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetRoadmapCatalog": {
+      "get": {
+        "summary": "Get every roadmap and its immutable version history.",
+        "operationId": "MapServiceProto_GetRoadmapCatalog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapCatalogResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetRoadmapOccupiers": {
+      "get": {
+        "summary": "Get the current occupiers committed to all roadmap nodes and moves.",
+        "operationId": "MapServiceProto_GetRoadmapOccupiers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapOccupiersResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetRoadmapOverview": {
+      "get": {
+        "summary": "Get active, next, and catalog roadmap data as one snapshot.",
+        "operationId": "MapServiceProto_GetRoadmapOverview",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapOverviewResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetRoadmaps": {
+      "get": {
+        "summary": "Get the current versions of every available roadmap.",
+        "operationId": "MapServiceProto_GetRoadmaps",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetRoadmapsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetTrajectory": {
+      "get": {
+        "summary": "Get a trajectory.",
+        "operationId": "MapServiceProto_GetTrajectory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetTrajectoryResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "MoveId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/GetTrajectorySettings": {
+      "get": {
+        "summary": "Get persisted trajectory generation settings.",
+        "operationId": "MapServiceProto_GetTrajectorySettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsTrajectorySettingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/SetOccupyingMandate": {
+      "post": {
+        "summary": "Set an occupying mandate.",
+        "operationId": "MapServiceProto_SetOccupyingMandate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "MapItemIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "Timeout",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/SetTrajectorySettings": {
+      "put": {
+        "summary": "Update persisted trajectory generation settings.",
+        "operationId": "MapServiceProto_SetTrajectorySettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsTrajectorySettingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mapsSetTrajectorySettingsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/Subscribe": {
+      "get": {
+        "summary": "Subscribe to receive Occupying Mandate Progress updates.",
+        "operationId": "MapServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/messagesOccupyingMandateProgressDto"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of messagesOccupyingMandateProgressDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "MapServiceProtoActivateRoadmapBody": {
+      "type": "object"
+    },
+    "enumsMovementType": {
+      "type": "string",
+      "enum": [
+        "Stationary",
+        "ClothoidForwards",
+        "ClothoidBackwards",
+        "ACRIP",
+        "CRIP",
+        "StrafeLinear",
+        "StrafeClothoidForwards",
+        "StrafeClothoidBackwards"
+      ],
+      "default": "Stationary",
+      "title": "- ACRIP: Anti-clockwise rotate in place\n - CRIP: Clockwise rotate in place\n - StrafeLinear: WSAD"
+    },
+    "enumsOccupyingMandateState": {
+      "type": "string",
+      "enum": [
+        "None",
+        "InProgress",
+        "Occupied",
+        "TimedOut",
+        "AwaitingPreProcess",
+        "FailedPreProcessing"
+      ],
+      "default": "None"
+    },
+    "enumsServiceType": {
+      "type": "string",
+      "enum": [
+        "Charge",
+        "Park",
+        "Fault",
+        "ManualLoadHandling",
+        "Execution"
+      ],
+      "default": "Charge"
+    },
+    "gaapicommonGenericResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsFileChunk": {
+      "type": "object",
+      "properties": {
+        "FileName": {
+          "type": "string"
+        },
+        "Data": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "mapsGetAllMoveDataResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Moves": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMoveDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetAllNodeDataResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesNodeDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetAllParameterDataResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesParameterDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetOccupyingMandateProgressDataResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "OccupyingMandateProgress": {
+          "$ref": "#/definitions/messagesOccupyingMandateProgressDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetPointCloudResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mapsPointCloudPointDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TotalPointCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsSampled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "mapsGetRoadmapCatalogResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Catalog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mapsRoadmapCatalogItemDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetRoadmapOccupiersResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Occupiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesRoadmapOccupierDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetRoadmapOverviewResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ActiveRoadmap": {
+          "$ref": "#/definitions/messagesMapCardDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "NextRoadmap": {
+          "$ref": "#/definitions/messagesMapCardDto"
+        },
+        "Catalog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mapsRoadmapCatalogItemDto"
+          }
+        }
+      }
+    },
+    "mapsGetRoadmapResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Roadmap": {
+          "$ref": "#/definitions/messagesMapCardDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetRoadmapsResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Roadmaps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapCardDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsGetTrajectoryResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesWaypointDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsPointCloudPointDto": {
+      "type": "object",
+      "properties": {
+        "X": {
+          "type": "number",
+          "format": "double"
+        },
+        "Y": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "mapsRoadmapCatalogItemDto": {
+      "type": "object",
+      "properties": {
+        "MapId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Alias": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "LatestVersion": {
+          "$ref": "#/definitions/mapsRoadmapVersionDto"
+        },
+        "Versions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mapsRoadmapVersionDto"
+          }
+        }
+      }
+    },
+    "mapsRoadmapVersionDto": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "MapId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Version": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ChangeMessage": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "LastAccess": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "IsSelected": {
+          "type": "boolean"
+        },
+        "IsLatest": {
+          "type": "boolean"
+        }
+      }
+    },
+    "mapsSetTrajectorySettingsRequest": {
+      "type": "object",
+      "properties": {
+        "ClothoidWaypointSpacingMeters": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "mapsTrajectorySettingsResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ClothoidWaypointSpacingMeters": {
+          "type": "number",
+          "format": "double"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesMapCardDto": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "LocalName": {
+          "type": "string"
+        },
+        "MapMetadata": {
+          "$ref": "#/definitions/messagesMapMetadataDto"
+        },
+        "LastAccess": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "IsSelected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesMapItemBehaviourData": {
+      "type": "object",
+      "properties": {
+        "MapItemId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Kind": {
+          "type": "string"
+        },
+        "ParameterId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ParameterAlias": {
+          "type": "string"
+        },
+        "ParameterType": {
+          "type": "string"
+        },
+        "AgvType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TriggerType": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        }
+      },
+      "description": "Trigger, constraint, or allowed directive attached to a roadmap item."
+    },
+    "messagesMapMetadataDto": {
+      "type": "object",
+      "properties": {
+        "Alias": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Guid": {
+          "type": "string"
+        }
+      }
+    },
+    "messagesMoveDto": {
+      "type": "object",
+      "properties": {
+        "Alias": {
+          "type": "string"
+        },
+        "DestinationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SourceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "MovementType": {
+          "$ref": "#/definitions/enumsMovementType"
+        },
+        "SpeedLimit": {
+          "type": "number",
+          "format": "double"
+        },
+        "MoveType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsBidirectional": {
+          "type": "boolean"
+        },
+        "TrajectoryPoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesPoseDto"
+          }
+        },
+        "Triggers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapItemBehaviourData"
+          }
+        },
+        "Constraints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapItemBehaviourData"
+          }
+        },
+        "AllowedDirectives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapItemBehaviourData"
+          }
+        }
+      }
+    },
+    "messagesNodeDto": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Alias": {
+          "type": "string"
+        },
+        "Pose": {
+          "$ref": "#/definitions/messagesPoseDto"
+        },
+        "Services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/enumsServiceType"
+          }
+        },
+        "OnEntryRotate": {
+          "type": "boolean"
+        },
+        "EntryRotation": {
+          "type": "number",
+          "format": "double"
+        },
+        "OnExitRotate": {
+          "type": "boolean"
+        },
+        "ExitRotation": {
+          "type": "number",
+          "format": "double"
+        },
+        "DockingMode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DockingType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "DockingLength": {
+          "type": "number",
+          "format": "float"
+        },
+        "Triggers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapItemBehaviourData"
+          }
+        },
+        "Constraints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapItemBehaviourData"
+          }
+        },
+        "AllowedDirectives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesMapItemBehaviourData"
+          }
+        }
+      }
+    },
+    "messagesOccupyingMandateMapItemDto": {
+      "type": "object",
+      "properties": {
+        "MapItemId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsOccupied": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesOccupyingMandateProgressDto": {
+      "type": "object",
+      "properties": {
+        "OccupyingMandateMapItem": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesOccupyingMandateMapItemDto"
+          }
+        },
+        "OccupyingMandateState": {
+          "$ref": "#/definitions/enumsOccupyingMandateState"
+        },
+        "TimeoutRemaining": {
+          "type": "string"
+        }
+      }
+    },
+    "messagesParameterDto": {
+      "type": "object",
+      "properties": {
+        "AGVType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Alias": {
+          "type": "string"
+        },
+        "DataType": {
+          "type": "string"
+        },
+        "ParameterId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesPoseDto": {
+      "type": "object",
+      "properties": {
+        "X": {
+          "type": "number",
+          "format": "double"
+        },
+        "Y": {
+          "type": "number",
+          "format": "double"
+        },
+        "Heading": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "messagesRoadmapMapItemType": {
+      "type": "string",
+      "enum": [
+        "UnknownRoadmapMapItemType",
+        "Node",
+        "Move"
+      ],
+      "default": "UnknownRoadmapMapItemType",
+      "description": "Identifies the kind of roadmap item holding a commitment."
+    },
+    "messagesRoadmapOccupierDto": {
+      "type": "object",
+      "properties": {
+        "MapItemId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The scheduler roadmap item identifier."
+        },
+        "MapItemType": {
+          "$ref": "#/definitions/messagesRoadmapMapItemType",
+          "description": "The kind of roadmap item."
+        },
+        "OccupierId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The agent or special occupier identifier."
+        },
+        "OccupierType": {
+          "$ref": "#/definitions/messagesRoadmapOccupierType",
+          "description": "The kind of occupier."
+        },
+        "MapItemDisplayName": {
+          "type": "string",
+          "description": "Display name for the node or move."
+        },
+        "DisplayName": {
+          "type": "string",
+          "description": "Display name for the agent or special occupier."
+        }
+      },
+      "description": "A live commitment between an occupier and a roadmap node or move."
+    },
+    "messagesRoadmapOccupierType": {
+      "type": "string",
+      "enum": [
+        "UnknownRoadmapOccupierType",
+        "Agent",
+        "Special"
+      ],
+      "default": "UnknownRoadmapOccupierType",
+      "description": "Identifies whether a commitment belongs to an AGV or a scheduler-owned marker."
+    },
+    "messagesWaypointDto": {
+      "type": "object",
+      "properties": {
+        "HeadingRad": {
+          "type": "number",
+          "format": "double"
+        },
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "X": {
+          "type": "number",
+          "format": "double"
+        },
+        "Y": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

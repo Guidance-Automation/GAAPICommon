@@ -16,4 +16,8 @@ message AgentDto {
 	int32 CurrentTaskId = 6;
 	int32 CurrentNodeId = 7;
 	gaapicommon.enums.AgvMode AgentMode = 8;
+	string SerialNumber = 9;
+	bool IsVirtual = 10;
+	string Foreground = 11;
+	string Background = 12;
 }

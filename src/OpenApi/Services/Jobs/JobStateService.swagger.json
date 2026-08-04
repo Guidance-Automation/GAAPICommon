@@ -1,0 +1,387 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Jobs/JobStateService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "JobStateServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/JobState/GetCurrentJobSummaryForAgentId": {
+      "get": {
+        "summary": "Get a current job summary for a vehicle.",
+        "operationId": "JobStateServiceProto_GetCurrentJobSummaryForAgentId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsGetCurrentJobSummaryForAgentIdResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobStateServiceProto"
+        ]
+      }
+    },
+    "/JobState/GetJobSummary": {
+      "get": {
+        "summary": "Get the job summary.",
+        "operationId": "JobStateServiceProto_GetJobSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsGetJobSummaryResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "JobId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobStateServiceProto"
+        ]
+      }
+    },
+    "/JobState/GetParentJobSummaryFromTaskId": {
+      "get": {
+        "summary": "Get parent job summary for specified task.",
+        "operationId": "JobStateServiceProto_GetParentJobSummaryFromTaskId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/jobsGetParentJobSummaryFromTaskIdResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TaskId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "JobStateServiceProto"
+        ]
+      }
+    },
+    "/JobState/Subscribe": {
+      "get": {
+        "summary": "Subscribe to receive job progress updates.",
+        "operationId": "JobStateServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/messagesJobProgressDto"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of messagesJobProgressDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "JobStateServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "enumsJobPriority": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Low",
+        "Normal",
+        "High",
+        "Urgent",
+        "Immediate",
+        "Critical"
+      ],
+      "default": "None"
+    },
+    "enumsJobStatus": {
+      "type": "string",
+      "enum": [
+        "AssemblyJob",
+        "AssigningJob",
+        "WaitingJob",
+        "InProgressJob",
+        "CompletedJob",
+        "AbortingJob",
+        "AbortedJob",
+        "EditingJob",
+        "FailingJob",
+        "FailedJob",
+        "PartiallyCompletedJob"
+      ],
+      "default": "AssemblyJob"
+    },
+    "enumsTaskStatus": {
+      "type": "string",
+      "enum": [
+        "UnstartedTask",
+        "InProgressTask",
+        "CompletedTask",
+        "AbortingTask",
+        "AbortedTask",
+        "FailingTask",
+        "FailedTask",
+        "EditingTask",
+        "PartiallyCompletedTask"
+      ],
+      "default": "UnstartedTask"
+    },
+    "enumsTaskType": {
+      "type": "string",
+      "enum": [
+        "UnorderedList",
+        "OrderedList",
+        "AtomicMoveList",
+        "ServiceAtNode",
+        "AwaitAtNode",
+        "SleepAtNode",
+        "ChargeAtNode",
+        "GoToNode",
+        "AtomicMove"
+      ],
+      "default": "UnorderedList"
+    },
+    "jobsGetCurrentJobSummaryForAgentIdResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "JobSummary": {
+          "$ref": "#/definitions/messagesJobSummaryDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "jobsGetJobSummaryResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "JobSummary": {
+          "$ref": "#/definitions/messagesJobSummaryDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "jobsGetParentJobSummaryFromTaskIdResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "JobSummary": {
+          "$ref": "#/definitions/messagesJobSummaryDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesJobProgressDto": {
+      "type": "object",
+      "properties": {
+        "AssignedAgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "JobStatus": {
+          "$ref": "#/definitions/enumsJobStatus"
+        }
+      }
+    },
+    "messagesJobSummaryDto": {
+      "type": "object",
+      "properties": {
+        "AssignedAgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "JobPriority": {
+          "$ref": "#/definitions/enumsJobPriority"
+        },
+        "JobStatus": {
+          "$ref": "#/definitions/enumsJobStatus"
+        },
+        "Notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "RootOrderedListTaskId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskSummaries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesTaskSummaryDto"
+          }
+        }
+      }
+    },
+    "messagesRoadmapItemTaskSummaryDto": {
+      "type": "object",
+      "properties": {
+        "RoadmapItemId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesTaskSummaryDto": {
+      "type": "object",
+      "properties": {
+        "RoadmapItemTaskSummary": {
+          "$ref": "#/definitions/messagesRoadmapItemTaskSummaryDto"
+        },
+        "ParentTaskId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskStatus": {
+          "$ref": "#/definitions/enumsTaskStatus"
+        },
+        "TaskType": {
+          "$ref": "#/definitions/enumsTaskType"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

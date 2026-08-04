@@ -3,6 +3,7 @@ syntax = "proto3";
 import "Common/GenericResult.proto";
 import "Enums/AgentLifetimeState.proto";
 import "Messages/AgentDto.proto";
+import "google/protobuf/timestamp.proto";
 
 import "google/api/annotations.proto";
 
@@ -40,6 +41,21 @@ service AgentServiceProto {
         };
 	}
 
+	// Get time spent by an agent in each management reporting bucket.
+	rpc GetAgentTimeBuckets (GetAgentTimeBucketsRequest) returns (GetAgentTimeBucketsResult) {
+		option (google.api.http) = { get: "/Agent/GetAgentTimeBuckets" };
+	}
+
+	// Update the editable alias and display colours for an agent.
+	rpc UpdateAgentProfile (UpdateAgentProfileRequest) returns (GetAgentDataResult) {
+		option (google.api.http) = { put: "/Agent/UpdateAgentProfile" body: "*" };
+	}
+
+	// Describe the blocking chain and root cause for an agent.
+	rpc GetBlockingRootCause (GetBlockingRootCauseRequest) returns (GetBlockingRootCauseResult) {
+		option (google.api.http) = { get: "/Agent/GetBlockingRootCause" };
+	}
+
 	// Subscribe to receive agent state updates.
     rpc Subscribe(SubscribeRequest) returns (stream AgentSubscribeResult) {
 		option (google.api.http) = {
@@ -64,6 +80,21 @@ message SetAgentLifetimeStateRequest {
 message GetAgentDataRequest {
 	int32 AgentId = 1;
 }
+
+message GetAgentTimeBucketsRequest {
+	int32 AgentId = 1;
+	google.protobuf.Timestamp FromUtc = 2;
+	google.protobuf.Timestamp ToUtc = 3;
+}
+
+message UpdateAgentProfileRequest {
+	int32 AgentId = 1;
+	string Alias = 2;
+	optional string Foreground = 3;
+	optional string Background = 4;
+}
+
+message GetBlockingRootCauseRequest { string AgentIpAddress = 1; }
 
 message SubscribeRequest {}
 
@@ -95,4 +126,26 @@ message GetAgentDataResult {
 
 message AgentSubscribeResult {
 	repeated gaapicommon.messages.AgentDto Agents = 1;
+}
+
+message AgentTimeBucketDto {
+	int32 Bucket = 1;
+	double TotalSeconds = 2;
+	string IsoDuration = 3;
+}
+
+message GetAgentTimeBucketsResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	repeated AgentTimeBucketDto Buckets = 4;
+	int32 ServiceCode = 5;
+}
+
+message GetBlockingRootCauseResult {
+	string ExceptionMessage = 1;
+	string ExceptionSource = 2;
+	string ExceptionStackTrace = 3;
+	string Value = 4;
+	int32 ServiceCode = 5;
 }

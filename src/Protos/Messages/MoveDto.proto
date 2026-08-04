@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+import "Enums/MovementType.proto";
+import "Messages/MapItemBehaviourData.proto";
+import "Messages/PoseDto.proto";
+
 package gaapicommon.messages;
 option csharp_namespace = "GAAPICommon.Messages";
 
@@ -8,4 +12,12 @@ message MoveDto {
 	int32 DestinationId = 2;
 	int32 Id = 3;
 	int32 SourceId = 4;
+	optional gaapicommon.enums.MovementType MovementType = 5;
+	optional double SpeedLimit = 6;
+	optional int32 MoveType = 7;
+	bool IsBidirectional = 8;
+	repeated PoseDto TrajectoryPoints = 9;
+	repeated MapItemBehaviourData Triggers = 10;
+	repeated MapItemBehaviourData Constraints = 11;
+	repeated MapItemBehaviourData AllowedDirectives = 12;
 }

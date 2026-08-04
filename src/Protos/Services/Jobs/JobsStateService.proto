@@ -2,6 +2,7 @@
 
 import "Common/GenericResult.proto";
 import "Messages/JobStateDto.proto";
+import "Messages/JobSummaryDto.proto";
 
 import "google/api/annotations.proto";
 
@@ -49,6 +50,14 @@ service JobsStateServiceProto {
     };
   }
 
+  // Get active job summaries for all agents or one selected agent.
+  rpc GetActiveJobSummaries(GetActiveJobSummariesRequest)
+      returns (GetActiveJobSummariesResult) {
+    option (google.api.http) = {
+      get : "/JobsState/GetActiveJobSummaries"
+    };
+  }
+
   // Subscribe to receive job state updates.
   rpc Subscribe(JobsStateSubscribeRequest)
       returns (stream gaapicommon.messages.JobStateDto) {
@@ -72,6 +81,7 @@ message AbortJobRequest {
 message AbortTaskRequest { int32 TaskId = 1; }
 
 message GetActiveJobIdsForAgentRequest { int32 AgentId = 1; }
+message GetActiveJobSummariesRequest { optional int32 AgentId = 1; }
 
 message JobsStateSubscribeRequest {}
 
@@ -82,5 +92,13 @@ message GetActiveJobIdsForAgentResult {
   string ExceptionSource = 2;
   string ExceptionStackTrace = 3;
   repeated int32 ActiveJobs = 4;
+  int32 ServiceCode = 5;
+}
+
+message GetActiveJobSummariesResult {
+  string ExceptionMessage = 1;
+  string ExceptionSource = 2;
+  string ExceptionStackTrace = 3;
+  repeated gaapicommon.messages.JobSummaryDto Jobs = 4;
   int32 ServiceCode = 5;
 }

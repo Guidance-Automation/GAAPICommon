@@ -1,0 +1,596 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Agents/AgentService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AgentServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/Agent/GetAgentData": {
+      "get": {
+        "summary": "Get an agent.",
+        "operationId": "AgentServiceProto_GetAgentData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetAgentDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/GetAgentTimeBuckets": {
+      "get": {
+        "summary": "Get time spent by an agent in each management reporting bucket.",
+        "operationId": "AgentServiceProto_GetAgentTimeBuckets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetAgentTimeBucketsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "FromUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "ToUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/GetAllAgentData": {
+      "get": {
+        "summary": "Get all agents.",
+        "operationId": "AgentServiceProto_GetAllAgentData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetAllAgentDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/GetAllAgentsInLifetimeState": {
+      "get": {
+        "summary": "Get all agents in lifetime state.",
+        "operationId": "AgentServiceProto_GetAllAgentsInLifetimeState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetAllAgentsInLifetimeStateResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentLifetimeState",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Decommissioned",
+              "Disconnected",
+              "OutOfService",
+              "InService"
+            ],
+            "default": "Decommissioned"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/GetBlockingRootCause": {
+      "get": {
+        "summary": "Describe the blocking chain and root cause for an agent.",
+        "operationId": "AgentServiceProto_GetBlockingRootCause",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetBlockingRootCauseResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentIpAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/SetAgentLifetimeState": {
+      "post": {
+        "summary": "Set an agents lifetime state.",
+        "operationId": "AgentServiceProto_SetAgentLifetimeState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "AgentLifetimeState",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "Decommissioned",
+              "Disconnected",
+              "OutOfService",
+              "InService"
+            ],
+            "default": "Decommissioned"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/Subscribe": {
+      "get": {
+        "summary": "Subscribe to receive agent state updates.",
+        "operationId": "AgentServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/agentsAgentSubscribeResult"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of agentsAgentSubscribeResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/UpdateAgentProfile": {
+      "put": {
+        "summary": "Update the editable alias and display colours for an agent.",
+        "operationId": "AgentServiceProto_UpdateAgentProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetAgentDataResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/agentsUpdateAgentProfileRequest"
+            }
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "agentsAgentSubscribeResult": {
+      "type": "object",
+      "properties": {
+        "Agents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesAgentDto"
+          }
+        }
+      }
+    },
+    "agentsAgentTimeBucketDto": {
+      "type": "object",
+      "properties": {
+        "Bucket": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TotalSeconds": {
+          "type": "number",
+          "format": "double"
+        },
+        "IsoDuration": {
+          "type": "string"
+        }
+      }
+    },
+    "agentsGetAgentDataResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Agent": {
+          "$ref": "#/definitions/messagesAgentDto"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "agentsGetAgentTimeBucketsResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Buckets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/agentsAgentTimeBucketDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "agentsGetAllAgentDataResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Agents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesAgentDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "agentsGetAllAgentsInLifetimeStateResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Agents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesAgentDto"
+          }
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "agentsGetBlockingRootCauseResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "agentsUpdateAgentProfileRequest": {
+      "type": "object",
+      "properties": {
+        "AgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Alias": {
+          "type": "string"
+        },
+        "Foreground": {
+          "type": "string"
+        },
+        "Background": {
+          "type": "string"
+        }
+      }
+    },
+    "enumsAgentLifetimeState": {
+      "type": "string",
+      "enum": [
+        "Decommissioned",
+        "Disconnected",
+        "OutOfService",
+        "InService"
+      ],
+      "default": "Decommissioned"
+    },
+    "enumsAgentState": {
+      "type": "string",
+      "enum": [
+        "Waiting",
+        "Ready",
+        "Moving",
+        "Sleeping",
+        "Servicing",
+        "Error",
+        "Fatal",
+        "Stationary",
+        "Executing",
+        "Aborting",
+        "NotInMap",
+        "Estopped",
+        "Safety",
+        "Offline",
+        "Charging",
+        "AttachmentError",
+        "ManualMode"
+      ],
+      "default": "Waiting"
+    },
+    "enumsAgvMode": {
+      "type": "string",
+      "enum": [
+        "Manual",
+        "Automatic"
+      ],
+      "default": "Manual"
+    },
+    "gaapicommonGenericResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesAgentDto": {
+      "type": "object",
+      "properties": {
+        "AgentLifetimeState": {
+          "$ref": "#/definitions/enumsAgentLifetimeState"
+        },
+        "Alias": {
+          "type": "string"
+        },
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "AgentState": {
+          "$ref": "#/definitions/enumsAgentState"
+        },
+        "CurrentTaskId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CurrentNodeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AgentMode": {
+          "$ref": "#/definitions/enumsAgvMode"
+        },
+        "SerialNumber": {
+          "type": "string"
+        },
+        "IsVirtual": {
+          "type": "boolean"
+        },
+        "Foreground": {
+          "type": "string"
+        },
+        "Background": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

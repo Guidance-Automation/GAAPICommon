@@ -1,0 +1,1027 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Services/Scheduling/SchedulingService.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "SchedulingServiceProto"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/Scheduling/GetComponentManagerFailureReason": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetComponentManagerFailureReason",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/schedulingStringResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetComponentManagerStatus": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetComponentManagerStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messagesComponentManagerStatusDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetJobCostings": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetJobCostings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/schedulingJobCostingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetModuleInfo": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetModuleInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messagesModuleInfoDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetRuntimeSettings": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetRuntimeSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/schedulingRuntimeSettingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetSchedulerConfig": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetSchedulerConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messagesSchedulerConfigDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetSchedulerState": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetSchedulerState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messagesSchedulerStateDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/GetServiceVersion": {
+      "get": {
+        "operationId": "SchedulingServiceProto_GetServiceVersion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messagesSemVerDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/RestartService": {
+      "post": {
+        "operationId": "SchedulingServiceProto_RestartService",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingSchedulingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/RestoreJobCostingDefaults": {
+      "post": {
+        "operationId": "SchedulingServiceProto_RestoreJobCostingDefaults",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/schedulingJobCostingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingSchedulingRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetAttractMode": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetAttractMode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingBoolValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetChargeDowngradeLevel": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetChargeDowngradeLevel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingInt32ValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetIdleTimeout": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetIdleTimeout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingDurationValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetImmediateChargeLevel": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetImmediateChargeLevel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingInt32ValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetJobCostings": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetJobCostings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/schedulingJobCostingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingSetJobCostingsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetMaximumChargeLevel": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetMaximumChargeLevel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingInt32ValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetRuntimeSettings": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetRuntimeSettings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/schedulingRuntimeSettingsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingSetRuntimeSettingsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetSpotManagement": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetSpotManagement",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingBoolValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/SetWaypointItineraryBuffer": {
+      "put": {
+        "operationId": "SchedulingServiceProto_SetWaypointItineraryBuffer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/schedulingInt32ValueRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    },
+    "/Scheduling/Subscribe": {
+      "get": {
+        "summary": "Subscribe to state updates.",
+        "operationId": "SchedulingServiceProto_Subscribe",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/messagesSchedulerStateDto"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of messagesSchedulerStateDto"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "SchedulingServiceProto"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "enumsBookingState": {
+      "type": "string",
+      "enum": [
+        "AwaitingArrival",
+        "CheckedIn",
+        "AwaitingCheckout",
+        "CheckedOut"
+      ],
+      "default": "AwaitingArrival"
+    },
+    "enumsChargeType": {
+      "type": "string",
+      "enum": [
+        "Immediate",
+        "Opportunistic",
+        "Trickle"
+      ],
+      "default": "Immediate"
+    },
+    "enumsReleaseFlag": {
+      "type": "string",
+      "enum": [
+        "Unspecified",
+        "Alpha",
+        "Beta",
+        "ReleaseCandidate",
+        "Release"
+      ],
+      "default": "Unspecified",
+      "title": "- Alpha: Internal test\n - Beta: External test\n - ReleaseCandidate: For the testing team\n - Release: Official release"
+    },
+    "gaapicommonGenericResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesChargeBookingStateDto": {
+      "type": "object",
+      "properties": {
+        "AgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ChargeType": {
+          "$ref": "#/definitions/enumsChargeType"
+        },
+        "BookingState": {
+          "$ref": "#/definitions/enumsBookingState"
+        },
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesChargingSpotStateDto": {
+      "type": "object",
+      "properties": {
+        "ChargeBookingState": {
+          "$ref": "#/definitions/messagesChargeBookingStateDto"
+        },
+        "NodeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsBooked": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesComponentManagerStatusDto": {
+      "type": "object",
+      "properties": {
+        "ComponentManagerState": {
+          "type": "string"
+        },
+        "IsFaulted": {
+          "type": "boolean"
+        },
+        "IsInEndState": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesMapMetadataDto": {
+      "type": "object",
+      "properties": {
+        "Alias": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Guid": {
+          "type": "string"
+        }
+      }
+    },
+    "messagesModuleInfoDto": {
+      "type": "object",
+      "properties": {
+        "DisplayName": {
+          "type": "string"
+        }
+      }
+    },
+    "messagesParkBookingStateDto": {
+      "type": "object",
+      "properties": {
+        "AgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BookingState": {
+          "$ref": "#/definitions/enumsBookingState"
+        },
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "TaskId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesParkingSpotStateDto": {
+      "type": "object",
+      "properties": {
+        "ParkBookingState": {
+          "$ref": "#/definitions/messagesParkBookingStateDto"
+        },
+        "NodeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsBooked": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesSchedulerConfigDto": {
+      "type": "object",
+      "properties": {
+        "IsInAttractMode": {
+          "type": "boolean"
+        },
+        "IsSpotManagementEnabled": {
+          "type": "boolean"
+        },
+        "IsUpdateLoopPluginsEnabled": {
+          "type": "boolean"
+        },
+        "MapMetadata": {
+          "$ref": "#/definitions/messagesMapMetadataDto"
+        },
+        "SpotManagerConfig": {
+          "$ref": "#/definitions/messagesSpotManagerConfigDto"
+        },
+        "WaypointItineraryBufferS": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "messagesSchedulerStateDto": {
+      "type": "object",
+      "properties": {
+        "InstanceId": {
+          "type": "string"
+        },
+        "Cycle": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "UpTime": {
+          "type": "string"
+        },
+        "SpotManagerState": {
+          "$ref": "#/definitions/messagesSpotManagerStateDto"
+        }
+      }
+    },
+    "messagesSemVerDto": {
+      "type": "object",
+      "properties": {
+        "Major": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Minor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Patch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ReleaseFlag": {
+          "$ref": "#/definitions/enumsReleaseFlag"
+        },
+        "PreRelease": {
+          "type": "string",
+          "description": "Identifiers after the release stage, for example \"1\" in \"rc.1\"."
+        },
+        "BuildMetadata": {
+          "type": "string",
+          "description": "Optional SemVer build metadata, without the leading \"+\"."
+        }
+      }
+    },
+    "messagesSpotManagerConfigDto": {
+      "type": "object",
+      "properties": {
+        "IdleTimeout": {
+          "type": "string"
+        },
+        "ChargeDowngradeLevel": {
+          "type": "number",
+          "format": "double"
+        },
+        "ImmediateChargeLevel": {
+          "type": "number",
+          "format": "double"
+        },
+        "ChargeMaximumLevel": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "messagesSpotManagerStateDto": {
+      "type": "object",
+      "properties": {
+        "ChargingSpotStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesChargingSpotStateDto"
+          }
+        },
+        "ParkingSpotStates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesParkingSpotStateDto"
+          }
+        },
+        "IsChanged": {
+          "type": "boolean"
+        },
+        "Tick": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "schedulingBoolValueRequest": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schedulingDurationValueRequest": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "type": "string"
+        }
+      }
+    },
+    "schedulingInt32ValueRequest": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "schedulingJobCostingsResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "BaseCostSeconds": {
+          "type": "number",
+          "format": "double"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CostScalingThresholdSeconds": {
+          "type": "number",
+          "format": "double"
+        },
+        "MaxCostScalingThresholdSeconds": {
+          "type": "number",
+          "format": "double"
+        },
+        "Lambda": {
+          "type": "number",
+          "format": "double"
+        },
+        "IsEnabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schedulingRuntimeSettingsResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "MaxJoinDistance": {
+          "type": "number",
+          "format": "double"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AutoMigrate": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schedulingSchedulingRequest": {
+      "type": "object"
+    },
+    "schedulingSetJobCostingsRequest": {
+      "type": "object",
+      "properties": {
+        "BaseCostSeconds": {
+          "type": "number",
+          "format": "double"
+        },
+        "CostScalingThresholdSeconds": {
+          "type": "number",
+          "format": "double"
+        },
+        "Lambda": {
+          "type": "number",
+          "format": "double"
+        },
+        "IsEnabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schedulingSetRuntimeSettingsRequest": {
+      "type": "object",
+      "properties": {
+        "MaxJoinDistance": {
+          "type": "number",
+          "format": "double"
+        },
+        "AutoMigrate": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schedulingStringResult": {
+      "type": "object",
+      "properties": {
+        "ExceptionMessage": {
+          "type": "string"
+        },
+        "ExceptionSource": {
+          "type": "string"
+        },
+        "ExceptionStackTrace": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        },
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}
