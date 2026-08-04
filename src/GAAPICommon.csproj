@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0</TargetFrameworks>
-		<PackageVersion>3.0.0-rc.1</PackageVersion>
+		<PackageVersion>3.0.0</PackageVersion>
 		<Platforms>AnyCPU</Platforms>
 		<Authors>Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2026</Copyright>
