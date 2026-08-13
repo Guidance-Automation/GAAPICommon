@@ -137,6 +137,15 @@ service MapServiceProto {
     option (google.api.http) = { delete: "/Map/DeleteRoadmap/{Id}" };
   }
 
+  // Update the user-facing metadata shared by every version of a roadmap.
+  rpc UpdateRoadmapMetadata(UpdateRoadmapMetadataRequest)
+      returns (gaapicommon.GenericResult) {
+    option (google.api.http) = {
+      put: "/Map/UpdateRoadmapMetadata/{MapId}"
+      body: "*"
+    };
+  }
+
   // Upload a roadmap in bounded chunks.
   rpc UploadRoadmap(stream RoadmapUploadChunk)
       returns (gaapicommon.messages.RoadmapUploadResultDto);
@@ -183,6 +192,11 @@ message GetTrajectorySettingsRequest {}
 message SetTrajectorySettingsRequest { double ClothoidWaypointSpacingMeters = 1; }
 message GetRoadmapRequest {}
 message RoadmapIdRequest { int32 Id = 1; }
+message UpdateRoadmapMetadataRequest {
+  int32 MapId = 1;
+  string Alias = 2;
+  string Description = 3;
+}
 
 message MapSubscribeRequest {}
 

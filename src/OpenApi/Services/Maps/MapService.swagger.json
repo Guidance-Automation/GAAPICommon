@@ -635,11 +635,62 @@
           "MapServiceProto"
         ]
       }
+    },
+    "/Map/UpdateRoadmapMetadata/{MapId}": {
+      "put": {
+        "summary": "Update the user-facing metadata shared by every version of a roadmap.",
+        "operationId": "MapServiceProto_UpdateRoadmapMetadata",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "MapId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MapServiceProtoUpdateRoadmapMetadataBody"
+            }
+          }
+        ],
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
     }
   },
   "definitions": {
     "MapServiceProtoActivateRoadmapBody": {
       "type": "object"
+    },
+    "MapServiceProtoUpdateRoadmapMetadataBody": {
+      "type": "object",
+      "properties": {
+        "Alias": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        }
+      }
     },
     "enumsMovementType": {
       "type": "string",
