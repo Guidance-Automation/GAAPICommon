@@ -35,7 +35,7 @@ public sealed class GrpcOpenApiOptions
 /// <summary>Maps OpenAPI documents generated directly from protobuf descriptors.</summary>
 public static partial class GrpcOpenApiEndpointRouteBuilderExtensions
 {
-    private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web)
+    private static readonly JsonSerializerOptions _serializerOptions = new(JsonSerializerDefaults.Web)
     {
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
         WriteIndented = true
@@ -68,14 +68,14 @@ public static partial class GrpcOpenApiEndpointRouteBuilderExtensions
             Dictionary<string, object?> document = GrpcOpenApiDocumentGenerator.Generate(
                 options,
                 mappedServiceNames);
-            return Results.Json(document, SerializerOptions);
+            return Results.Json(document, _serializerOptions);
         })
         .ExcludeFromDescription();
     }
 
     private static partial class GrpcOpenApiDocumentGenerator
     {
-        private static readonly IReadOnlyDictionary<string, ServiceDescriptor> Descriptors =
+        private static readonly IReadOnlyDictionary<string, ServiceDescriptor> _descriptors =
             LoadServiceDescriptors();
 
         [GeneratedRegex("\\{(?<field>[A-Za-z0-9_.]+)(?:=[^}]*)?\\}")]
@@ -92,7 +92,7 @@ public static partial class GrpcOpenApiEndpointRouteBuilderExtensions
             SortedDictionary<string, object?> schemas = new(StringComparer.Ordinal);
             List<object?> tags = [];
 
-            IEnumerable<ServiceDescriptor> services = Descriptors.Values
+            IEnumerable<ServiceDescriptor> services = _descriptors.Values
                 .Where(descriptor => mappedServiceNames.Contains(descriptor.FullName))
                 .Where(descriptor => options.IncludedServices.Count == 0 ||
                     options.IncludedServices.Contains(descriptor.FullName))
@@ -103,7 +103,7 @@ public static partial class GrpcOpenApiEndpointRouteBuilderExtensions
                 bool addedService = false;
                 foreach (MethodDescriptor method in service.Methods)
                 {
-                    HttpRule? rule = method.GetOptions().GetExtension(AnnotationsExtensions.Http);
+                    HttpRule? rule = method.GetOptions()?.GetExtension(AnnotationsExtensions.Http);
                     if (rule == null)
                         continue;
 
@@ -148,7 +148,7 @@ public static partial class GrpcOpenApiEndpointRouteBuilderExtensions
             };
         }
 
-        private static IReadOnlyDictionary<string, ServiceDescriptor> LoadServiceDescriptors()
+        private static Dictionary<string, ServiceDescriptor> LoadServiceDescriptors()
         {
             return typeof(GrpcOpenApiEndpointRouteBuilderExtensions).Assembly
                 .GetTypes()
@@ -247,7 +247,7 @@ public static partial class GrpcOpenApiEndpointRouteBuilderExtensions
         private static List<object?> CreateParameters(
             MessageDescriptor request,
             HttpRule rule,
-            IReadOnlySet<string> pathFields,
+            HashSet<string> pathFields,
             SortedDictionary<string, object?> schemas)
         {
             List<object?> parameters = [];
