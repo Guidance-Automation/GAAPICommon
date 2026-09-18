@@ -58,6 +58,21 @@ service MapServiceProto {
     };
   }
 
+  // Get the maintenance mode of roadmap nodes.
+  rpc GetNodeMaintenance(GetNodeMaintenanceRequest)
+      returns (GetNodeMaintenanceResult) {
+    option (google.api.http) = { get: "/Map/GetNodeMaintenance" };
+  }
+
+  // Change the maintenance mode of a roadmap node.
+  rpc SetNodeMaintenance(SetNodeMaintenanceRequest)
+      returns (SetNodeMaintenanceResult) {
+    option (google.api.http) = {
+      put: "/Map/SetNodeMaintenance"
+      body: "*"
+    };
+  }
+
   // Get all parameters.
   rpc GetAllParameterData(GetAllParameterDataRequest)
       returns (GetAllParameterDataResult) {
@@ -182,6 +197,11 @@ message SetOccupyingMandateRequest {
 
 message GetAllMoveDataRequest {}
 message GetAllNodeDataRequest {}
+message GetNodeMaintenanceRequest {}
+message SetNodeMaintenanceRequest {
+  int32 NodeId = 1;
+  int32 Mode = 2;
+}
 message GetAllParameterDataRequest {}
 message GetRoadmapOccupiersRequest {}
 
@@ -224,6 +244,23 @@ message GetAllNodeDataResult {
   string ExceptionStackTrace = 3;
   repeated gaapicommon.messages.NodeDto Nodes = 4;
   int32 ServiceCode = 5;
+}
+
+message NodeMaintenanceState {
+  int32 NodeId = 1;
+  int32 Mode = 2;
+}
+
+message GetNodeMaintenanceResult {
+  int32 ServiceCode = 1;
+  string ErrorMessage = 2;
+  repeated NodeMaintenanceState States = 3;
+}
+
+message SetNodeMaintenanceResult {
+  int32 ServiceCode = 1;
+  string ErrorMessage = 2;
+  NodeMaintenanceState State = 3;
 }
 
 message GetAllParameterDataResult {

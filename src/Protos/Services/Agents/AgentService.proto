@@ -3,6 +3,8 @@ syntax = "proto3";
 import "Common/GenericResult.proto";
 import "Enums/AgentLifetimeState.proto";
 import "Messages/AgentDto.proto";
+import "Messages/AgentBlockingDiagnostic.proto";
+import "Messages/PoseDto.proto";
 import "google/protobuf/timestamp.proto";
 
 import "google/api/annotations.proto";
@@ -56,6 +58,16 @@ service AgentServiceProto {
 		option (google.api.http) = { get: "/Agent/GetBlockingRootCause" };
 	}
 
+	// Get the remaining waypoints currently handed to an agent.
+	rpc GetPlannedWaypoints (GetPlannedWaypointsRequest) returns (GetPlannedWaypointsResult) {
+		option (google.api.http) = { get: "/Agent/GetPlannedWaypoints" };
+	}
+
+	// Subscribe to changes in the remaining waypoints handed to an agent.
+	rpc SubscribePlannedWaypoints (GetPlannedWaypointsRequest) returns (stream GetPlannedWaypointsResult) {
+		option (google.api.http) = { get: "/Agent/SubscribePlannedWaypoints" };
+	}
+
 	// Subscribe to receive agent state updates.
     rpc Subscribe(SubscribeRequest) returns (stream AgentSubscribeResult) {
 		option (google.api.http) = {
@@ -95,6 +107,10 @@ message UpdateAgentProfileRequest {
 }
 
 message GetBlockingRootCauseRequest { string AgentIpAddress = 1; }
+
+message GetPlannedWaypointsRequest {
+	int32 AgentId = 1;
+}
 
 message SubscribeRequest {}
 
@@ -146,6 +162,12 @@ message GetBlockingRootCauseResult {
 	string ExceptionMessage = 1;
 	string ExceptionSource = 2;
 	string ExceptionStackTrace = 3;
-	string Value = 4;
+	gaapicommon.messages.AgentBlockingDiagnostic Diagnostic = 4;
 	int32 ServiceCode = 5;
+}
+
+message GetPlannedWaypointsResult {
+	int32 ServiceCode = 1;
+	string ErrorMessage = 2;
+	repeated gaapicommon.messages.PoseDto Waypoints = 3;
 }

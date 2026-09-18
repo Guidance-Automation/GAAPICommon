@@ -12,6 +12,15 @@ option csharp_namespace = "GAAPICommon.Services.Jobs";
 // JobsStateService
 
 service JobsStateServiceProto {
+  // Pause at the next instruction boundary. Already dispatched work may finish.
+  rpc PauseJob(PauseJobRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { post: "/JobsState/PauseJob" body: "*" };
+  }
+
+  // Resume on the assigned agent, waiting for any intervening job to finish.
+  rpc ResumeJob(ResumeJobRequest) returns (gaapicommon.GenericResult) {
+    option (google.api.http) = { post: "/JobsState/ResumeJob" body: "*" };
+  }
 
   // Abort all active jobs in the scheduler.
   rpc AbortAllJobs(AbortAllJobsRequest) returns (gaapicommon.GenericResult) {
@@ -68,6 +77,13 @@ service JobsStateServiceProto {
 }
 
 // Message Parameters
+message PauseJobRequest {
+  int32 JobId = 1;
+  // Defaults to false: reserve the assigned agent while paused.
+  bool AllowAgentToAcceptOtherJobs = 2;
+}
+
+message ResumeJobRequest { int32 JobId = 1; }
 
 message AbortAllJobsRequest {}
 

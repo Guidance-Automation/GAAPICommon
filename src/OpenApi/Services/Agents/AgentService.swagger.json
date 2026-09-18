@@ -186,6 +186,38 @@
         ]
       }
     },
+    "/Agent/GetPlannedWaypoints": {
+      "get": {
+        "summary": "Get the remaining waypoints currently handed to an agent.",
+        "operationId": "AgentServiceProto_GetPlannedWaypoints",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetPlannedWaypointsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
     "/Agent/SetAgentLifetimeState": {
       "post": {
         "summary": "Set an agents lifetime state.",
@@ -258,6 +290,47 @@
             }
           }
         },
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
+    "/Agent/SubscribePlannedWaypoints": {
+      "get": {
+        "summary": "Subscribe to changes in the remaining waypoints handed to an agent.",
+        "operationId": "AgentServiceProto_SubscribePlannedWaypoints",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/agentsGetPlannedWaypointsResult"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of agentsGetPlannedWaypointsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
         "tags": [
           "AgentServiceProto"
         ]
@@ -434,12 +507,31 @@
         "ExceptionStackTrace": {
           "type": "string"
         },
-        "Value": {
-          "type": "string"
+        "Diagnostic": {
+          "$ref": "#/definitions/messagesAgentBlockingDiagnostic"
         },
         "ServiceCode": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "agentsGetPlannedWaypointsResult": {
+      "type": "object",
+      "properties": {
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/messagesPoseDto"
+          }
         }
       }
     },
@@ -520,6 +612,52 @@
         }
       }
     },
+    "messagesAgentBlockingDiagnostic": {
+      "type": "object",
+      "properties": {
+        "Agent": {
+          "$ref": "#/definitions/messagesAgentBlockingDiagnosticAgent"
+        },
+        "BlockingAgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BlockingAgent": {
+          "$ref": "#/definitions/messagesAgentBlockingDiagnosticAgent"
+        },
+        "RootCauseAgent": {
+          "$ref": "#/definitions/messagesAgentBlockingDiagnosticAgent"
+        },
+        "UnresolvedBlockingAgentId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "NextDestinationNode": {
+          "type": "string"
+        },
+        "IsCyclicDeadlock": {
+          "type": "boolean"
+        }
+      }
+    },
+    "messagesAgentBlockingDiagnosticAgent": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Alias": {
+          "type": "string"
+        },
+        "IpAddress": {
+          "type": "string"
+        },
+        "MarkovState": {
+          "$ref": "#/definitions/enumsAgentState"
+        }
+      }
+    },
     "messagesAgentDto": {
       "type": "object",
       "properties": {
@@ -561,6 +699,23 @@
         },
         "Background": {
           "type": "string"
+        }
+      }
+    },
+    "messagesPoseDto": {
+      "type": "object",
+      "properties": {
+        "X": {
+          "type": "number",
+          "format": "double"
+        },
+        "Y": {
+          "type": "number",
+          "format": "double"
+        },
+        "Heading": {
+          "type": "number",
+          "format": "double"
         }
       }
     },

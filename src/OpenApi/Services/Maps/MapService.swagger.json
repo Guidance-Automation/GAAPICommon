@@ -327,6 +327,29 @@
         ]
       }
     },
+    "/Map/GetNodeMaintenance": {
+      "get": {
+        "summary": "Get the maintenance mode of roadmap nodes.",
+        "operationId": "MapServiceProto_GetNodeMaintenance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsGetNodeMaintenanceResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
     "/Map/GetOccupyingMandateProgressData": {
       "get": {
         "summary": "Get occupying mandates.",
@@ -524,6 +547,39 @@
             }
           }
         },
+        "tags": [
+          "MapServiceProto"
+        ]
+      }
+    },
+    "/Map/SetNodeMaintenance": {
+      "put": {
+        "summary": "Change the maintenance mode of a roadmap node.",
+        "operationId": "MapServiceProto_SetNodeMaintenance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/mapsSetNodeMaintenanceResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/mapsSetNodeMaintenanceRequest"
+            }
+          }
+        ],
         "tags": [
           "MapServiceProto"
         ]
@@ -835,6 +891,25 @@
         }
       }
     },
+    "mapsGetNodeMaintenanceResult": {
+      "type": "object",
+      "properties": {
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        },
+        "States": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/mapsNodeMaintenanceState"
+          }
+        }
+      }
+    },
     "mapsGetOccupyingMandateProgressDataResult": {
       "type": "object",
       "properties": {
@@ -1040,6 +1115,19 @@
         }
       }
     },
+    "mapsNodeMaintenanceState": {
+      "type": "object",
+      "properties": {
+        "NodeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Mode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "mapsPointCloudPointDto": {
       "type": "object",
       "properties": {
@@ -1109,6 +1197,34 @@
         },
         "IsLatest": {
           "type": "boolean"
+        }
+      }
+    },
+    "mapsSetNodeMaintenanceRequest": {
+      "type": "object",
+      "properties": {
+        "NodeId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Mode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "mapsSetNodeMaintenanceResult": {
+      "type": "object",
+      "properties": {
+        "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ErrorMessage": {
+          "type": "string"
+        },
+        "State": {
+          "$ref": "#/definitions/mapsNodeMaintenanceState"
         }
       }
     },

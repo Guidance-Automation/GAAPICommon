@@ -205,6 +205,72 @@
         ]
       }
     },
+    "/JobsState/PauseJob": {
+      "post": {
+        "summary": "Pause at the next instruction boundary. Already dispatched work may finish.",
+        "operationId": "JobsStateServiceProto_PauseJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jobsPauseJobRequest"
+            }
+          }
+        ],
+        "tags": [
+          "JobsStateServiceProto"
+        ]
+      }
+    },
+    "/JobsState/ResumeJob": {
+      "post": {
+        "summary": "Resume on the assigned agent, waiting for any intervening job to finish.",
+        "operationId": "JobsStateServiceProto_ResumeJob",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/jobsResumeJobRequest"
+            }
+          }
+        ],
+        "tags": [
+          "JobsStateServiceProto"
+        ]
+      }
+    },
     "/JobsState/Subscribe": {
       "get": {
         "summary": "Subscribe to receive job state updates.",
@@ -265,9 +331,12 @@
         "EditingJob",
         "FailingJob",
         "FailedJob",
-        "PartiallyCompletedJob"
+        "PartiallyCompletedJob",
+        "PausingJob",
+        "PausedJob"
       ],
-      "default": "AssemblyJob"
+      "default": "AssemblyJob",
+      "description": " - PausingJob: Finishing already dispatched instructions before pausing."
     },
     "enumsTaskStatus": {
       "type": "string",
@@ -362,6 +431,29 @@
           }
         },
         "ServiceCode": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "jobsPauseJobRequest": {
+      "type": "object",
+      "properties": {
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "AllowAgentToAcceptOtherJobs": {
+          "type": "boolean",
+          "description": "Defaults to false: reserve the assigned agent while paused."
+        }
+      },
+      "title": "Message Parameters"
+    },
+    "jobsResumeJobRequest": {
+      "type": "object",
+      "properties": {
+        "JobId": {
           "type": "integer",
           "format": "int32"
         }
