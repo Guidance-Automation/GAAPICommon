@@ -701,8 +701,7 @@
         "ROBOT_EVENT_KIND_SAFETY",
         "ROBOT_EVENT_KIND_DOCKING"
       ],
-      "default": "ROBOT_EVENT_KIND_UNSPECIFIED",
-      "description": "Safety includes outer warning, inner warning and protection.\nDocking includes every non-Good status, including unknown nonzero values."
+      "default": "ROBOT_EVENT_KIND_UNSPECIFIED"
     },
     "gaapicommonGenericResult": {
       "type": "object",
