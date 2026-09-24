@@ -69,10 +69,11 @@ service FleetManagerServiceProto {
 
   // Reset a specified vehicle.
   rpc ResetVehicle (ResetVehicleRequest) 
-      returns (gaapicommon.GenericResult);
+      returns (gaapicommon.GenericResult) {
     option (google.api.http) = {
       post : "/FleetManager/ResetVehicle"
     };
+  }
 
   // Subscribe to receive fleet state updates.
   rpc Subscribe(SubscribeRequest)

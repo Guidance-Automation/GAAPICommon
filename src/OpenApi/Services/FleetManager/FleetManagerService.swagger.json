@@ -124,6 +124,37 @@
         ]
       }
     },
+    "/FleetManager/ResetVehicle": {
+      "post": {
+        "summary": "Reset a specified vehicle.",
+        "operationId": "FleetManagerServiceProto_ResetVehicle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gaapicommonGenericResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
     "/FleetManager/SetFleetState": {
       "post": {
         "summary": "Set the state of the fleet.",
