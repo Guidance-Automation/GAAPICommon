@@ -67,6 +67,13 @@ service FleetManagerServiceProto {
     };
   }
 
+  // Reset a specified vehicle.
+  rpc ResetVehicle (ResetVehicleRequest) 
+      returns (gaapicommon.GenericResult);
+    option (google.api.http) = {
+      post : "/FleetManager/ResetVehicle"
+    };
+
   // Subscribe to receive fleet state updates.
   rpc Subscribe(SubscribeRequest)
       returns (stream gaapicommon.messages.FleetStateDto) {
@@ -100,6 +107,10 @@ message SetFleetStateRequest {
 message SetKingpinStateRequest {
   string IPAddress = 1;
   gaapicommon.enums.VehicleControllerState ControllerState = 2;
+}
+
+message ResetVehicleRequest {
+	string IPAddress = 1;
 }
 
 message SubscribeRequest {}
