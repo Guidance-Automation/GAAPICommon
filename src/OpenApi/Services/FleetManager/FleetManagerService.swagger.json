@@ -93,6 +93,134 @@
         ]
       }
     },
+    "/FleetManager/GetRobotEventCounts": {
+      "get": {
+        "summary": "Counts across the entire range, independent of event pagination.",
+        "operationId": "FleetManagerServiceProto_GetRobotEventCounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/fleetmanagerGetRobotEventCountsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "FromUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "ToUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "Kind",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ROBOT_EVENT_KIND_UNSPECIFIED",
+              "ROBOT_EVENT_KIND_SAFETY",
+              "ROBOT_EVENT_KIND_DOCKING"
+            ],
+            "default": "ROBOT_EVENT_KIND_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
+    "/FleetManager/GetRobotEvents": {
+      "get": {
+        "summary": "State transitions in [FromUtc, ToUtc), newest first. Limit 1..1000.",
+        "operationId": "FleetManagerServiceProto_GetRobotEvents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/fleetmanagerGetRobotEventsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "IPAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "FromUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "ToUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "Kind",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ROBOT_EVENT_KIND_UNSPECIFIED",
+              "ROBOT_EVENT_KIND_SAFETY",
+              "ROBOT_EVENT_KIND_DOCKING"
+            ],
+            "default": "ROBOT_EVENT_KIND_UNSPECIFIED"
+          },
+          {
+            "name": "Offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "Limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "FleetManagerServiceProto"
+        ]
+      }
+    },
     "/FleetManager/RemoveVehicle": {
       "delete": {
         "summary": "Remove a specified vehicle.",
@@ -505,6 +633,76 @@
           "format": "int32"
         }
       }
+    },
+    "fleetmanagerGetRobotEventCountsResult": {
+      "type": "object",
+      "properties": {
+        "Counts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fleetmanagerRobotEventCountDto"
+          }
+        }
+      }
+    },
+    "fleetmanagerGetRobotEventsResult": {
+      "type": "object",
+      "properties": {
+        "Events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/fleetmanagerRobotEventDto"
+          }
+        }
+      }
+    },
+    "fleetmanagerRobotEventCountDto": {
+      "type": "object",
+      "properties": {
+        "Category": {
+          "type": "string"
+        },
+        "Count": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "fleetmanagerRobotEventDto": {
+      "type": "object",
+      "properties": {
+        "TimestampUtcMs": {
+          "type": "string",
+          "format": "int64"
+        },
+        "Category": {
+          "type": "string"
+        },
+        "X": {
+          "type": "number",
+          "format": "double"
+        },
+        "Y": {
+          "type": "number",
+          "format": "double"
+        },
+        "Heading": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "fleetmanagerRobotEventKind": {
+      "type": "string",
+      "enum": [
+        "ROBOT_EVENT_KIND_UNSPECIFIED",
+        "ROBOT_EVENT_KIND_SAFETY",
+        "ROBOT_EVENT_KIND_DOCKING"
+      ],
+      "default": "ROBOT_EVENT_KIND_UNSPECIFIED",
+      "description": "Safety includes outer warning, inner warning and protection.\nDocking includes every non-Good status, including unknown nonzero values."
     },
     "gaapicommonGenericResult": {
       "type": "object",

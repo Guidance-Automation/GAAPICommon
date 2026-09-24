@@ -15,6 +15,11 @@ option csharp_namespace = "GAAPICommon.Services.Agents";
 // Agent Service for managing agents.
 service AgentServiceProto {
 
+    // Retained jobs assigned to this agent, created in [FromUtc, ToUtc).
+    rpc GetAgentJobStatistics(GetAgentJobStatisticsRequest) returns (GetAgentJobStatisticsResult) {
+      option (google.api.http) = { get: "/Agent/GetAgentJobStatistics" };
+    }
+
 	// Get all agents.
 	rpc GetAllAgentData (GetAllAgentDataRequest) returns (GetAllAgentDataResult) {
 		option (google.api.http) = {
@@ -170,4 +175,22 @@ message GetPlannedWaypointsResult {
 	int32 ServiceCode = 1;
 	string ErrorMessage = 2;
 	repeated gaapicommon.messages.PoseDto Waypoints = 3;
+}
+
+message GetAgentJobStatisticsRequest {
+    int32 AgentId = 1;
+    google.protobuf.Timestamp FromUtc = 2;
+    google.protobuf.Timestamp ToUtc = 3;
+}
+
+message AgentJobStatisticsDto {
+    int32 JobId = 1;
+    string Description = 2;
+    string Status = 3;
+    google.protobuf.Timestamp Created = 4;
+    google.protobuf.Timestamp Finished = 5;
+}
+
+message GetAgentJobStatisticsResult { 
+	repeated AgentJobStatisticsDto Jobs = 1; 
 }

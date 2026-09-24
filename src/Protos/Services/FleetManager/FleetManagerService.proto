@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "Common/GenericResult.proto";
+import "google/protobuf/timestamp.proto";
 import "Enums/FrozenState.proto";
 import "Enums/VehicleControllerState.proto";
 import "Messages/FleetStateDto.proto";
@@ -13,6 +14,15 @@ option csharp_namespace = "GAAPICommon.Services.FleetManager";
 
 // Fleet Manager Service
 service FleetManagerServiceProto {
+
+  // State transitions in [FromUtc, ToUtc), newest first. Limit 1..1000.
+  rpc GetRobotEvents(GetRobotEventsRequest) returns (GetRobotEventsResult) {
+    option (google.api.http) = { get: "/FleetManager/GetRobotEvents" };
+  }
+  // Counts across the entire range, independent of event pagination.
+  rpc GetRobotEventCounts(GetRobotEventCountsRequest) returns (GetRobotEventCountsResult) {
+    option (google.api.http) = { get: "/FleetManager/GetRobotEventCounts" };
+  }
 
   // Get the KingpinDescription for a given vehicle.
   rpc GetKingpinDescription(GetKingpinDescriptionRequest)
@@ -132,4 +142,47 @@ message CreateVirtualVehicleResult {
   string ExceptionStackTrace = 3;
   string IPAddress = 4;
   int32 ServiceCode = 5;
+}
+
+enum RobotEventKind {
+  ROBOT_EVENT_KIND_UNSPECIFIED = 0;
+  ROBOT_EVENT_KIND_SAFETY = 1;
+  ROBOT_EVENT_KIND_DOCKING = 2;
+}
+
+message GetRobotEventsRequest {
+  string IPAddress = 1;
+  google.protobuf.Timestamp FromUtc = 2;
+  google.protobuf.Timestamp ToUtc = 3;
+  RobotEventKind Kind = 4;
+  int32 Offset = 5;
+  int32 Limit = 6;
+}
+
+message GetRobotEventCountsRequest {
+  string IPAddress = 1;
+  google.protobuf.Timestamp FromUtc = 2;
+  google.protobuf.Timestamp ToUtc = 3;
+  RobotEventKind Kind = 4;
+}
+
+message RobotEventDto {
+  int64 TimestampUtcMs = 1;
+  string Category = 2;
+  optional double X = 3;
+  optional double Y = 4;
+  optional double Heading = 5;
+}
+
+message RobotEventCountDto {
+  string Category = 1;
+  int64 Count = 2;
+}
+
+message GetRobotEventsResult { 
+  repeated RobotEventDto Events = 1;
+}
+
+message GetRobotEventCountsResult {
+  repeated RobotEventCountDto Counts = 1; 
 }

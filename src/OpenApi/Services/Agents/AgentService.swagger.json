@@ -48,6 +48,52 @@
         ]
       }
     },
+    "/Agent/GetAgentJobStatistics": {
+      "get": {
+        "summary": "Retained jobs assigned to this agent, created in [FromUtc, ToUtc).",
+        "operationId": "AgentServiceProto_GetAgentJobStatistics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/agentsGetAgentJobStatisticsResult"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AgentId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "FromUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "ToUtc",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "AgentServiceProto"
+        ]
+      }
+    },
     "/Agent/GetAgentTimeBuckets": {
       "get": {
         "summary": "Get time spent by an agent in each management reporting bucket.",
@@ -371,6 +417,29 @@
     }
   },
   "definitions": {
+    "agentsAgentJobStatisticsDto": {
+      "type": "object",
+      "properties": {
+        "JobId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "Created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Finished": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
     "agentsAgentSubscribeResult": {
       "type": "object",
       "properties": {
@@ -417,6 +486,18 @@
         "ServiceCode": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "agentsGetAgentJobStatisticsResult": {
+      "type": "object",
+      "properties": {
+        "Jobs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/agentsAgentJobStatisticsDto"
+          }
         }
       }
     },
