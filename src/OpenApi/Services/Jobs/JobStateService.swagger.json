@@ -172,9 +172,12 @@
         "EditingJob",
         "FailingJob",
         "FailedJob",
-        "PartiallyCompletedJob"
+        "PartiallyCompletedJob",
+        "PausingJob",
+        "PausedJob"
       ],
-      "default": "AssemblyJob"
+      "default": "AssemblyJob",
+      "description": " - PausingJob: Finishing already dispatched instructions before pausing."
     },
     "enumsTaskStatus": {
       "type": "string",

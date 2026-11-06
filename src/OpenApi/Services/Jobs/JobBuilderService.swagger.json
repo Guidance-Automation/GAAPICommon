@@ -303,6 +303,12 @@
               "Critical"
             ],
             "default": "None"
+          },
+          {
+            "name": "Description",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

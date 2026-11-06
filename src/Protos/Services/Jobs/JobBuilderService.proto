@@ -176,6 +176,7 @@ message CreateAwaitingTaskRequest {
 
 message CreateJobRequest {
   optional gaapicommon.enums.JobPriority JobPriority = 1;
+  optional string Description = 2;
 }
 
 message CreateGoToNodeTaskRequest {

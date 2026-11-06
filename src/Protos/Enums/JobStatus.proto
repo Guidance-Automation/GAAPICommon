@@ -15,4 +15,7 @@ enum JobStatus {
     FailingJob = 8;
     FailedJob = 9;
     PartiallyCompletedJob = 10;
+    // Finishing already dispatched instructions before pausing.
+    PausingJob = 11;
+    PausedJob = 12;
 }

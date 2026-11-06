@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "Enums/AgentState.proto";
+
+package gaapicommon.messages;
+option csharp_namespace = "GAAPICommon.Messages";
+
+message AgentBlockingDiagnostic {
+	AgentBlockingDiagnosticAgent Agent = 1;
+	optional int32 BlockingAgentId = 2;
+	AgentBlockingDiagnosticAgent BlockingAgent = 3;
+	AgentBlockingDiagnosticAgent RootCauseAgent = 4;
+	optional int32 UnresolvedBlockingAgentId = 5;
+	optional string NextDestinationNode = 6;
+	bool IsCyclicDeadlock = 7;
+}
+
+message AgentBlockingDiagnosticAgent {
+	int32 Id = 1;
+	string Alias = 2;
+	optional string IpAddress = 3;
+	gaapicommon.enums.AgentState MarkovState = 4;
+}

@@ -8,4 +8,7 @@ enum DockingState {
     Timeout = 1;
     LostPayload = 2;
     ChargeError = 3;
+    Misaligned = 4;
+    Failure = 5;
+    PositionFault = 6;
 }
