@@ -497,7 +497,10 @@
         "Good",
         "Timeout",
         "LostPayload",
-        "ChargeError"
+        "ChargeError",
+        "Misaligned",
+        "Failure",
+        "PositionFault"
       ],
       "default": "Good"
     },
